@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospital.ui.Login">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="410.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="41.0" layoutY="160.0" text="Username">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="46.0" layoutY="229.0" text="Password">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username" layoutX="154.0" layoutY="162.0" promptText="username" />
+            <PasswordField fx:id="password" layoutX="154.0" layoutY="231.0" promptText="password" />
+            <Button fx:id="loginButton" layoutX="173.0" layoutY="278.0" mnemonicParsing="false" onAction="#userLogin" prefHeight="29.0" prefWidth="111.0" text="Login" />
+            <Label fx:id="loginError" alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="112.0" prefHeight="30.0" prefWidth="205.0" textFill="#e40c0c">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </right>
+</BorderPane>

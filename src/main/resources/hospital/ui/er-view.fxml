@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="665.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" stylesheets="er-view.css" >
+   <children>
+      <ScrollPane prefHeight="665.0" prefWidth="1125.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="258.0" prefWidth="257.0">
+               <children>
+                  <VBox layoutX="-1.0" prefHeight="665.0" prefWidth="1125.0">
+                     <children>
+                        <TitledPane animated="false" prefHeight="183.0" prefWidth="1125.0" text="Basic Patient Info">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="9.0" prefWidth="1123.0">
+                                 <children>
+                                    <BorderPane layoutX="-4.0" layoutY="-6.0" prefHeight="392.0" prefWidth="1132.0">
+                                       <right>
+                                          <VBox prefHeight="392.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label fx:id="firstName" contentDisplay="TOP" prefHeight="37.0" prefWidth="464.0" text="Aden">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="lastName" prefHeight="37.0" prefWidth="517.0" text="D'Occhio">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="phoneNumber" prefHeight="37.0" prefWidth="562.0" text="860-515-6699">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="Address" prefHeight="37.0" prefWidth="420.0" text="16 Brian Woods Dr, Avon, C.T.">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </right>
+                                       <center>
+                                          <VBox prefHeight="392.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="37.0" prefWidth="145.0" text="First Name :">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="37.0" prefWidth="145.0" text="Last Name :">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="37.0" prefWidth="145.0" text="Number     :">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="37.0" prefWidth="145.0" text="Address     :">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                       <left>
+                                          <Pane prefHeight="392.0" prefWidth="217.0" BorderPane.alignment="CENTER" />
+                                       </left>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
+                        <TitledPane animated="false" prefHeight="141.0" prefWidth="1125.0" text="Intake Information">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <BorderPane layoutX="-1.0" layoutY="-4.0" prefHeight="189.0" prefWidth="1125.0">
+                                       <center>
+                                          <VBox prefHeight="392.0" prefWidth="156.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="37.0" prefWidth="145.0" text="Height       :">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="37.0" prefWidth="145.0" text="Weight      :">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="37.0" prefWidth="145.0" text="BPM          :">
+                                                   <font>
+                                                      <Font name="System Bold" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                       <left>
+                                          <Pane prefHeight="189.0" prefWidth="211.0" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <right>
+                                          <VBox prefHeight="392.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label fx:id="height" contentDisplay="TOP" prefHeight="37.0" prefWidth="464.0" text="5&quot;11">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="weight" prefHeight="37.0" prefWidth="517.0" text="115">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="bpm" prefHeight="37.0" prefWidth="562.0" text="60">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="Address1" prefHeight="37.0" prefWidth="420.0">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </right>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
