@@ -31,7 +31,7 @@ public class Login {
     private void checkLogin() throws IOException {
         Main main = new Main();
 
-        if(username.getText().equals("Aden") && password.getText().equals("123")) {
+        if(username.getText().equals("123") && password.getText().equals("123")) {
             loginError.setText("Login Successful!");
 
             main.changeScene("er-view.fxml");

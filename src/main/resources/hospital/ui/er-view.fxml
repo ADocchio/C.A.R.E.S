@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="665.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" stylesheets="er-view.css" >
+<AnchorPane prefHeight="665.0" prefWidth="1125.0" stylesheets="er-view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospital.ui.View">
    <children>
       <ScrollPane prefHeight="665.0" prefWidth="1125.0">
         <content>
@@ -82,7 +77,7 @@
                               </AnchorPane>
                           </content>
                         </TitledPane>
-                        <TitledPane animated="false" prefHeight="141.0" prefWidth="1125.0" text="Intake Information">
+                        <TitledPane animated="false" prefHeight="177.0" prefWidth="1125.0" text="Intake Information">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -105,6 +100,7 @@
                                                       <Font name="System Bold" size="22.0" />
                                                    </font>
                                                 </Label>
+                                                <TextField fx:id="weightForm" />
                                              </children>
                                           </VBox>
                                        </center>
