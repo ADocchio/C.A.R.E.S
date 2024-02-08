@@ -34,7 +34,7 @@ public class Login {
         if(username.getText().equals("123") && password.getText().equals("123")) {
             loginError.setText("Login Successful!");
 
-            main.changeScene("er-view.fxml");
+            main.changeScene("main-view.fxml");
         } else if (username.getText().isEmpty() || password.getText().isEmpty()) {
             loginError.setText("Enter All Fields!");
         } else {

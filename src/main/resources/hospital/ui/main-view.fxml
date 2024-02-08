@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.2" layoutX="-6.0" prefHeight="1080.0" prefWidth="1920.0">
+         <items>
+            <VBox prefHeight="1078.0" prefWidth="384.0">
+               <children>
+                  <BorderPane prefHeight="257.0" prefWidth="381.0">
+                     <center>
+                        <ImageView fitHeight="230.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../../../../../../../Users/catso/Desktop/User-Profile-PNG-Image.png" />
+                           </image>
+                        </ImageView>
+                     </center>
+                  </BorderPane>
+                  <BorderPane prefHeight="22.0" prefWidth="381.0" />
+                  <GridPane prefHeight="93.0" prefWidth="381.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="21.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="117.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="239.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="54.0" prefWidth="122.0" text="Name :" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="54.0" prefWidth="316.0" text="Doctor" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="54.0" prefWidth="316.0" text="Aden D'Occhio" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="54.0" prefWidth="122.0" text="Role   :" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane prefHeight="509.0" prefWidth="381.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="28.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="318.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="21.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="172.0" minHeight="0.0" prefHeight="13.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="250.0" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="355.0" minHeight="10.0" prefHeight="355.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="323.0" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField prefHeight="30.0" prefWidth="323.0" promptText="Search by patient ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <BorderPane prefHeight="306.0" prefWidth="381.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <bottom>
+                              <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="315.0" text="Admit Patient" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                           </bottom>
+                        </BorderPane>
+                     </children>
+                  </GridPane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="170.0" text="Log Out" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Button>
+                     </center>
+                  </BorderPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="1078.0" prefWidth="540.0">
+               <children>
+                  <HBox prefHeight="1099.0" prefWidth="1531.0">
+                     <children>
+                        <VBox prefWidth="385.0">
+                           <children>
+                              <TitledPane animated="false" prefHeight="444.0" prefWidth="382.0" text="Basic Patient Information">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="748.0" prefWidth="380.0">
+                                       <children>
+                                          <GridPane layoutX="-15.0" layoutY="61.0" prefHeight="306.0" prefWidth="381.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="21.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="117.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="239.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Last Name :" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Address :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Cell Phone" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Birthday :" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Insurance :" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Emergency Cell :" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="First Name :" GridPane.columnIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <TitledPane animated="false" prefHeight="623.0" prefWidth="382.0" text="Medical Information">
+                                 <content>
+                                    <GridPane>
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="332.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="13.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="133.0" minHeight="0.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="412.0" minHeight="10.0" prefHeight="355.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <GridPane prefHeight="288.0" prefWidth="332.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="21.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="117.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="239.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Weight :" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Height :" GridPane.columnIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Blood Pressure :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Heart Rate:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="SpO2 :" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="Body Temp :" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                <TextField prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <Label prefHeight="54.0" prefWidth="122.0" text="BMI :" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField disable="true" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                             </children>
+                                          </GridPane>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="341.0" text="Dissmiss Patient" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <HBox prefHeight="15.0" prefWidth="332.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <BorderPane prefHeight="102.0" prefWidth="66.0">
+                                                   <center>
+                                                      <ImageView fitHeight="88.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                                         <image>
+                                                            <Image url="@../../../img/staff.jpg" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </center>
+                                                </BorderPane>
+                                                <BorderPane prefHeight="78.0" prefWidth="332.0">
+                                                   <center>
+                                                      <Label alignment="CENTER" prefHeight="36.0" prefWidth="241.0" text="Medical Information" BorderPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </center>
+                                                </BorderPane>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </GridPane>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="385.0">
+                           <children>
+                              <TitledPane animated="false" prefHeight="929.0" prefWidth="383.0" text="Lab Tests">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="381.0">
+                                       <children>
+                                          <VBox layoutX="-1.0" prefHeight="493.0" prefWidth="383.0">
+                                             <children>
+                                                <BorderPane prefHeight="41.0" prefWidth="383.0">
+                                                   <center>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="291.0" text="Hematologic Laboratory" BorderPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </center>
+                                                </BorderPane>
+                                                <GridPane>
+                                                  <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="50.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="37.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="298.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="16.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="Red Blood Cell" GridPane.columnIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="White Blood Cell" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="Liver Function" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="Renal Function" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="Electrolyte Test" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                   </children>
+                                                </GridPane>
+                                                <BorderPane prefHeight="41.0" prefWidth="383.0">
+                                                   <center>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="291.0" text="Radiologic Laboratory" BorderPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </center>
+                                                </BorderPane>
+                                                <GridPane>
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="37.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="298.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="16.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="X-Ray" GridPane.columnIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="C.T. Scan" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="M.R.I." GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                   </children>
+                                                </GridPane>
+                                                <BorderPane prefHeight="41.0" prefWidth="383.0">
+                                                   <center>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="291.0" text="Urine Laboratory" BorderPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </center>
+                                                </BorderPane>
+                                                <BorderPane prefHeight="41.0" prefWidth="383.0">
+                                                   <top>
+                                                      <GridPane BorderPane.alignment="CENTER">
+                                                         <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="50.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="37.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="298.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="16.0" />
+                                                         </columnConstraints>
+                                                         <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                         </rowConstraints>
+                                                         <children>
+                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </CheckBox>
+                                                            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="Urine Test" GridPane.columnIndex="2" />
+                                                         </children>
+                                                      </GridPane>
+                                                   </top>
+                                                   <bottom>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="390.0" text="Stool Laboratory" BorderPane.alignment="CENTER">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </bottom>
+                                                </BorderPane>
+                                                <GridPane>
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="50.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="37.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="298.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="16.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints />
+                                                      <RowConstraints />
+                                                      <RowConstraints />
+                                                      <RowConstraints />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </CheckBox>
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" text="Stool Test" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
+                              <TitledPane animated="false" prefHeight="971.0" prefWidth="383.0" text="Lab Results" />
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="385.0">
+                           <children>
+                              <TitledPane animated="false" text="Diagnosis">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="385.0" />
+                                </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="385.0">
+                           <children>
+                              <TitledPane animated="false" prefHeight="1080.0" prefWidth="385.0" text="Discharge">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </TitledPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
