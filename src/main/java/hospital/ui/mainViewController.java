@@ -7,106 +7,38 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 
 import java.io.IOException;
-import java.time.chrono.ThaiBuddhistEra;
 
 public class mainViewController {
 
+    public static String passedRole = "";
+
     //panes
     @FXML
-    private TextField weightForm;
-    @FXML
-    private TitledPane basicInfoPane;
-    @FXML
-    private TitledPane medicalInfoPane;
-    @FXML
-    private TitledPane labTestPane;
-    @FXML
-    private TitledPane labResultsPane;
-    @FXML
-    private TitledPane diagnosisPane;
-    @FXML
-    private TitledPane dischargePane;
+    private TitledPane basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane;
 
     //user information
     @FXML
-    private Label role;
-    @FXML
-    private Label userName;
+    private Label role, userName;
 
     //patient info
     @FXML
-    private TextField firstName;
-    @FXML
-    private TextField lastName;
-    @FXML
-    private TextField address;
-    @FXML
-    private TextField cellPhone;
-    @FXML
-    private TextField birthday;
-    @FXML
-    private TextField insurance;
-    @FXML
-    private TextField emergencyCell;
-    @FXML
-    private TextField height;
-    @FXML
-    private TextField weight;
-    @FXML
-    private TextField bp;
-    @FXML
-    private TextField heartRate;
-    @FXML
-    private TextField spo2;
-    @FXML
-    private TextField bodyTemp;
-    @FXML
-    private TextField bmi;
+    private TextField firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, height, weight, bp, heartRate, spo2, bodyTemp, bmi;
 
     //lab tests
     @FXML
-    private CheckBox redBloodLab;
-    @FXML
-    private CheckBox whiteBloodLab;
-    @FXML
-    private CheckBox liverLab;
-    @FXML
-    private CheckBox renalLab;
-    @FXML
-    private CheckBox electrolyteLab;
-    @FXML
-    private CheckBox xrayLab;
-    @FXML
-    private CheckBox ctLab;
-    @FXML
-    private CheckBox mriLab;
-    @FXML
-    private CheckBox urineLab;
-    @FXML
-    private CheckBox stoolLab;
+    private CheckBox redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab;
 
     //lab results
     @FXML
-    private Label redBloodResult;
-    @FXML
-    private Label whiteBloodResult;
-    @FXML
-    private Label liverResult;
-    @FXML
-    private Label renalResult;
-    @FXML
-    private Label electrolyteResult;
-    @FXML
-    private Label xrayResult;
-    @FXML
-    private Label ctResult;
-    @FXML
-    private Label mriResult;
-    @FXML
-    private Label urineResult;
-    @FXML
-    private Label stoolResult;
+    private Label redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult;
 
+    //Scripts
+    @FXML
+    private CheckBox highBloodScript1, highBloodScript2, highBloodScript3, highCholesterolScript1, highCholesterolScript2, highCholesterolScript3, kidneyScript1, kidneyScript2, kidneyScript3, liverScript1, liverScript2, liverScript3, boneScript1, boneScript2, boneScript3;
+
+    //Diagnosis
+    @FXML
+    private CheckBox highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus;
 
     public void initialize() {
         //setup pane functions
@@ -116,13 +48,20 @@ public class mainViewController {
         labResultsPane.setCollapsible(false);
         diagnosisPane.setCollapsible(false);
         dischargePane.setCollapsible(false);
-        setNurseView();
 
-        //update name fields
-        userName.setText("");
+        switch (passedRole) {
+            case "Staff" -> setDeskStaffView();
+            case "Nurse" -> setNurseView();
+            case "Doctor" -> setDoctorView();
+        }
 
-//        weightForm.setText(String.valueOf(Main.person.getWeight()));
-//        setupTextFieldHandlers();
+            //update name fields
+            //weightForm.setText(String.valueOf(Main.person.getWeight()));
+            // setupTextFieldHandlers();
+        }
+
+    public void logOut(ActionEvent event) throws IOException {
+        interfaceLoad.changeScene("login.fxml", 400, 600);
     }
 
     private void setDeskStaffView() {
@@ -192,6 +131,31 @@ public class mainViewController {
             labTests[i].setSelected(false);
         }
 
+    }
+
+    public void updateValidScripts(ActionEvent event) throws IOException {
+        CheckBox[] bloodScripts = {highBloodScript1, highBloodScript2, highBloodScript3};
+        CheckBox[] cholesterolScripts = {highCholesterolScript1, highCholesterolScript2, highCholesterolScript3};
+        CheckBox[] kidneyScripts = {kidneyScript1, kidneyScript2, kidneyScript3};
+        CheckBox[] liverScripts = {liverScript1, liverScript2, liverScript3};
+        CheckBox[] boneScripts = {boneScript1, boneScript2, boneScript3};
+
+        CheckBox[][] scripts = {bloodScripts, cholesterolScripts, kidneyScripts, liverScripts, boneScripts};
+        CheckBox[] diagnoses = { highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus};
+
+        for(int i = 0; i < 5; i++){
+            if (diagnoses[i].isSelected()){//make corresponding scripts available
+                for(CheckBox script: scripts[i]){
+                    script.setDisable(false);
+                }
+
+            }else {//make corresponding scripts unavailable
+                for(CheckBox script: scripts[i]){
+                    script.setDisable(true);
+                    script.setSelected(false);
+                }
+            }
+        }
     }
 
 

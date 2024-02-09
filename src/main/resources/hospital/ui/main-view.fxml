@@ -84,7 +84,7 @@
                         <TextField fx:id="searchForm" prefHeight="30.0" prefWidth="323.0" promptText="Search by patient ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <BorderPane prefHeight="306.0" prefWidth="381.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <bottom>
-                              <Button fx:id="admitButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="315.0" text="Admit Patient" BorderPane.alignment="CENTER">
+                              <Button fx:id="admitButton" mnemonicParsing="false" onAction="#onAdmitClick" prefHeight="52.0" prefWidth="315.0" text="Admit Patient" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -95,7 +95,7 @@
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <Button fx:id="logOut" mnemonicParsing="false" prefHeight="52.0" prefWidth="170.0" text="Log Out" BorderPane.alignment="CENTER">
+                        <Button fx:id="logOut" mnemonicParsing="false" onAction="#logOut" prefHeight="52.0" prefWidth="170.0" text="Log Out" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -706,17 +706,17 @@
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="highBloodScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                            <CheckBox fx:id="highBloodScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                            <CheckBox fx:id="highBloodScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -750,7 +750,7 @@
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
-                                                            <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="highBloodPressure" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateValidScripts" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -775,17 +775,17 @@
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="highCholesterolScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                            <CheckBox fx:id="highCholesterolScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                            <CheckBox fx:id="highCholesterolScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -819,7 +819,7 @@
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
-                                                            <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="highCholesterol" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateValidScripts" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -844,17 +844,17 @@
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="kidneyScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                            <CheckBox fx:id="kidneyScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                            <CheckBox fx:id="kidneyScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -888,7 +888,7 @@
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
-                                                            <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="kidneyDisease" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateValidScripts" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -913,17 +913,17 @@
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="liverScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                            <CheckBox fx:id="liverScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                            <CheckBox fx:id="liverScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -957,7 +957,7 @@
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
-                                                            <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="liverDisease" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateValidScripts" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -982,17 +982,17 @@
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="boneScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                            <CheckBox fx:id="boneScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
                                                             </CheckBox>
-                                                            <CheckBox contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                            <CheckBox fx:id="boneScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>
@@ -1026,7 +1026,7 @@
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
-                                                            <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
+                                                            <CheckBox fx:id="brokenHumerus" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateValidScripts" prefHeight="30.0" prefWidth="47.0" GridPane.columnIndex="1">
                                                                <font>
                                                                   <Font size="14.0" />
                                                                </font>

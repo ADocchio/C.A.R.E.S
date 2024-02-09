@@ -2,7 +2,7 @@ package hospital.ui;
 
 import javafx.stage.Stage;
 
-public class Main {
+public class   Main {
 
     private static Stage stg;
     public static Person emergencyContact = new Person(

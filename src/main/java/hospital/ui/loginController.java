@@ -29,8 +29,19 @@ public class loginController {
     }
 
     private void checkLogin() throws IOException {
-        if(username.getText().equals("123") && password.getText().equals("123")) {
+        if(username.getText().equals("Doctor") && password.getText().equals("123")) {
             loginError.setText("Login Successful!");
+            mainViewController.passedRole = "Doctor";
+
+            interfaceLoad.changeScene("main-view.fxml", 1110, 1930);
+        } else if (username.getText().equals("Nurse") && password.getText().equals("123")) {
+            loginError.setText("Login Successful!");
+            mainViewController.passedRole = "Nurse";
+
+            interfaceLoad.changeScene("main-view.fxml", 1110, 1930);
+        } else if (username.getText().equals("Staff") && password.getText().equals("123")) {
+            loginError.setText("Login Successful!");
+            mainViewController.passedRole = "Staff";
 
             interfaceLoad.changeScene("main-view.fxml", 1110, 1930);
         } else if (username.getText().isEmpty() || password.getText().isEmpty()) {
