@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="665.0" prefWidth="1125.0" stylesheets="er-view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospital.ui.View">
+<AnchorPane prefHeight="665.0" prefWidth="1125.0" stylesheets="er-view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospital.ui.mainViewController">
    <children>
       <ScrollPane prefHeight="665.0" prefWidth="1125.0">
         <content>

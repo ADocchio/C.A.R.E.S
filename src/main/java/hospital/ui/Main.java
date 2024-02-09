@@ -1,15 +1,8 @@
 package hospital.ui;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.Objects;
 
-
-public class Main extends Application {
+public class Main {
 
     private static Stage stg;
     public static Person emergencyContact = new Person(
@@ -41,38 +34,7 @@ public class Main extends Application {
             65 // bpm
     );
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        stg = primaryStage;
-
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("sample.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        primaryStage.setTitle("C.A.R.E.S Login");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    public void changeScene(String fxml) throws IOException {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)));
-            Parent pane = loader.load();
-            stg.getScene().setRoot(pane);
-
-        } catch (IOException e) {
-            // Handle IO problems (e.g., file not found, cannot read file)
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            // Handle issues related to FXMLLoader setup
-            e.printStackTrace();
-        } catch (Exception e) {
-            // Catch-all for any other exceptions
-            e.printStackTrace();
-        }
-
-    }
-
     public static void main(String[] args) {
-        launch();
+        interfaceLoad.startApp();
     }
 }

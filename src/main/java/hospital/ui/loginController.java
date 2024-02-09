@@ -9,9 +9,9 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class Login {
+public class loginController {
 
-    public  Login() {
+    public loginController() {
 
     }
 
@@ -29,12 +29,10 @@ public class Login {
     }
 
     private void checkLogin() throws IOException {
-        Main main = new Main();
-
         if(username.getText().equals("123") && password.getText().equals("123")) {
             loginError.setText("Login Successful!");
 
-            main.changeScene("main-view.fxml");
+            interfaceLoad.changeScene("main-view.fxml", 1110, 1930);
         } else if (username.getText().isEmpty() || password.getText().isEmpty()) {
             loginError.setText("Enter All Fields!");
         } else {

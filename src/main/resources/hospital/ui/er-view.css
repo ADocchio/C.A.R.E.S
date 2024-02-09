@@ -26,3 +26,8 @@
     -fx-background-color: #FF5733; /* Reddish-Orange */
     -fx-text-fill: white;
 }
+
+.label-border {
+    -fx-border-color: red;
+    -fx-border-width: 2;
+}
