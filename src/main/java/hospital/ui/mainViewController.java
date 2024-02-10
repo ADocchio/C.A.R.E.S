@@ -1,10 +1,7 @@
 package hospital.ui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -15,6 +12,10 @@ public class mainViewController {
     //panes
     @FXML
     private TitledPane basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane;
+
+    //panes
+    @FXML
+    private Button admitButton, dischargeButton;
 
     //user information
     @FXML
@@ -66,6 +67,8 @@ public class mainViewController {
 
     private void setDeskStaffView() {
         role.setText("Front Desk Staff");
+        admitButton.setText("Check In");
+
         //set permissions
         medicalInfoPane.setVisible(false);
         labTestPane.setVisible(false);
@@ -76,7 +79,10 @@ public class mainViewController {
     }
 
     private void setNurseView() {
+        admitButton.setText("Admit Patient");
+        dischargeButton.setText("Start Discharge");
         role.setText("Nurse");
+
         //set permissions
         diagnosisPane.setDisable(true);
 
@@ -84,7 +90,10 @@ public class mainViewController {
     }
 
     private void setDoctorView() {
+        admitButton.setText("Admit Patient");
+        dischargeButton.setText("Discharge");
         role.setText("Doctor");
+
         //set permissions
 
     }

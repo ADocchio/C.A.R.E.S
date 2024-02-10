@@ -84,7 +84,7 @@
                         <TextField fx:id="searchForm" prefHeight="30.0" prefWidth="323.0" promptText="Search by patient ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <BorderPane prefHeight="306.0" prefWidth="381.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <bottom>
-                              <Button fx:id="admitButton" mnemonicParsing="false" onAction="#onAdmitClick" prefHeight="52.0" prefWidth="315.0" text="Admit Patient" BorderPane.alignment="CENTER">
+                              <Button fx:id="admitButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="315.0" text="Admit Patient" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -264,7 +264,7 @@
                                                    <center>
                                                       <ImageView fitHeight="88.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                                          <image>
-                                                            <Image url="@../../../img/staff.jpg" />
+                                                            <Image url="@../../../img/Staff.png" />
                                                          </image>
                                                       </ImageView>
                                                    </center>
@@ -1080,7 +1080,7 @@
                                                 </GridPane>
                                                 <BorderPane prefHeight="402.0" prefWidth="391.0">
                                                    <center>
-                                                      <Button fx:id="Discharge" mnemonicParsing="false" prefHeight="52.0" prefWidth="170.0" text="Discharge" BorderPane.alignment="CENTER">
+                                                      <Button fx:id="dischargeButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="227.0" text="Start Discharge" BorderPane.alignment="CENTER">
                                                          <font>
                                                             <Font size="24.0" />
                                                          </font>

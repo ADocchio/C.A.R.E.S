@@ -48,6 +48,8 @@ public class loginController {
             loginError.setText("Enter All Fields!");
         } else {
             loginError.setText("Incorrect Username or Password");
+            username.setText("");
+            password.setText("");
         }
     }
 }

@@ -1,33 +1,44 @@
 .root {
-    -fx-background-color: white;
+    -fx-background-color: #e6f2f0;
 }
 
 .label {
-    -fx-text-fill: black;
-    -fx-font-size: 14px;
-}
-
-.titled-pane {
-    -fx-text-fill: white;
-    -fx-background-color: #FF5733; /* Reddish-Orange */
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
-}
-
-.titled-pane .content {
-    -fx-background-color: white;
+    -fx-text-fill: #2e2e2e;
 }
 
 .button {
-    -fx-background-color: #4CAF50; /* Green */
+    -fx-background-color: #4caf50, #f2f2f2;
+    -fx-background-radius: 5;
     -fx-text-fill: white;
 }
 
-.button.alert {
-    -fx-background-color: #FF5733; /* Reddish-Orange */
+.text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: #bfbfbf;
+    -fx-border-radius: 5;
+}
+
+.titled-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #4caf50;
     -fx-text-fill: white;
 }
 
-.label-border {
-    -fx-border-color: red;
-    -fx-border-width: 2;
+.split-pane {
+    -fx-background-color: transparent;
 }
+
+/* Specific ID styling if needed */
+#searchForm {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+}
+
+/* You can define more specific styles for each type of component,
+   such as GridPane, HBox, VBox, ImageView etc. based on your FXML structure. */
