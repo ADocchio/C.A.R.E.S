@@ -24,11 +24,21 @@ public class loginController {
     @FXML
     private Label loginError;
 
+    /**Handles the login of the user
+     *
+     * @param event, When "Login" button is clicked
+     * @throws IOException, if checkLogin method throws an error
+     */
     public void userLogin(ActionEvent event) throws IOException {
         checkLogin();
     }
 
+    /**Makes sure login cordials are valid, gives user information on state of credentials entered
+     *
+     * @throws IOException, If main-view.fxml can not be found or has errors
+     */
     private void checkLogin() throws IOException {
+        //TEMP TEST CODE
         if(username.getText().equals("Doctor") && password.getText().equals("123")) {
             loginError.setText("Login Successful!");
             mainViewController.passedRole = "Doctor";

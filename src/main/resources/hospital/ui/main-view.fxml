@@ -84,7 +84,7 @@
                         <TextField fx:id="searchForm" prefHeight="30.0" prefWidth="323.0" promptText="Search by patient ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <BorderPane prefHeight="306.0" prefWidth="381.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <bottom>
-                              <Button fx:id="admitButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="315.0" text="Admit Patient" BorderPane.alignment="CENTER">
+                              <Button fx:id="admitButton" mnemonicParsing="false" onAction="#admitButton" prefHeight="52.0" prefWidth="315.0" text="Admit Patient" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -110,7 +110,7 @@
                      <children>
                         <VBox prefWidth="385.0">
                            <children>
-                              <TitledPane fx:id="basicInfoPane" animated="false" prefHeight="444.0" prefWidth="382.0" text="Basic Patient Information">
+                              <TitledPane fx:id="basicInfoPane" animated="false" collapsible="false" prefHeight="444.0" prefWidth="382.0" text="Basic Patient Information">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="748.0" prefWidth="380.0">
                                        <children>
@@ -183,7 +183,7 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <TitledPane fx:id="medicalInfoPane" animated="false" prefHeight="623.0" prefWidth="382.0" text="Medical Information">
+                              <TitledPane fx:id="medicalInfoPane" animated="false" collapsible="false" prefHeight="623.0" prefWidth="382.0" text="Medical Information">
                                  <content>
                                     <GridPane>
                                       <columnConstraints>
@@ -288,7 +288,7 @@
                         </VBox>
                         <VBox prefWidth="385.0">
                            <children>
-                              <TitledPane fx:id="labTestPane" animated="false" prefHeight="929.0" prefWidth="383.0" text="Lab Tests">
+                              <TitledPane fx:id="labTestPane" animated="false" collapsible="false" prefHeight="929.0" prefWidth="383.0" text="Lab Tests">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="381.0">
                                        <children>
@@ -465,7 +465,7 @@
                                     </AnchorPane>
                                 </content>
                               </TitledPane>
-                              <TitledPane fx:id="labResultsPane" animated="false" prefHeight="937.0" prefWidth="383.0" text="Lab Results">
+                              <TitledPane fx:id="labResultsPane" animated="false" collapsible="false" prefHeight="937.0" prefWidth="383.0" text="Lab Results">
                                  <content>
                                     <VBox prefHeight="551.0" prefWidth="383.0">
                                        <children>
@@ -675,7 +675,7 @@
                         </VBox>
                         <VBox prefWidth="385.0">
                            <children>
-                              <TitledPane fx:id="diagnosisPane" animated="false" text="Diagnosis">
+                              <TitledPane fx:id="diagnosisPane" animated="false" collapsible="false" text="Diagnosis">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="385.0">
                                        <children>
@@ -1044,7 +1044,7 @@
                         </VBox>
                         <VBox prefWidth="385.0">
                            <children>
-                              <TitledPane fx:id="dischargePane" animated="false" prefHeight="1080.0" prefWidth="385.0" text="Discharge">
+                              <TitledPane fx:id="dischargePane" animated="false" collapsible="false" prefHeight="1080.0" prefWidth="385.0" text="Discharge">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>

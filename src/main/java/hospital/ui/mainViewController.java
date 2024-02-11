@@ -41,30 +41,35 @@ public class mainViewController {
     @FXML
     private CheckBox highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus;
 
+    /**Called on loading of the main-view scene
+     *
+     */
     public void initialize() {
-        //setup pane functions
-        basicInfoPane.setCollapsible(false);
-        medicalInfoPane.setCollapsible(false);
-        labTestPane.setCollapsible(false);
-        labResultsPane.setCollapsible(false);
-        diagnosisPane.setCollapsible(false);
-        dischargePane.setCollapsible(false);
 
+        //(TEST VERSION ONLY)
         switch (passedRole) {
             case "Staff" -> setDeskStaffView();
             case "Nurse" -> setNurseView();
             case "Doctor" -> setDoctorView();
         }
 
-            //update name fields
-            //weightForm.setText(String.valueOf(Main.person.getWeight()));
-            // setupTextFieldHandlers();
+        //update user's name(TODO)
+
+
         }
 
+    /** Logs out the current user and brings them back to login page
+     *
+     * @param event, Clicking "log out" button
+     * @throws IOException, if login.fxml is unavailable or has errors
+     */
     public void logOut(ActionEvent event) throws IOException {
         interfaceLoad.changeScene("login.fxml", 400, 600);
     }
 
+    /** Sets the view and permissions for the staff dashboard
+     *
+     */
     private void setDeskStaffView() {
         role.setText("Front Desk Staff");
         admitButton.setText("Check In");
@@ -78,6 +83,9 @@ public class mainViewController {
 
     }
 
+    /** Sets the view and permissions for the nurse dashboard
+     *
+     */
     private void setNurseView() {
         admitButton.setText("Admit Patient");
         dischargeButton.setText("Start Discharge");
@@ -89,6 +97,9 @@ public class mainViewController {
 
     }
 
+    /** Sets the view and permissions for the doctor dashboard
+     *
+     */
     private void setDoctorView() {
         admitButton.setText("Admit Patient");
         dischargeButton.setText("Discharge");
@@ -98,6 +109,9 @@ public class mainViewController {
 
     }
 
+    /** Loads a patient into the dashboard after being searched
+     *
+     */
     private void loadPatient(){
 //        firstName.setText();
 //        lastName.setText();
@@ -127,7 +141,10 @@ public class mainViewController {
 //        stoolResult.setText();
     }
 
-    public void runLabs(ActionEvent event) throws IOException {
+    /**Takes user input on labs to be run, runs the corresponding labs, then resets run labs view
+     * @param event, click of the "Run Labs" button
+     */
+    public void runLabs(ActionEvent event) {
         CheckBox[] labTests = {redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab};
         Label[] labResults = {redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult};
 
@@ -142,7 +159,10 @@ public class mainViewController {
 
     }
 
-    public void updateValidScripts(ActionEvent event) throws IOException {
+    /**Enables and Disables the ability to prescribe prescriptions based on diagnosis selection
+     * @param event, The selection of a diagnosis
+     */
+    public void updateValidScripts(ActionEvent event) {
         CheckBox[] bloodScripts = {highBloodScript1, highBloodScript2, highBloodScript3};
         CheckBox[] cholesterolScripts = {highCholesterolScript1, highCholesterolScript2, highCholesterolScript3};
         CheckBox[] kidneyScripts = {kidneyScript1, kidneyScript2, kidneyScript3};
@@ -168,6 +188,13 @@ public class mainViewController {
     }
 
 
+    public void admitButton (ActionEvent event) {
+
+    }
+
+    /** Handles the ability to edit patient information by clicking on information textfeilds,
+     * Makes sure type is correct and updates information of patient currently loaded into view
+     */
     private void setupTextFieldHandlers() {
 
         // Handle losing focus

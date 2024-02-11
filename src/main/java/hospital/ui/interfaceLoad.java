@@ -13,7 +13,10 @@ public class interfaceLoad extends Application {
 
     private static Stage primaryStage; //creates a stage to host the application in
 
-    public static void startApp(){
+    /** Launch's the application
+     *
+     */
+    public static void startApp() {
         launch();
     }
 
@@ -28,6 +31,13 @@ public class interfaceLoad extends Application {
         primaryStage.show();
     }
 
+    /**Changes the scene that is displayed on the main JAVAFX scene
+     *
+     * @param fxml, fxml file to be displayed
+     * @param height, height of stage
+     * @param width, width of stage
+     * @throws IOException, if fxml files is not found or has errors
+     */
     public static void changeScene(String fxml, int height, int width) throws IOException {
 
         try {
@@ -49,9 +59,5 @@ public class interfaceLoad extends Application {
             e.printStackTrace();
         }
 
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }
