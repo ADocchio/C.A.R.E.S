@@ -31,7 +31,7 @@ public class mainViewController {
 
     //lab results
     @FXML
-    private Label redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult;
+    private Button redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult;
 
     //Scripts
     @FXML
@@ -146,7 +146,7 @@ public class mainViewController {
      */
     public void runLabs(ActionEvent event) {
         CheckBox[] labTests = {redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab};
-        Label[] labResults = {redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult};
+        Button[] labResults = {redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult};
 
         for(int i = 0; i < 10; i++){
             if (labTests[i].isSelected()){
