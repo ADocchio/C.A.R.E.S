@@ -5,4 +5,6 @@ module hospital.ui {
 
     opens hospital.ui to javafx.fxml;
     exports hospital.ui;
+    exports hospital.ui.labs;
+    opens hospital.ui.labs to javafx.fxml;
 }

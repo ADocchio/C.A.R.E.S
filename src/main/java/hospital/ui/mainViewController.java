@@ -1,4 +1,5 @@
 package hospital.ui;
+import hospital.ui.labs.Lab;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -155,7 +156,21 @@ public class mainViewController {
 
         for(int i = 0; i < 10; i++){
             if (labTests[i].isSelected()){
-                //call the lab result function
+
+                if(Main.aPanel.runLab(i) == Lab.LabResult.Normal){
+                    labResults[i].getStyleClass().clear();
+                    labResults[i].getStyleClass().add("lab-result-p");
+                    labResults[i].setText(Lab.LabResult.Normal.toString());
+                }else {
+                    labResults[i].getStyleClass().clear();
+                    labResults[i].getStyleClass().add("lab-result-n");
+                    labResults[i].setText(Lab.LabResult.Abnormal.toString());
+                }
+
+            }else {
+                labResults[i].getStyleClass().clear();
+                labResults[i].getStyleClass().add("lab-result");
+
                 labResults[i].setText("");
             }
 

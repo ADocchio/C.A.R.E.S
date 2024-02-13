@@ -26,3 +26,7 @@
 .error {
     -fx-text-fill: red;
 }
+
+.vbox {
+    -fx-alignment: center;
+}

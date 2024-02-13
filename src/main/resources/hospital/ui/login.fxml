@@ -18,7 +18,7 @@
             <VBox prefHeight="400.0" prefWidth="211.0" styleClass="side-panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <ImageView fitHeight="268.0" fitWidth="211.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../img/Staff.png" />
+                  <Image url="@img/Staff.png" />
                </image>
             </ImageView>
          </children></AnchorPane>

@@ -63,19 +63,25 @@
 .lab-result {
     -fx-background-color: #397caa;
     -fx-text-fill: #E7F1F8;
-    -fx-border-width: 1px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-radius: 2px;
 }
 
 .lab-result-n {
     -fx-background-color: #DC143C;
     -fx-text-fill: #E7F1F8;
-
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-radius: 2px;
 }
 
 .lab-result-p {
     -fx-background-color: #32CD32;
     -fx-text-fill: #E7F1F8;
-
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-radius: 2px;
 }
 
 .check-box {
