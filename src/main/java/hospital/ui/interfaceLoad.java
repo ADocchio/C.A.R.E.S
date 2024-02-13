@@ -36,15 +36,17 @@ public class interfaceLoad extends Application {
      * @param fxml, fxml file to be displayed
      * @param height, height of stage
      * @param width, width of stage
+     * @param title, title of scene
      * @throws IOException, if fxml files is not found or has errors
      */
-    public static void changeScene(String fxml, int height, int width) throws IOException {
+    public static void changeScene(String fxml, int height, int width, String title) throws IOException {
 
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(interfaceLoad.class.getResource(fxml)));
             Parent pane = loader.load();
             primaryStage.setWidth(width);
             primaryStage.setHeight(height);
+            primaryStage.setTitle(title);
             primaryStage.setResizable(false);
             primaryStage.getScene().setRoot(pane);
 

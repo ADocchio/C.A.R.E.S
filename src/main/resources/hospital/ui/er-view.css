@@ -1,28 +1,86 @@
-/*.button {*/
-/*    -fx-background-color: red;*/
-/*}*/
-
-/*.display-button {*/
-/*    -fx-border-color: #B0C4DE;*/
-/*    -fx-border-width: 2;*/
-/*    -fx-border-style: solid;*/
-/*    -fx-background-color: #62B6CB;*/
-/*}*/
-
-/*.lab-test-pane {*/
-/*    -fx-background-color: #E0F2F1;*/
-/*}*/
-
-/*.diagnosis-pane {*/
-/*    -fx-background-color: #E0F2F1;*/
-
-/*}*/
-
 .vbox {
     -fx-alignment: center;
-    -fx-background-color: #E0F2F1;;
+    -fx-background-color: #2d698d;
 }
 
 .hbox {
     -fx-alignment: center;
+    -fx-background-color: #2d698d;
 }
+
+.work-window {
+    -fx-background-color: #104a7b;
+}
+
+.titled-pane .title {
+    -fx-background-color: #c8f2e2;
+    -fx-border-width: 0px;
+}
+
+.titled-pane {
+    -fx-border-color: #c8f2e2;
+    -fx-border-width: 5px;
+}
+
+.side-panel {
+    -fx-alignment: center;
+    -fx-border-color: #0c1c35;
+    -fx-background-color: #0c1c35;
+    -fx-border-width: 4 4 4 4;
+}
+
+.label {
+    -fx-text-fill: #d2eeed;
+}
+
+.text-field {
+    -fx-background-color: #d2eeed;
+}
+
+.text-area {
+    -fx-background-color: #d2eeed;
+}
+
+.ui-button {
+    -fx-background-color: #d2eeed;
+}
+
+.ui-button:hover {
+    -fx-background-color: #b7ddf7;
+    -fx-background-radius: 5px;
+}
+
+.display-button {
+    -fx-background-color: #5fbcbd;
+    -fx-background-radius: 100px;
+    -fx-text-fill: white;
+}
+.lab-title {
+    -fx-background-color: #5fbcbd;
+    -fx-text-fill: white;
+}
+
+.lab-result {
+    -fx-background-color: #397caa;
+    -fx-text-fill: #E7F1F8;
+    -fx-border-width: 1px;
+}
+
+.lab-result-n {
+    -fx-background-color: #DC143C;
+    -fx-text-fill: #E7F1F8;
+
+}
+
+.lab-result-p {
+    -fx-background-color: #32CD32;
+    -fx-text-fill: #E7F1F8;
+
+}
+
+.check-box {
+
+}
+
+
+

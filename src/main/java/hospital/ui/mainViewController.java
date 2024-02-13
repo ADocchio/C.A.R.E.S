@@ -1,5 +1,6 @@
 package hospital.ui;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -45,6 +46,10 @@ public class mainViewController {
      *
      */
     public void initialize() {
+        TitledPane[] panes = {basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane};
+        for(TitledPane pane: panes){
+            pane.setCollapsible(false);
+        }
 
         //(TEST VERSION ONLY)
         switch (passedRole) {
@@ -64,7 +69,7 @@ public class mainViewController {
      * @throws IOException, if login.fxml is unavailable or has errors
      */
     public void logOut(ActionEvent event) throws IOException {
-        interfaceLoad.changeScene("login.fxml", 400, 600);
+        interfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
     }
 
     /** Sets the view and permissions for the staff dashboard

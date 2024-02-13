@@ -1,0 +1,28 @@
+.button {
+    -fx-background-color: #d2eeed;
+}
+
+.button:hover {
+    -fx-background-color: #b7ddf7;
+    -fx-background-radius: 5px;
+}
+
+.side-panel {
+    -fx-background-color: #0c1c35;
+}
+
+.main-panel {
+    -fx-background-color: #2d698d;
+}
+
+.label {
+    -fx-text-fill: #d2eeed;
+}
+
+.text-field {
+    -fx-background-color: #d2eeed;
+}
+
+.error {
+    -fx-text-fill: red;
+}
