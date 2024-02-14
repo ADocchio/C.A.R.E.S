@@ -2,7 +2,7 @@ package hospital.ui.labs;
 
 import java.util.Random;
 
-public class Lab {
+public class lab {
 
     public enum LabResult {
         NotRun,
@@ -30,23 +30,39 @@ public class Lab {
 
     private final Random random = new Random();
     private LabResult result = LabResult.NotRun;
+    private int timeRun = 0;
 
-    public Lab(){}
+    /** Constructor
+     *
+     */
+    public lab(){}
 
+    /** Returns the result of the lab class
+     *
+     * @return result of the lab, type: LabResult
+     */
     public LabResult getResult() {
         return result;
     }
 
+    /** Resets the lab state to NotRun
+     *
+     */
     public void reset() {
         result = LabResult.NotRun;
     }
 
+    /** Runs the lab and sets its value with a 1/6 chance of being Abnormal
+     *
+     */
     public void run(){
-        int num = random.nextInt(0,2);
+        int num = random.nextInt(0,6);
+        timeRun++;
 
-        switch (num) {
-            case 0 -> result = Lab.LabResult.Abnormal;
-            case 1 -> result = Lab.LabResult.Normal;
+        if (num == 0){
+            result = lab.LabResult.Abnormal;
+        } else {
+            result = lab.LabResult.Normal;
         }
     }
 

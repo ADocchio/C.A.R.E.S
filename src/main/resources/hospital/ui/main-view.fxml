@@ -24,7 +24,7 @@
          <children>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="384.0" styleClass="side-panel">
                <children>
-                  <VBox layoutX="148.0" layoutY="155.0" prefHeight="1078.0" prefWidth="384.0" styleClass="side-panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox layoutX="148.0" layoutY="155.0" prefHeight="1080.0" prefWidth="384.0" styleClass="side-panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="273.0" fitWidth="295.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -273,7 +273,7 @@
                               </AnchorPane>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="384.0">
+                        <VBox prefHeight="1080.0" prefWidth="384.0">
                            <children>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="617.0" prefWidth="384.0">
                                  <children>
@@ -578,7 +578,7 @@
                               </AnchorPane>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="384.0">
+                        <VBox prefHeight="1080.0" prefWidth="384.0">
                            <children>
                               <TitledPane fx:id="diagnosisPane" prefHeight="1178.0" prefWidth="383.0" text="Diagnosis">
                                  <content>
@@ -941,7 +941,7 @@
                               </TitledPane>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="384.0">
+                        <VBox prefHeight="1080.0" prefWidth="384.0">
                            <children>
                               <TitledPane fx:id="dischargePane" prefHeight="1224.0" prefWidth="383.0" text="Discharge">
                                  <content>

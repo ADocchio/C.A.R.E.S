@@ -1,6 +1,8 @@
 package hospital.ui;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,13 +41,41 @@ public class interfaceLoad extends Application {
      * @param title, title of scene
      * @throws IOException, if fxml files is not found or has errors
      */
-    public static void changeScene(String fxml, int height, int width, String title) throws IOException {
+    public static void changeScene(String fxml, double height, double width, String title) throws IOException {
 
         try {
+            double originalWidth = 1920; // Original width of the content
+            double originalHeight = 1080; // Original height of the content
+            double aspectRatio = originalWidth / originalHeight;
+
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(interfaceLoad.class.getResource(fxml)));
             Parent pane = loader.load();
-            primaryStage.setWidth(width);
-            primaryStage.setHeight(height);
+            primaryStage.setWidth(1920);
+            primaryStage.setHeight(1080);
+
+//            primaryStage.getScene().widthProperty().addListener((obs, oldVal, newVal) -> {
+//                double newWidth = newVal.doubleValue();
+//                double scaleFactor = newWidth / originalWidth;
+//                pane.setScaleX(scaleFactor);
+//                pane.setScaleY(scaleFactor);
+//            });
+//
+//            primaryStage.getScene().heightProperty().addListener((obs, oldVal, newVal) -> {
+//                double newHeight = newVal.doubleValue();
+//                double scaleFactor = newHeight / originalHeight;
+//                pane.setScaleX(scaleFactor);
+//                pane.setScaleY(scaleFactor);
+//
+//            });
+
+            double scaleFactor = height / 1080;
+            if(scaleFactor <= 1) {
+                pane.setScaleX(scaleFactor);
+                pane.setScaleY(scaleFactor);
+                System.out.println(scaleFactor);
+            }
+
+
             primaryStage.setTitle(title);
             primaryStage.setResizable(false);
             primaryStage.getScene().setRoot(pane);
@@ -62,4 +92,6 @@ public class interfaceLoad extends Application {
         }
 
     }
+
+
 }
