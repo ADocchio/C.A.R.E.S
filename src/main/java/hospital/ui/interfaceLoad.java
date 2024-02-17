@@ -6,6 +6,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
@@ -22,6 +24,9 @@ public class interfaceLoad extends Application {
         launch();
     }
 
+
+
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         interfaceLoad.primaryStage = primaryStage;
@@ -31,6 +36,7 @@ public class interfaceLoad extends Application {
         primaryStage.setTitle("C.A.R.E.S Login");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
     /**Changes the scene that is displayed on the main JAVAFX scene
@@ -50,34 +56,10 @@ public class interfaceLoad extends Application {
 
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(interfaceLoad.class.getResource(fxml)));
             Parent pane = loader.load();
-            primaryStage.setWidth(1920);
-            primaryStage.setHeight(1080);
-
-//            primaryStage.getScene().widthProperty().addListener((obs, oldVal, newVal) -> {
-//                double newWidth = newVal.doubleValue();
-//                double scaleFactor = newWidth / originalWidth;
-//                pane.setScaleX(scaleFactor);
-//                pane.setScaleY(scaleFactor);
-//            });
-//
-//            primaryStage.getScene().heightProperty().addListener((obs, oldVal, newVal) -> {
-//                double newHeight = newVal.doubleValue();
-//                double scaleFactor = newHeight / originalHeight;
-//                pane.setScaleX(scaleFactor);
-//                pane.setScaleY(scaleFactor);
-//
-//            });
-
-            double scaleFactor = height / 1080;
-            if(scaleFactor <= 1) {
-                pane.setScaleX(scaleFactor);
-                pane.setScaleY(scaleFactor);
-                System.out.println(scaleFactor);
-            }
-
-
+            primaryStage.setWidth(width);
+            primaryStage.setHeight(height);
             primaryStage.setTitle(title);
-            primaryStage.setResizable(false);
+            primaryStage.setResizable(true);
             primaryStage.getScene().setRoot(pane);
 
         } catch (IOException e) {

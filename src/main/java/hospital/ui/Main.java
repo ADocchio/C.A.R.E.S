@@ -6,6 +6,6 @@ public class   Main {
 
     public static labPanel aPanel = new labPanel();
 
-    public static void main(String[] args) {interfaceLoad.startApp();
+    public static void main(String[] args) {ScalingExample.startApp();
     }
 }

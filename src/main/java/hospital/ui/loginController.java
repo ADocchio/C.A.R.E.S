@@ -41,10 +41,8 @@ public class loginController {
      */
     private void checkLogin() throws IOException {
 
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        double width = bounds.getWidth();
-        double height = bounds.getHeight();
+        double width = 1920;
+        double height = 1080;
 
         //TEMP TEST CODE
         if(username.getText().equals("Doctor") && password.getText().equals("123")) {

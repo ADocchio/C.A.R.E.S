@@ -20,7 +20,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@er-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospital.ui.mainViewController">
    <children>
-      <HBox prefHeight="1080.0" prefWidth="1920.0" styleClass="work-window" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="1080.0" prefWidth="1920.0" styleClass="work-window" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1080.0" prefWidth="384.0" styleClass="side-panel">
                <children>
@@ -52,7 +52,7 @@
                                     <Font size="28.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="userName" prefHeight="54.0" prefWidth="316.0" text="Aden D'Occhio" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label fx:id="userName" prefHeight="54.0" prefWidth="316.0" text="John Doe" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="28.0" />
                                  </font>
@@ -466,25 +466,30 @@
                                                       <Button fx:id="redBloodResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                       <Button fx:id="whiteBloodResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                       <Button fx:id="liverResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                       <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" styleClass="lab-title" text="Renal Function" GridPane.rowIndex="3" />
                                                       <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" styleClass="lab-title" text="Eectrolyte Test " GridPane.rowIndex="4" />
                                                       <Button fx:id="renalResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                       <Button fx:id="electrolyteResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </GridPane>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="291.0" text="Radiologic Laboratory">
@@ -521,7 +526,8 @@
                                                       <Button fx:id="mriResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </GridPane>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="291.0" text="Urine Laboratory">
@@ -544,7 +550,8 @@
                                                       <Button fx:id="urineResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </GridPane>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="291.0" text="Stool Laboratory">
@@ -567,7 +574,8 @@
                                                       <Button fx:id="stoolResult" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" styleClass="lab-result" GridPane.columnIndex="2">
                                                          <font>
                                                             <Font name="System Bold" size="12.0" />
-                                                         </font></Button>
+                                                         </font>
+                                                      </Button>
                                                    </children>
                                                 </GridPane>
                                              </children>
