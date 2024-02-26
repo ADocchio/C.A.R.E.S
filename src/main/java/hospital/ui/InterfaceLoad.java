@@ -7,13 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
+import javafx.scene.layout.Region;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
 
-public class interfaceLoad extends Application {
+public class InterfaceLoad extends Application {
 
     private static Stage primaryStage; //creates a stage to host the application in
 
@@ -29,9 +30,9 @@ public class interfaceLoad extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        interfaceLoad.primaryStage = primaryStage;
+        InterfaceLoad.primaryStage = primaryStage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(interfaceLoad.class.getResource("login.fxml")); //loads login fxml
+        FXMLLoader fxmlLoader = new FXMLLoader(InterfaceLoad.class.getResource("login.fxml")); //loads login fxml
         Scene scene = new Scene(fxmlLoader.load(), 600, 400); //set login window size
         primaryStage.setTitle("C.A.R.E.S Login");
         primaryStage.setScene(scene);
@@ -50,17 +51,37 @@ public class interfaceLoad extends Application {
     public static void changeScene(String fxml, double height, double width, String title) throws IOException {
 
         try {
-            double originalWidth = 1920; // Original width of the content
-            double originalHeight = 1080; // Original height of the content
-            double aspectRatio = originalWidth / originalHeight;
+            final Pane root = new Pane();
 
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(interfaceLoad.class.getResource(fxml)));
-            Parent pane = loader.load();
-            primaryStage.setWidth(width);
-            primaryStage.setHeight(height);
+            Pane controller = FXMLLoader.load(Objects.requireNonNull(InterfaceLoad.class.getResource(fxml)));   //initial view
+            controller.setPrefWidth(width);
+            controller.setPrefHeight(height);
+            root.getChildren().add(controller);
+
+            Scale scale = new Scale(1, 1, 0, 0);
+            scale.xProperty().bind(root.widthProperty().divide(width));
+            scale.yProperty().bind(root.heightProperty().divide(height));
+            root.getTransforms().add(scale);
+
+            final Scene scene = new Scene(root, width, height);
             primaryStage.setTitle(title);
+            primaryStage.setScene(scene);
             primaryStage.setResizable(true);
-            primaryStage.getScene().setRoot(pane);
+
+            primaryStage.show();
+            scene.rootProperty().addListener(new ChangeListener<Parent>() {
+                @Override
+                public void changed(ObservableValue<? extends Parent> arg0, Parent oldValue, Parent newValue) {
+                    scene.rootProperty().removeListener(this);
+                    scene.setRoot(root);
+                    ((Region) newValue).setPrefWidth(width);
+                    ((Region) newValue).setPrefHeight(height);
+                    root.getChildren().clear();
+                    root.getChildren().add(newValue);
+                    scene.rootProperty().addListener(this);
+                }
+
+            });
 
         } catch (IOException e) {
             // Handle IO problems (e.g., file not found, cannot read file)

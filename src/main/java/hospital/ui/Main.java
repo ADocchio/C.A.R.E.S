@@ -1,11 +1,12 @@
 package hospital.ui;
 
-import hospital.ui.labs.labPanel;
+import hospital.ui.labs.LabPanel;
 
 public class   Main {
 
-    public static labPanel aPanel = new labPanel();
+    public static LabPanel aPanel = new LabPanel();
 
-    public static void main(String[] args) {ScalingExample.startApp();
+    public static void main(String[] args) {
+        InterfaceLoad.startApp();
     }
 }

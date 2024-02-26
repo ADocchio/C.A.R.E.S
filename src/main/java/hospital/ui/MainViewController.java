@@ -1,12 +1,12 @@
 package hospital.ui;
-import hospital.ui.labs.lab;
+import hospital.ui.labs.Lab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class mainViewController {
+public class MainViewController {
 
     public static String passedRole = "";
 
@@ -69,7 +69,7 @@ public class mainViewController {
      * @throws IOException, if login.fxml is unavailable or has errors
      */
     public void logOut(ActionEvent event) throws IOException {
-        interfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
+        InterfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
     }
 
     /** Sets the view and permissions for the staff dashboard
@@ -156,14 +156,14 @@ public class mainViewController {
         for(int i = 0; i < 10; i++){
             if (labTests[i].isSelected()){
 
-                if(Main.aPanel.runLab(i) == lab.LabResult.Normal){
+                if(Main.aPanel.runLab(i) == Lab.LabResult.Normal){
                     labResults[i].getStyleClass().clear();
                     labResults[i].getStyleClass().add("lab-result-p");
-                    labResults[i].setText(lab.LabResult.Normal.toString());
+                    labResults[i].setText(Lab.LabResult.Normal.toString());
                 }else {
                     labResults[i].getStyleClass().clear();
                     labResults[i].getStyleClass().add("lab-result-n");
-                    labResults[i].setText(lab.LabResult.Abnormal.toString());
+                    labResults[i].setText(Lab.LabResult.Abnormal.toString());
                 }
 
             }else {

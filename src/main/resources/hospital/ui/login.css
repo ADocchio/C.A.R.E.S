@@ -1,10 +1,11 @@
 .button {
     -fx-background-color: #d2eeed;
+    -fx-background-radius: 100px;
 }
 
 .button:hover {
     -fx-background-color: #b7ddf7;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 110px;
 }
 
 .side-panel {

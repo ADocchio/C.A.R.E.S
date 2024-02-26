@@ -43,16 +43,16 @@
 
 .ui-button {
     -fx-background-color: #d2eeed;
+    -fx-background-radius: 100px;
 }
 
 .ui-button:hover {
     -fx-background-color: #b7ddf7;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 110px;
 }
 
 .display-button {
     -fx-background-color: #5fbcbd;
-    -fx-background-radius: 100px;
     -fx-text-fill: white;
 }
 .lab-title {
