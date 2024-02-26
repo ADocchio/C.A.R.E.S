@@ -53,6 +53,7 @@ public class MainViewController {
 
         //(TEST VERSION ONLY)
         switch (passedRole) {
+            case "Billing" -> setBillingStaffView();
             case "Staff" -> setDeskStaffView();
             case "Nurse" -> setNurseView();
             case "Doctor" -> setDoctorView();
@@ -70,6 +71,23 @@ public class MainViewController {
      */
     public void logOut(ActionEvent event) throws IOException {
         InterfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
+    }
+
+    /** Sets the view and permissions for the billing staff dashboard
+     *
+     */
+    private void setBillingStaffView() {
+        role.setText("Billing Staff");
+        admitButton.setVisible(false);
+
+        //set permissions
+        basicInfoPane.setVisible(false);
+        medicalInfoPane.setVisible(false);
+        labTestPane.setVisible(false);
+        labResultsPane.setVisible(false);
+        diagnosisPane.setVisible(false);
+        dischargePane.setVisible(false);
+
     }
 
     /** Sets the view and permissions for the staff dashboard

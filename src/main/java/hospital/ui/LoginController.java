@@ -58,6 +58,11 @@ public class LoginController {
             MainViewController.passedRole = "Staff";
 
             InterfaceLoad.changeScene("main-view.fxml", height, width, "C.A.R.E.S Dashboard");
+        } else if (username.getText().equals("Billing") && password.getText().equals("123")) {
+            loginError.setText("Login Successful!");
+            MainViewController.passedRole = "Billing";
+
+            InterfaceLoad.changeScene("main-view.fxml", height, width, "C.A.R.E.S Dashboard");
         } else if (username.getText().isEmpty() || password.getText().isEmpty()) {
             loginError.setText("Enter All Fields!");
         } else {
