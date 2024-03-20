@@ -1,9 +1,11 @@
-package hospital.ui.users;
+package hospital.ui.users.patients;
+
+import hospital.ui.users.Person;
 
 /**
  * Represents a patient, extending the person class with medical-specific details.
  */
-public class Patient extends Person {
+public class APatient extends Person {
     private String patientID;
     private String insurancePlan;
     private String emergencyContact;
@@ -20,8 +22,8 @@ public class Patient extends Person {
      * @param insurancePlan The insurance plan of the patient.
      * @param emergencyContact The emergency contact information for the patient.
      */
-    public Patient(String firstName, String lastName, String dob, String permAdd, int phoneNum,
-                   String patientID, String insurancePlan, String emergencyContact) {
+    public APatient(String firstName, String lastName, String dob, String permAdd, String phoneNum,
+                    String patientID, String insurancePlan, String emergencyContact) {
         super(firstName, lastName, dob, permAdd, phoneNum);
         this.patientID = patientID;
         this.insurancePlan = insurancePlan;
@@ -36,7 +38,7 @@ public class Patient extends Person {
      * @param insurancePlan   The insurance plan of the patient.
      * @param emergencyContact The emergency contact information for the patient.
      */
-    public Patient(Person person, String patientID, String insurancePlan, String emergencyContact) {
+    public APatient(Person person, String patientID, String insurancePlan, String emergencyContact) {
         super(person.getFirstName(), person.getLastName(), person.getDob(), person.getPermAdd(), person.getPhoneNum());
         this.patientID = patientID;
         this.insurancePlan = insurancePlan;

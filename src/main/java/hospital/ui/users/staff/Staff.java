@@ -1,4 +1,6 @@
-package hospital.ui.users;
+package hospital.ui.users.staff;
+
+import hospital.ui.users.Person;
 
 /**
  * Represents a staff member, extending the Person class with login credentials.
@@ -18,7 +20,7 @@ public class Staff extends Person {
      * @param username The username for the staff member's login credentials.
      * @param password The password for the staff member's login credentials.
      */
-    public Staff(String firstName, String lastName, String dob, String permAdd, int phoneNum,
+    public Staff(String firstName, String lastName, String dob, String permAdd, String phoneNum,
                  String username, String password) {
         super(firstName, lastName, dob, permAdd, phoneNum);
         this.username = username;

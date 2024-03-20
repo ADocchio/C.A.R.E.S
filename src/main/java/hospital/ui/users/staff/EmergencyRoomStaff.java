@@ -1,4 +1,4 @@
-package hospital.ui.users;
+package hospital.ui.users.staff;
 
 /**
  * Represents an emergency room staff member, specializing the Staff class for emergency room operations.
@@ -16,7 +16,7 @@ public class EmergencyRoomStaff extends Staff {
      * @param username The username for the emergency room staff member's login credentials.
      * @param password The password for the emergency room staff member's login credentials.
      */
-    public EmergencyRoomStaff(String firstName, String lastName, String dob, String permAdd, int phoneNum,
+    public EmergencyRoomStaff(String firstName, String lastName, String dob, String permAdd, String phoneNum,
                               String username, String password) {
         super(firstName, lastName, dob, permAdd, phoneNum, username, password);
     }

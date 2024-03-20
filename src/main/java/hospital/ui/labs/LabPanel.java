@@ -1,5 +1,8 @@
 package hospital.ui.labs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LabPanel {
 
     private final Lab redBloodLab = new Lab();
@@ -37,5 +40,12 @@ public class LabPanel {
         return labPanel[labNumber].getResult();
     }
 
+    public String[] getCurrentResults(){
+        String[] results = new String[10];
+        for(int i = 0; i < results.length; i++) {
+            results[i] = labPanel[i].getResult().name();
+        }
 
+        return results;
+    }
 }

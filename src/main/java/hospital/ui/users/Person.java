@@ -8,7 +8,7 @@ public class Person {
     private String lastName;
     private String dob; // Date of Birth
     private String permAdd; // Permanent Address
-    private int phoneNum; // Phone Number
+    private String phoneNum; // Phone Number
 
     /**
      * Constructs a new Person with the specified details.
@@ -19,7 +19,7 @@ public class Person {
      * @param permAdd   the permanent address of the person
      * @param phoneNum  the phone number of the person
      */
-    public Person(String firstName, String lastName, String dob, String permAdd, int phoneNum) {
+    public Person(String firstName, String lastName, String dob, String permAdd, String phoneNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
@@ -119,7 +119,7 @@ public class Person {
      *
      * @return the phone number
      */
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
@@ -128,7 +128,7 @@ public class Person {
      *
      * @param phoneNum the new phone number
      */
-    public void setPhoneNum(int phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 }

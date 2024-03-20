@@ -1,9 +1,13 @@
-package hospital.ui.users;
+package hospital.ui.users.patients;
+
+import hospital.ui.diagnose.Diagnosis;
+import hospital.ui.labs.LabPanel;
+
 
 /**
  * Represents a patient that has been seen by medical staff, extending the Patient class with additional details.
  */
-public class SeenPatient extends Patient {
+public class SeenPatient extends APatient {
     private String timeIn;
     private boolean isAdmitted;
     private boolean discharged;
@@ -14,9 +18,8 @@ public class SeenPatient extends Patient {
     private double oxyLevel;
     private double bodyTemp;
     private int bodyMassIndex;
-    private String diagnosis;
-    private Prescription[] prescriptions;
-    private Lab lab;
+    private Diagnosis diagnosis;
+    private LabPanel labPanel;
     private Bill bill;
     private String timeOut;
 
@@ -43,16 +46,15 @@ public class SeenPatient extends Patient {
      * @param bodyTemp         The body temperature of the patient in Celsius.
      * @param bodyMassIndex    The body mass index of the patient.
      * @param diagnosis        The diagnosis of the patient.
-     * @param prescriptions    The prescriptions given to the patient.
-     * @param lab              The lab tests conducted on the patient.
+     * @param labPanel         The lab tests conducted on the patient.
      * @param bill             The bill generated for the patient's treatment.
      * @param timeOut          The time the patient checked out.
      */
-    public SeenPatient(String firstName, String lastName, String dob, String permAdd, int phoneNum,
+    public SeenPatient(String firstName, String lastName, String dob, String permAdd, String phoneNum,
                        String patientID, String insurancePlan, String emergencyContact, String timeIn,
                        boolean isAdmitted, boolean discharged, double height, double weight,
                        String bloodPressure, double heartRate, double oxyLevel, double bodyTemp,
-                       int bodyMassIndex, String diagnosis, Prescription[] prescriptions, Lab lab,
+                       int bodyMassIndex, Diagnosis diagnosis, LabPanel labPanel,
                        Bill bill, String timeOut) {
         super(firstName, lastName, dob, permAdd, phoneNum, patientID, insurancePlan, emergencyContact);
         this.timeIn = timeIn;
@@ -66,8 +68,7 @@ public class SeenPatient extends Patient {
         this.bodyTemp = bodyTemp;
         this.bodyMassIndex = bodyMassIndex;
         this.diagnosis = diagnosis;
-        this.prescriptions = prescriptions;
-        this.lab = lab;
+        this.labPanel = labPanel;
         this.bill = bill;
         this.timeOut = timeOut;
     }
@@ -81,7 +82,7 @@ public class SeenPatient extends Patient {
      * @param isAdmitted         Indicates whether the patient is admitted.
      * @param discharged         Indicates whether the patient has been discharged.
      */
-    public SeenPatient(Patient patient, String timeIn, String timeOut, boolean isAdmitted, boolean discharged) {
+    public SeenPatient(APatient patient, String timeIn, String timeOut, boolean isAdmitted, boolean discharged) {
         super(patient, patient.getPatientID(), patient.getInsurancePlan(), patient.getEmergencyContact());
         this.timeIn = timeIn;
         this.timeOut = timeOut;
@@ -274,7 +275,7 @@ public class SeenPatient extends Patient {
      *
      * @return The diagnosis as a String.
      */
-    public String getDiagnosis() {
+    public Diagnosis getDiagnosis() {
         return diagnosis;
     }
 
@@ -283,26 +284,8 @@ public class SeenPatient extends Patient {
      *
      * @param diagnosis The diagnosis to set.
      */
-    public void setDiagnosis(String diagnosis) {
+    public void setDiagnosis(Diagnosis diagnosis) {
         this.diagnosis = diagnosis;
-    }
-
-    /**
-     * Gets the array of prescriptions for the patient.
-     *
-     * @return An array of Prescription objects.
-     */
-    public Prescription[] getPrescriptions() {
-        return prescriptions;
-    }
-
-    /**
-     * Sets the array of prescriptions for the patient.
-     *
-     * @param prescriptions An array of Prescription objects to set.
-     */
-    public void setPrescriptions(Prescription[] prescriptions) {
-        this.prescriptions = prescriptions;
     }
 
     /**
@@ -310,8 +293,8 @@ public class SeenPatient extends Patient {
      *
      * @return The lab test as a Lab object.
      */
-    public Lab getLab() {
-        return lab;
+    public LabPanel getLabPanel() {
+        return labPanel;
     }
 
     /**
@@ -319,8 +302,8 @@ public class SeenPatient extends Patient {
      *
      * @param lab The Lab object to set.
      */
-    public void setLab(Lab lab) {
-        this.lab = lab;
+    public void setLab(LabPanel labPanel) {
+        this.labPanel = labPanel;
     }
 
     /**

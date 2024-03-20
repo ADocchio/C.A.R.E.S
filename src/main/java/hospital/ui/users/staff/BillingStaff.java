@@ -1,4 +1,4 @@
-package hospital.ui.users;
+package hospital.ui.users.staff;
 
 /**
  * Represents a billing staff member, specializing the Staff class for billing operations.
@@ -17,7 +17,7 @@ public class BillingStaff extends Staff {
      * @param username The username for the billing staff member's login credentials.
      * @param password The password for the billing staff member's login credentials.
      */
-    public BillingStaff(String firstName, String lastName, String dob, String permAdd, int phoneNum,
+    public BillingStaff(String firstName, String lastName, String dob, String permAdd, String phoneNum,
                         String username, String password) {
         super(firstName, lastName, dob, permAdd, phoneNum, username, password);
 

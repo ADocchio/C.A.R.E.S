@@ -1,4 +1,4 @@
-package hospital.ui.users;
+package hospital.ui.users.staff;
 
 /**
  * Represents a doctor, further specializing the Nurse class for medical operations.
@@ -16,7 +16,7 @@ public class Doctor extends Nurse {
      * @param username The username for the doctor's login credentials.
      * @param password The password for the doctor's login credentials.
      */
-    public Doctor(String firstName, String lastName, String dob, String permAdd, int phoneNum,
+    public Doctor(String firstName, String lastName, String dob, String permAdd, String phoneNum,
                   String username, String password) {
         super(firstName, lastName, dob, permAdd, phoneNum, username, password);
     }

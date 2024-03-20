@@ -65,7 +65,4 @@ public class Lab {
             result = Lab.LabResult.Normal;
         }
     }
-
-
-
 }

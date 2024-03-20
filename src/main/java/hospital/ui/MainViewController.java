@@ -1,14 +1,20 @@
 package hospital.ui;
 import hospital.ui.labs.Lab;
+import hospital.ui.users.Person;
+import hospital.ui.users.patients.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.function.Function;
 
 public class MainViewController {
 
     public static String passedRole = "";
+    private Patient currentPatient = new Patient(new Person("Jack", "Docchio", "05/08/2005", "16 Brian Woods Drive", "8606900953"));
 
     //panes
     @FXML
@@ -116,6 +122,7 @@ public class MainViewController {
 
         //set permissions
         diagnosisPane.setDisable(true);
+        loadPatient();
 
 
     }
@@ -136,32 +143,35 @@ public class MainViewController {
      *
      */
     private void loadPatient(){
-//        firstName.setText();
-//        lastName.setText();
-//        address.setText();
-//        cellPhone.setText();
-//        birthday.setText();
-//        insurance.setText();
-//        emergencyCell.setText();
-//
-//        height.setText();
-//        weight.setText();
-//        bp.setText();
-//        heartRate.setText();
-//        spo2.setText();
-//        bodyTemp.setText();
-//        bmi.setText();
-//
-//        redBloodResult.setText();
-//        whiteBloodResult.setText();
-//        liverResult.setText();
-//        renalResult.setText();
-//        electrolyteResult.setText();
-//        xrayResult.setText();
-//        ctResult.setText();
-//        mriResult.setText();
-//        urineResult.setText();
-//        stoolResult.setText();
+
+        Button[] labResultDisplay = {redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult};
+        String[] labs = currentPatient.getLabPanel().getCurrentResults();
+        TextField[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi };
+
+        ArrayList<Function<Patient, String>> methods = new ArrayList<>();
+        methods.add(Patient::getFirstName);
+        methods.add(Patient::getLastName);
+        methods.add(Patient::getPermAdd);
+        methods.add(Patient::getPhoneNum);
+        methods.add(Patient::getDob);
+        methods.add(Patient::getInsurancePlan);
+        methods.add(Patient::getEmergencyContact);
+        methods.add(Patient::getBloodPressure);
+        methods.add(Patient::getHeight);
+        methods.add(Patient::getWeight);
+        methods.add(Patient::getHeartRate);
+        methods.add(Patient::getOxyLevel);
+        methods.add(Patient::getBodyTemp);
+        methods.add(Patient::getBodyMassIndex);
+
+        for (int i = 0; i < stringFields.length; i++) {
+            stringFields[i].setText(methods.get(i).apply(currentPatient));
+        }
+
+        for(int i = 0; i < 10; i++){
+            labResultDisplay[i].setText(labs[i]);
+        }
+
     }
 
     /**Takes user input on labs to be run, runs the corresponding labs, then resets run labs view

@@ -1,4 +1,6 @@
-package hospital.ui.users;
+package hospital.ui.users.staff;
+
+import hospital.ui.users.staff.EmergencyRoomStaff;
 
 /**
  * Represents a nurse, specializing the EmergencyRoomStaff class for nursing operations.
@@ -16,7 +18,7 @@ public class Nurse extends EmergencyRoomStaff {
      * @param username The username for the nurse's login credentials.
      * @param password The password for the nurse's login credentials.
      */
-    public Nurse(String firstName, String lastName, String dob, String permAdd, int phoneNum,
+    public Nurse(String firstName, String lastName, String dob, String permAdd, String phoneNum,
                  String username, String password) {
         super(firstName, lastName, dob, permAdd, phoneNum, username, password);
     }

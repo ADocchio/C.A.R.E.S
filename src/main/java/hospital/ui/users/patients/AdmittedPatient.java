@@ -1,4 +1,7 @@
-package hospital.ui.users;
+package hospital.ui.users.patients;
+
+import hospital.ui.diagnose.Diagnosis;
+import hospital.ui.labs.LabPanel;
 
 /**
  * Represents a patient who has been admitted and later discharged, extending the SeenPatient class with discharge details.
@@ -30,22 +33,21 @@ public class AdmittedPatient extends SeenPatient {
      * @param bodyTemp             The body temperature of the patient in Celsius.
      * @param bodyMassIndex        The body mass index of the patient.
      * @param diagnosis            The diagnosis of the patient.
-     * @param prescriptions        The prescriptions given to the patient.
-     * @param lab                  The lab tests conducted on the patient.
+     * @param LabPanel                  The lab tests conducted on the patient.
      * @param bill                 The bill generated for the patient's treatment.
      * @param timeOut              The time the patient checked out.
      * @param dateAdmit            The date the patient was admitted.
      * @param dischargeInstruction The instructions provided upon discharge.
      */
-    public AdmittedPatient(String firstName, String lastName, String dob, String permAdd, int phoneNum,
+    public AdmittedPatient(String firstName, String lastName, String dob, String permAdd, String phoneNum,
                            String patientID, String insurancePlan, String emergencyContact, String timeIn,
                            boolean isAdmitted, boolean discharged, double height, double weight,
                            String bloodPressure, double heartRate, double oxyLevel, double bodyTemp,
-                           int bodyMassIndex, String diagnosis, Prescription[] prescriptions, Lab lab,
+                           int bodyMassIndex, Diagnosis diagnosis, LabPanel LabPanel,
                            Bill bill, String timeOut, String dateAdmit, String dischargeInstruction) {
         super(firstName, lastName, dob, permAdd, phoneNum, patientID, insurancePlan, emergencyContact,
                 timeIn, isAdmitted, discharged, height, weight, bloodPressure, heartRate, oxyLevel,
-                bodyTemp, bodyMassIndex, diagnosis, prescriptions, lab, bill, timeOut);
+                bodyTemp, bodyMassIndex, diagnosis, LabPanel, bill, timeOut);
         this.dateAdmit = dateAdmit;
         this.dischargeInstruction = dischargeInstruction;
     }
