@@ -3,8 +3,8 @@ package hospital.ui.users.patients;
 import hospital.ui.diagnose.Diagnosis;
 import hospital.ui.labs.LabPanel;
 import hospital.ui.users.Person;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Patient extends Person {
     private String patientID;

@@ -1,7 +1,5 @@
 package hospital.ui.users.staff;
 
-import hospital.ui.users.staff.EmergencyRoomStaff;
-
 /**
  * Represents a nurse, specializing the EmergencyRoomStaff class for nursing operations.
  */

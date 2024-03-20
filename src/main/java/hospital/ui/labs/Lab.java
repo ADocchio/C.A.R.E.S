@@ -60,9 +60,9 @@ public class Lab {
         timeRun++;
 
         if (num == 0){
-            result = Lab.LabResult.Abnormal;
+            result = LabResult.Abnormal;
         } else {
-            result = Lab.LabResult.Normal;
+            result = LabResult.Normal;
         }
     }
 }

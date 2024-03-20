@@ -1,4 +1,6 @@
 package hospital.ui;
+import hospital.ui.diagnose.Condition;
+import hospital.ui.diagnose.Prescription;
 import hospital.ui.labs.Lab;
 import hospital.ui.users.Person;
 import hospital.ui.users.patients.Patient;
@@ -7,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.function.Function;
 
@@ -122,7 +123,7 @@ public class MainViewController {
 
         //set permissions
         diagnosisPane.setDisable(true);
-        loadPatient();
+
 
 
     }
@@ -134,7 +135,7 @@ public class MainViewController {
         admitButton.setText("Admit Patient");
         dischargeButton.setText("Discharge");
         role.setText("Doctor");
-
+        loadPatient();
         //set permissions
 
     }
@@ -219,30 +220,55 @@ public class MainViewController {
         CheckBox[][] scripts = {bloodScripts, cholesterolScripts, kidneyScripts, liverScripts, boneScripts};
         CheckBox[] diagnoses = { highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus};
 
+        Condition[] conditions = currentPatient.getDiagnosis().getConditions();
+
         for(int i = 0; i < 5; i++){
+            Prescription[] prescriptions = conditions[i].getValidPrescriptions();
             if (diagnoses[i].isSelected()){//make corresponding scripts available
-                for(CheckBox script: scripts[i]){
-                    script.setDisable(false);
+                for(int j = 0; j < 3; j++)
+                {
+                    scripts[i][j].setDisable(false);
                 }
 
             }else {//make corresponding scripts unavailable
-                for(CheckBox script: scripts[i]){
-                    script.setDisable(true);
-                    script.setSelected(false);
+                for(int j = 0; j < 3; j++)
+                {
+                    scripts[i][j].setDisable(true);
+                    scripts[i][j].setSelected(false);
+                    prescriptions[j].setPrescribed(false);
                 }
             }
         }
     }
 
+    public void updateScripts(ActionEvent event) {
+        CheckBox[] bloodScripts = {highBloodScript1, highBloodScript2, highBloodScript3};
+        CheckBox[] cholesterolScripts = {highCholesterolScript1, highCholesterolScript2, highCholesterolScript3};
+        CheckBox[] kidneyScripts = {kidneyScript1, kidneyScript2, kidneyScript3};
+        CheckBox[] liverScripts = {liverScript1, liverScript2, liverScript3};
+        CheckBox[] boneScripts = {boneScript1, boneScript2, boneScript3};
 
-    public void admitButton (ActionEvent event) {
+        CheckBox[][] scripts = {bloodScripts, cholesterolScripts, kidneyScripts, liverScripts, boneScripts};
+        Condition[] conditions = currentPatient.getDiagnosis().getConditions();
 
+        for (int i = 0; i < 5; i++) {
+            Prescription[] prescriptions = conditions[i].getValidPrescriptions();
+            for(int j = 0; j < 3; j++)
+            {
+                prescriptions[j].setPrescribed(scripts[i][j].isSelected());
+            }
+        }
+    }
+
+
+    public void admitButton (ActionEvent event){
+        System.out.println(currentPatient.getDiagnosis().getConditions()[0].getValidPrescriptions()[0].isPrescribed());
     }
 
     /** Handles the ability to edit patient information by clicking on information textfeilds,
      * Makes sure type is correct and updates information of patient currently loaded into view
      */
-    private void setupTextFieldHandlers() {
+    private void setupTextFieldHandlers () {
 
         // Handle losing focus
         firstName.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -270,14 +296,10 @@ public class MainViewController {
                 }
             }
         });
-
-        //...........
-
-
     }
 
     // Utility method to check if a string is numeric
-    private boolean isNumeric(String str) {
+    private boolean isNumeric (String str){
         try {
             Double.parseDouble(str);
             return true;
@@ -285,6 +307,4 @@ public class MainViewController {
             return false;
         }
     }
-
-
 }

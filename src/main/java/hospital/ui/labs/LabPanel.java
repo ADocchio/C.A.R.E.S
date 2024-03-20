@@ -1,8 +1,5 @@
 package hospital.ui.labs;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LabPanel {
 
     private final Lab redBloodLab = new Lab();
