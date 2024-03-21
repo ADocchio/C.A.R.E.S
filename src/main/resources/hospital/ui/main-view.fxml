@@ -600,17 +600,17 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <CheckBox fx:id="highBloodScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                      <CheckBox fx:id="highBloodScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="highBloodScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <CheckBox fx:id="highBloodScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="highBloodScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <CheckBox fx:id="highBloodScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -669,17 +669,17 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <CheckBox fx:id="highCholesterolScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                      <CheckBox fx:id="highCholesterolScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="highCholesterolScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <CheckBox fx:id="highCholesterolScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="highCholesterolScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <CheckBox fx:id="highCholesterolScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -738,17 +738,17 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <CheckBox fx:id="kidneyScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                      <CheckBox fx:id="kidneyScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="kidneyScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <CheckBox fx:id="kidneyScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="kidneyScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <CheckBox fx:id="kidneyScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -807,17 +807,17 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <CheckBox fx:id="liverScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                      <CheckBox fx:id="liverScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="liverScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <CheckBox fx:id="liverScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="liverScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <CheckBox fx:id="liverScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -876,17 +876,17 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <CheckBox fx:id="boneScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
+                                                      <CheckBox fx:id="boneScript1" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="40.0" prefWidth="33.0" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="boneScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <CheckBox fx:id="boneScript2" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <CheckBox fx:id="boneScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <CheckBox fx:id="boneScript3" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#updateScripts" prefHeight="30.0" prefWidth="327.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>

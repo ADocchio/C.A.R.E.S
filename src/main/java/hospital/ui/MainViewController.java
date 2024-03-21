@@ -173,12 +173,12 @@ public class MainViewController {
 
         //load patient information
         for (int i = 0; i < stringFields.length; i++) {
-            System.out.println(stringFields[i]);
             stringFields[i].setText(methods.get(i).apply(currentPatient));
         }
 
         //load patient labs
         loadLabs(new ActionEvent());
+        loadValidScripts(new ActionEvent());
 
         //Allow for updating of patient information
         addListenerToTextField(stringFields[0],currentPatient, Patient::setFirstName);
@@ -256,6 +256,35 @@ public class MainViewController {
 
     }
 
+    public void loadValidScripts(ActionEvent event) {
+        CheckBox[] bloodScripts = {highBloodScript1, highBloodScript2, highBloodScript3};
+        CheckBox[] cholesterolScripts = {highCholesterolScript1, highCholesterolScript2, highCholesterolScript3};
+        CheckBox[] kidneyScripts = {kidneyScript1, kidneyScript2, kidneyScript3};
+        CheckBox[] liverScripts = {liverScript1, liverScript2, liverScript3};
+        CheckBox[] boneScripts = {boneScript1, boneScript2, boneScript3};
+
+        CheckBox[][] scripts = {bloodScripts, cholesterolScripts, kidneyScripts, liverScripts, boneScripts};
+        CheckBox[] diagnoses = { highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus};
+
+        Condition[] conditions = currentPatient.getDiagnosis().getConditions();
+
+        for(int i = 0; i < 5; i++){
+            Prescription[] prescriptions = conditions[i].getValidPrescriptions();
+
+            for(int j = 0; j < 3; j++)
+            {
+                scripts[i][j].setSelected(prescriptions[j].isPrescribed());
+                scripts[i][j].setDisable(!prescriptions[j].isPrescribed());
+
+                if(prescriptions[j].isPrescribed()){
+                    diagnoses[i].setSelected(true);
+                    diagnoses[i].setDisable(false);
+                }
+            }
+
+        }
+    }
+
     /**Enables and Disables the ability to prescribe prescriptions based on diagnosis selection
      * @param event, The selection of a diagnosis
      */
@@ -322,7 +351,11 @@ public class MainViewController {
     }
 
     public void admitButton (ActionEvent event){
-        System.out.println(currentPatient.getDiagnosis().getConditions()[0].getValidPrescriptions()[0].isPrescribed());
+        for (Condition c: currentPatient.getDiagnosis().getConditions()) {
+            for (Prescription p: c.getValidPrescriptions()){
+                System.out.println(p.isPrescribed());
+            }
+        }
     }
 
 }
