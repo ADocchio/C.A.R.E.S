@@ -29,13 +29,15 @@ public class Lab {
     }
 
     private final Random random = new Random();
-    private LabResult result = LabResult.NotRun;
+    private LabResult result;
     private int timeRun = 0;
 
     /** Constructor
      *
      */
-    public Lab(){}
+    public Lab(){
+        result = LabResult.NotRun;
+    }
 
     /** Returns the result of the lab class
      *

@@ -4,18 +4,20 @@ import hospital.ui.diagnose.Prescription;
 import hospital.ui.labs.Lab;
 import hospital.ui.users.Person;
 import hospital.ui.users.patients.Patient;
+import hospital.ui.users.patients.PatientUpdater;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.function.Function;
 
 public class MainViewController {
 
     public static String passedRole = "";
-    private Patient currentPatient = new Patient(new Person("Jack", "Docchio", "05/08/2005", "16 Brian Woods Drive", "8606900953"));
+    private Patient currentPatient = Main.getCurrentPatient();
 
     //panes
     @FXML
@@ -32,6 +34,9 @@ public class MainViewController {
     //patient info
     @FXML
     private TextField firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, height, weight, bp, heartRate, spo2, bodyTemp, bmi;
+
+    @FXML
+    private TextArea instructionsField;
 
     //lab tests
     @FXML
@@ -57,6 +62,8 @@ public class MainViewController {
         for(TitledPane pane: panes){
             pane.setCollapsible(false);
         }
+
+        loadPatient();
 
         //(TEST VERSION ONLY)
         switch (passedRole) {
@@ -135,7 +142,7 @@ public class MainViewController {
         admitButton.setText("Admit Patient");
         dischargeButton.setText("Discharge");
         role.setText("Doctor");
-        loadPatient();
+
         //set permissions
 
     }
@@ -144,11 +151,9 @@ public class MainViewController {
      *
      */
     private void loadPatient(){
+        TextInputControl[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi, instructionsField};
 
-        Button[] labResultDisplay = {redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult};
-        String[] labs = currentPatient.getLabPanel().getCurrentResults();
-        TextField[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi };
-
+        //Setup patient information in UI
         ArrayList<Function<Patient, String>> methods = new ArrayList<>();
         methods.add(Patient::getFirstName);
         methods.add(Patient::getLastName);
@@ -164,13 +169,56 @@ public class MainViewController {
         methods.add(Patient::getOxyLevel);
         methods.add(Patient::getBodyTemp);
         methods.add(Patient::getBodyMassIndex);
+        methods.add(Patient::getDischargeInstruction);
 
+        //load patient information
         for (int i = 0; i < stringFields.length; i++) {
+            System.out.println(stringFields[i]);
             stringFields[i].setText(methods.get(i).apply(currentPatient));
         }
 
+        //load patient labs
+        loadLabs(new ActionEvent());
+
+        //Allow for updating of patient information
+        addListenerToTextField(stringFields[0],currentPatient, Patient::setFirstName);
+        addListenerToTextField(stringFields[1],currentPatient, Patient::setLastName);
+        addListenerToTextField(stringFields[2],currentPatient, Patient::setPermAdd);
+        addListenerToTextField(stringFields[3],currentPatient, Patient::setPhoneNum);
+        addListenerToTextField(stringFields[4],currentPatient, Patient::setDob);
+        addListenerToTextField(stringFields[5],currentPatient, Patient::setInsurancePlan);
+        addListenerToTextField(stringFields[6],currentPatient, Patient::setEmergencyContact);
+        addListenerToTextField(stringFields[7],currentPatient, Patient::setBloodPressure);
+        addListenerToTextField(stringFields[8],currentPatient, Patient::setHeight);
+        addListenerToTextField(stringFields[9],currentPatient, Patient::setWeight);
+        addListenerToTextField(stringFields[10],currentPatient, Patient::setHeartRate);
+        addListenerToTextField(stringFields[11],currentPatient, Patient::setOxyLevel);
+        addListenerToTextField(stringFields[12],currentPatient, Patient::setBodyTemp);
+        addListenerToTextField(stringFields[13],currentPatient, Patient::setBodyMassIndex);
+        addListenerToTextField(stringFields[14],currentPatient, Patient::setDischargeInstruction);
+
+
+
+    }
+
+    public void loadLabs(ActionEvent event) {
+        CheckBox[] labTests = {redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab};
+        Button[] labResults = {redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult};
+
         for(int i = 0; i < 10; i++){
-            labResultDisplay[i].setText(labs[i]);
+            if(Objects.equals(currentPatient.getLabPanel().getCurrentResults()[i], Lab.LabResult.Normal.name())){
+                    labResults[i].getStyleClass().clear();
+                    labResults[i].getStyleClass().add("lab-result-p");
+                    labResults[i].setText(Lab.LabResult.Normal.toString());
+
+            }else if(Objects.equals(currentPatient.getLabPanel().getCurrentResults()[i], Lab.LabResult.Abnormal.name())) {
+                    labResults[i].getStyleClass().clear();
+                    labResults[i].getStyleClass().add("lab-result-n");
+                    labResults[i].setText(Lab.LabResult.Abnormal.toString());
+            }else{
+                labResults[i].getStyleClass().clear();
+                labResults[i].getStyleClass().add("lab-result");
+            }
         }
 
     }
@@ -185,10 +233,11 @@ public class MainViewController {
         for(int i = 0; i < 10; i++){
             if (labTests[i].isSelected()){
 
-                if(Main.aPanel.runLab(i) == Lab.LabResult.Normal){
+                if(currentPatient.getLabPanel().runLab(i) == Lab.LabResult.Normal){
                     labResults[i].getStyleClass().clear();
                     labResults[i].getStyleClass().add("lab-result-p");
                     labResults[i].setText(Lab.LabResult.Normal.toString());
+
                 }else {
                     labResults[i].getStyleClass().clear();
                     labResults[i].getStyleClass().add("lab-result-n");
@@ -241,6 +290,9 @@ public class MainViewController {
         }
     }
 
+    /**updates prescriptions based on diagnosis selection
+     * @param event, The selection of a prescription
+     */
     public void updateScripts(ActionEvent event) {
         CheckBox[] bloodScripts = {highBloodScript1, highBloodScript2, highBloodScript3};
         CheckBox[] cholesterolScripts = {highCholesterolScript1, highCholesterolScript2, highCholesterolScript3};
@@ -261,50 +313,16 @@ public class MainViewController {
     }
 
 
+    public void addListenerToTextField(TextInputControl text, Patient patient, PatientUpdater updater) {
+        text.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Focus lost
+                updater.apply(patient, text.getText());
+            }
+        });
+    }
+
     public void admitButton (ActionEvent event){
         System.out.println(currentPatient.getDiagnosis().getConditions()[0].getValidPrescriptions()[0].isPrescribed());
     }
 
-    /** Handles the ability to edit patient information by clicking on information textfeilds,
-     * Makes sure type is correct and updates information of patient currently loaded into view
-     */
-    private void setupTextFieldHandlers () {
-
-        // Handle losing focus
-        firstName.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) { // Focus lost
-                String lastValidValue = null;
-
-                if (isNumeric(firstName.getText())) {
-                    lastValidValue = firstName.getText();
-                    //update value in database
-                } else {
-                    firstName.setText(lastValidValue);
-                }
-            }
-        });
-
-        lastName.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) { // Focus lost
-                String lastValidValue = null;
-
-                if (isNumeric(lastName.getText())) {
-                    lastValidValue = lastName.getText();
-                    //update value in database
-                } else {
-                    lastName.setText(lastValidValue);
-                }
-            }
-        });
-    }
-
-    // Utility method to check if a string is numeric
-    private boolean isNumeric (String str){
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 }

@@ -49,6 +49,7 @@ public class Patient extends Person {
         this.diagnosis = new Diagnosis();
         this.labPanel = new LabPanel();
         this.bill = new Bill(this, "");
+        this.dischargeInstruction = "";
 
         this.dateAdmit = dateAdmit;
         this.dischargeInstruction = dischargeInstruction;
