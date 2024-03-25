@@ -36,7 +36,7 @@ public class MainViewController {
     private TextField firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, height, weight, bp, heartRate, spo2, bodyTemp, bmi;
 
     @FXML
-    private TextArea instructionsField;
+    private TextArea instructionsField, billField;
 
     //lab tests
     @FXML
@@ -93,6 +93,12 @@ public class MainViewController {
     private void setBillingStaffView() {
         role.setText("Billing Staff");
         admitButton.setVisible(false);
+        billField.setEditable(true);
+        billField.setVisible(true);
+        billField.setText(currentPatient.getBill());
+
+
+
 
         //set permissions
         basicInfoPane.setVisible(false);
