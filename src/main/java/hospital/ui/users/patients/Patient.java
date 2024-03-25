@@ -8,7 +8,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 
-public class Patient extends Person {
+public class Patient extends Person
+{
+    //all private variables for a Patient object
     private String patientID;
     private String insurancePlan;
     private String emergencyContact;
@@ -56,7 +58,7 @@ public class Patient extends Person {
     }
 
     /**
-     * Constructs an AdmittedPatient instance with admission and discharge details.
+     * Constructs a Patient instance with admission and discharge details.
      * Inherits all attributes from SeenPatient and, by extension, Patient and Person classes.
      *
      * @param firstName            The first name of the patient.
@@ -169,7 +171,7 @@ public class Patient extends Person {
     /**
      * Gets the time the patient checked in.
      *
-     * @return The check-in time as a String.
+     * @return The check-in time as an object of LocalDateTime.
      */
     public LocalDate getAdmittedDate() {
         return admittedDate;
@@ -180,8 +182,45 @@ public class Patient extends Person {
      *
      * @param admittedDate The check-in time to set.
      */
+<<<<<<< Updated upstream
     public void setAdmittedDate(LocalDate admittedDate) {
         this.admittedDate = admittedDate;
+=======
+    public void setTimeIn(LocalDateTime timeIn) {
+        try
+        {
+            this.timeIn = timeIn;
+        }
+        catch (IllegalArgumentException | DateTimeParseException e)
+        {
+            System.out.println("Incorrect Time Format");
+        }
+    }
+
+    /**
+     * Gets the time the patient was released from care.
+     *
+     * @return The check-out time as an object of LocalDateTime.
+     */
+    public LocalDateTime getTimeOut() {
+        return timeOut;
+    }
+
+    /**
+     * Sets the time the patient was released from care.
+     *
+     * @param timeIn The check-in time to set.
+     */
+    public void setTimeOut(LocalDateTime timeOut) {
+        try
+        {
+            this.timeOut = timeOut;
+        }
+        catch (IllegalArgumentException e)
+        {
+            System.out.println("Incorrect Time Format");
+        }
+>>>>>>> Stashed changes
     }
 
     /**
