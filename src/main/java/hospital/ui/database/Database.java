@@ -1,17 +1,17 @@
-package hospital.database;
+package hospital.ui.database;
 
-import hospital.ui;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import hospital.ui.users.Person;
+import hospital.ui.users.patients.Patient;
+
+import java.io.*;
 import java.util.Hashtable;
 
 public class Database
 {
     //private Objects made for hashtable databases
-    private Hashtable ht = new Hashtable<Object, Object>;
-    private Hashtable personHt = new Hashtable<String, Person>;
-    private Hashtable patientHt = new Hashtable<String, Patient>;
+    private final Hashtable<Object, Object> ht = new Hashtable<Object, Object>();
+    private final Hashtable<String, Person> personHt = new Hashtable<String, Person>();
+    private final Hashtable<String, Patient> patientHt = new Hashtable<String, Patient>();
 
     /**
      * Gets the hashtable
@@ -20,7 +20,7 @@ public class Database
      */
     public Hashtable<Object, Object> getHT()
     {
-      return ht;
+        return ht;
     }
 
     /**
@@ -30,7 +30,7 @@ public class Database
      */
     public Hashtable<String, Person> getPerHt()
     {
-      return personHt;
+        return personHt;
     }
 
     /**
@@ -40,26 +40,25 @@ public class Database
      */
     public Hashtable<String, Patient> getPaHt()
     {
-      return patientHt;
+        return patientHt;
     }
 
     /**
      * Takes the inputted Hashtable and turns it into a binary file and stores it
      * under the inputted file name
      *
-     * @param Hashtable<String, Object> A hashtable to store into the file
      * @param filename The name that the file will be stored under
      */
-    public static void storeDataToFile(Hashtable<String, Object>, filename)
+    public static void storeDataToFile(Hashtable<String, Object> hashtable, String filename)
     {
-      try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
-      {
-        oos.writeObject(Hashtable);
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace();
-      }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            oos.writeObject(hashtable);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -69,17 +68,18 @@ public class Database
      * @param filename The name of the file that the hashtable is in
      * @return Hashtable<String, Object> The hashtable that is extracted from the file
      */
-    public static Hashtable<String, Object> grabStoredData(filename)
+    public static Hashtable<String, Object> grabStoredData(String filename)
     {
-      Hashtable<String, Object> ht1 = null;
-      try (ObjectIntputStream ois = new ObjectIntputStream(new FileOutputStream(filename)))
-      {
-        ht1 = (Hashtable<String, Object>) ois.readObject();
-      }
-      catch (IOException | ClassNotFoundException e)
-      {
-        e.printStackTrace
-      }
-      return ht1;
+        Hashtable<String, Object> ht1 = null;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename)))
+        {
+            ht1 = (Hashtable<String, Object>) ois.readObject();
+        }
+        catch (IOException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return ht1;
     }
 }
+
