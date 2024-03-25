@@ -4,15 +4,16 @@ import hospital.ui.diagnose.Diagnosis;
 import hospital.ui.labs.LabPanel;
 import hospital.ui.users.Person;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 public class Patient extends Person {
     private String patientID;
     private String insurancePlan;
     private String emergencyContact;
 
-    private LocalDateTime  timeIn;
-    private LocalDateTime  timeOut;
+    private LocalDate  admittedDate;
     private boolean isAdmitted;
     private boolean isDischarged;
     private double height;
@@ -26,7 +27,7 @@ public class Patient extends Person {
     private LabPanel labPanel;
     private Bill bill;
 
-    private String dateAdmit;
+    private LocalDate  dischargeDate;
     private String dischargeInstruction;
 
     public Patient(Person person){
@@ -35,8 +36,7 @@ public class Patient extends Person {
         this.insurancePlan = "";
         this.emergencyContact = "";
 
-        this.timeIn =  LocalDateTime.now();
-        this.timeOut =  LocalDateTime.now();
+        this.admittedDate = LocalDate.from(LocalDateTime.now());
         this.isAdmitted = false;
         this.isDischarged = false;
         this.height = -1;
@@ -48,10 +48,10 @@ public class Patient extends Person {
         this.bodyMassIndex = -1;
         this.diagnosis = new Diagnosis();
         this.labPanel = new LabPanel();
-        this.bill = new Bill(this, "");
+        this.bill = new Bill();
         this.dischargeInstruction = "";
 
-        this.dateAdmit = dateAdmit;
+        this.dischargeDate = LocalDate.from(LocalDateTime.now());
         this.dischargeInstruction = dischargeInstruction;
     }
 
@@ -67,7 +67,7 @@ public class Patient extends Person {
      * @param patientID            The unique identifier for the patient.
      * @param insurancePlan        The insurance plan of the patient.
      * @param emergencyContact     The emergency contact information for the patient.
-     * @param timeIn               The time the patient checked in.
+     * @param admittedDate               The time the patient checked in.
      * @param isAdmitted           Whether the patient is currently admitted.
      * @param isDischarged           Whether the patient has been discharged.
      * @param height               The height of the patient in meters.
@@ -80,23 +80,21 @@ public class Patient extends Person {
      * @param diagnosis            The diagnosis of the patient.
      * @param labPanel                  The lab tests conducted on the patient.
      * @param bill                 The bill generated for the patient's treatment.
-     * @param timeOut              The time the patient checked out.
-     * @param dateAdmit            The date the patient was admitted.
+     * @param dischargeDate              The time the patient checked out.
      * @param dischargeInstruction The instructions provided upon discharge.
      */
     public Patient(String firstName, String lastName, String dob, String permAdd, String phoneNum,
-                           String patientID, String insurancePlan, String emergencyContact, LocalDateTime timeIn,
+                           String patientID, String insurancePlan, String emergencyContact, LocalDate admittedDate,
                            boolean isAdmitted, boolean isDischarged, double height, double weight,
                            String bloodPressure, double heartRate, double oxyLevel, double bodyTemp,
                            int bodyMassIndex, Diagnosis diagnosis, LabPanel labPanel,
-                           Bill bill, LocalDateTime timeOut, String dateAdmit, String dischargeInstruction) {
+                           Bill bill, LocalDate dischargeDate, String dischargeInstruction) {
         super(firstName, lastName, dob, permAdd, phoneNum);
         this.patientID = patientID;
         this.insurancePlan = insurancePlan;
         this.emergencyContact = emergencyContact;
 
-        this.timeIn = timeIn;
-        this.timeOut = timeOut;
+        this.admittedDate = admittedDate;
         this.isAdmitted = isAdmitted;
         this.isDischarged = isDischarged;
         this.height = height;
@@ -110,7 +108,7 @@ public class Patient extends Person {
         this.labPanel = labPanel;
         this.bill = bill;
 
-        this.dateAdmit = dateAdmit;
+        this.dischargeDate = dischargeDate;
         this.dischargeInstruction = dischargeInstruction;
     }
 
@@ -173,17 +171,17 @@ public class Patient extends Person {
      *
      * @return The check-in time as a String.
      */
-    public LocalDateTime getTimeIn() {
-        return timeIn;
+    public LocalDate getAdmittedDate() {
+        return admittedDate;
     }
 
     /**
      * Sets the time the patient checked in.
      *
-     * @param timeIn The check-in time to set.
+     * @param admittedDate The check-in time to set.
      */
-    public void setTimeIn(LocalDateTime timeIn) {
-        this.timeIn = timeIn;
+    public void setAdmittedDate(LocalDate admittedDate) {
+        this.admittedDate = admittedDate;
     }
 
     /**
@@ -389,8 +387,8 @@ public class Patient extends Person {
      *
      * @return The bill as a Bill object.
      */
-    public Bill getBill() {
-        return bill;
+    public String getBill() {
+        return bill.toBill(this);
     }
 
     /**
@@ -407,35 +405,17 @@ public class Patient extends Person {
      *
      * @return The check-out time as a String.
      */
-    public LocalDateTime getTimeOut() {
-        return timeOut;
+    public LocalDate getDischargeDate() {
+        return dischargeDate;
     }
 
     /**
      * Sets the time the patient checked out.
      *
-     * @param timeOut The check-out time to set.
+     * @param dischargeDate The check-out time to set.
      */
-    public void setTimeOut(LocalDateTime timeOut) {
-        this.timeOut = timeOut;
-    }
-
-    /**
-     * Gets the date of admission for the patient.
-     *
-     * @return The date of admission.
-     */
-    public String getDateAdmit() {
-        return dateAdmit;
-    }
-
-    /**
-     * Sets the date of admission for the patient.
-     *
-     * @param dateAdmit The date of admission to set.
-     */
-    public void setDateAdmit(String dateAdmit) {
-        this.dateAdmit = dateAdmit;
+    public void setDischargeDate(LocalDate dischargeDate) {
+        this.dischargeDate = dischargeDate;
     }
 
     /**
@@ -454,6 +434,10 @@ public class Patient extends Person {
      */
     public void setDischargeInstruction(String dischargeInstruction) {
         this.dischargeInstruction = dischargeInstruction;
+    }
+
+    public Period getStay(){
+        return (Period.between(getAdmittedDate(), getDischargeDate()));
     }
 
     // Utility methods for conversion and default values...

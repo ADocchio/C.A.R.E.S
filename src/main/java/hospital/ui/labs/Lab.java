@@ -10,34 +10,29 @@ public class Lab {
         Abnormal
     }
 
-    private enum LabType {
-        redBloodCell(100.00),
-        whiteBloodCell(100.00),
-        liverFunction(100.00),
-        renalFunction(100.00),
-        electrolyte(100.00),
-
-        xRay(100.00),
-        ctScan(100.00),
-        mri(100.00),
-
-        urine(100.00),
-        stool(100.00);
-
-        LabType(double cost) {
-        }
-    }
-
     private final Random random = new Random();
     private LabResult result;
-    private int timeRun = 0;
+    private String name;
+    private int timesRun = 0;
+    private double cost = 0;
 
     /** Constructor
      *
      */
-    public Lab(){
+    public Lab(String name, double cost){
+        this.name = name;
         result = LabResult.NotRun;
+        this.cost = cost;
+
     }
+
+    public double getBaseCost() { return cost; }
+
+    public double getTotalCost() { return cost * timesRun; }
+
+    public String getName(){ return name; }
+
+    public int getTimesRun() { return timesRun; }
 
     /** Returns the result of the lab class
      *
@@ -59,7 +54,7 @@ public class Lab {
      */
     public void run(){
         int num = random.nextInt(0,6);
-        timeRun++;
+        timesRun++;
 
         if (num == 0){
             result = LabResult.Abnormal;

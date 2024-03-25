@@ -1,59 +1,65 @@
 package hospital.ui.users.patients;
 
+import hospital.ui.labs.Lab;
+
 public class Bill {
-    private Patient patient;
-    private String contents;
+    private final int formatSpaces = 40;
 
-    /**
-     * Constructs a Bill object with the specified patient and contents.
-     * @param patient The patient associated with the bill.
-     * @param contents The contents of the bill.
-     */
-    public Bill(Patient patient, String contents) {
-        this.patient = patient;
-        this.contents = contents;
+    private String labCosts (Lab[] labs){
+        StringBuilder result = new StringBuilder();
+
+        for (Lab lab : labs) {
+            String s1 = lab.getName() + "(" +  lab.getTimesRun() + "x)";
+            String s2 = lab.getTotalCost() +  "$\n";
+            result.append(formatBill(s1, s2, formatSpaces));
+        }
+
+        return result.toString();
     }
 
-    /**
-     * Retrieves a string representation of the bill.
-     * @return The bill contents as a string.
-     */
-    public String seeBill() {
-        return contents;
+    private String formatBill(String s1, String s2, int totalSpaces){
+        StringBuilder result = new StringBuilder(s1);
+        int usedSpaces = s1.length() + s2.length();
+
+        for(int i = 0; i < totalSpaces - usedSpaces;i++){
+            result.append(" ");
+        }
+
+        result.append(s2);
+        return result.toString();
     }
 
-    // Getters and setters
 
-    /**
-     * Gets the patient associated with the bill.
-     * @return The patient object.
-     */
-    public Patient getPatient() {
-        return patient;
-    }
+    public String toBill(Patient patient) {
+        String bill ="";
+        double flateRate = 100.0;
+        double dayRate = 10.0;
+        double stayCost = patient.getStay().getDays() * dayRate + flateRate;
+        double labsCost = 0;
 
-    /**
-     * Sets the patient associated with the bill.
-     * @param patient The patient object.
-     */
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
+        for (Lab lab : patient.getLabPanel().getLabs()) {
+            labsCost += lab.getTotalCost();
+        }
 
-    /**
-     * Gets the contents of the bill.
-     * @return The contents of the bill.
-     */
-    public String getContents() {
-        return contents;
-    }
+        bill += "Patient: " + patient.getLastName() + ", " + patient.getFirstName() + "\n";
 
-    /**
-     * Sets the contents of the bill.
-     * @param contents The contents of the bill.
-     */
-    public void setContents(String contents) {
-        this.contents = contents;
+        bill += "#################COSTS:#################\n";
+        bill += formatBill("Stay: " + patient.getStay().getDays(), stayCost + "$\n", formatSpaces);
+
+        bill += "\n-----------------LABS:------------------\n";
+        bill += labCosts(patient.getLabPanel().getLabs());
+
+        bill += "########################################\n\n";
+        bill += formatBill("Insurance:", patient.getInsurancePlan(), formatSpaces);
+        bill += "\n\n########################################";
+
+        bill += "\n\n\n";
+        bill += formatBill("Total:", Double.toString(labsCost + stayCost) + "$\n", formatSpaces);
+
+        return bill;
     }
 }
+
+
+
 

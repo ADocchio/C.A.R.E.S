@@ -2,18 +2,18 @@ package hospital.ui.labs;
 
 public class LabPanel {
 
-    private final Lab redBloodLab = new Lab();
-    private final Lab whiteBloodLab = new Lab();
-    private final Lab liverLab = new Lab();
-    private final Lab renalLab = new Lab();
-    private final Lab electrolyteLab = new Lab();
+    private final Lab redBloodLab = new Lab("Red Blood Cell", 100.0);
+    private final Lab whiteBloodLab = new Lab("White Blood Cell", 100.0);
+    private final Lab liverLab = new Lab("Liver Function",100.0);
+    private final Lab renalLab = new Lab("Renal Function",100.0);
+    private final Lab electrolyteLab = new Lab("Electrolyte Levels",100.0);
 
-    private final Lab xrayLab = new Lab();
-    private final Lab ctLab = new Lab();
-    private final Lab mriLab = new Lab();
+    private final Lab xrayLab = new Lab("X-Ray",100.0);
+    private final Lab ctLab = new Lab("C.T. Scan",100.0);
+    private final Lab mriLab = new Lab("MRI",100.0);
 
-    private final Lab urineLab = new Lab();
-    private final Lab stoolLab = new Lab();
+    private final Lab urineLab = new Lab("Urine Test",100.0);
+    private final Lab stoolLab = new Lab("Stool Test",100.0);
 
     private final Lab[] labPanel = {redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab};
 
@@ -44,5 +44,9 @@ public class LabPanel {
         }
 
         return results;
+    }
+
+    public Lab[] getLabs() {
+        return labPanel;
     }
 }
