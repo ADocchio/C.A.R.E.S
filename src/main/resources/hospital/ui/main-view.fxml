@@ -617,9 +617,9 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Hydralazine (IV)" GridPane.columnIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Labetalol  (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Fenoldopam  (IV)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </bottom>
@@ -686,9 +686,9 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Atorvastatin (Oral)" GridPane.columnIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Ezetimibe  (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Alirocumab  (SC)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </bottom>
@@ -755,9 +755,9 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Rocaltrol  (Oral)" GridPane.columnIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Xphozah (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Renvela  (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </bottom>
@@ -824,9 +824,9 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Epclusa  (Oral)" GridPane.columnIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Mavyret  (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Zepatier  (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </bottom>
@@ -893,9 +893,9 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </CheckBox>
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Ibuprofen (Oral)" GridPane.columnIndex="2" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Oxycodone  (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Physical Therapy " GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </bottom>
@@ -955,7 +955,10 @@
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <TextArea fx:id="instructionsField" prefHeight="952.0" prefWidth="352.0" wrapText="true" />
+                                          <TextArea fx:id="instructionsField" prefHeight="952.0" prefWidth="352.0" wrapText="true">
+                                             <font>
+                                                <Font name="Courier New" size="16.0" />
+                                             </font></TextArea>
                                           <Separator orientation="VERTICAL" prefHeight="125.0" prefWidth="29.0" visible="false" />
                                           <Button fx:id="dischargeButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="227.0" styleClass="ui-button" text="Start Discharge">
                                              <font>
@@ -975,7 +978,7 @@
             </AnchorPane>
          </children>
       </HBox>
-      <TextArea fx:id="billField" editable="false" layoutX="435.0" layoutY="49.0" prefHeight="975.0" prefWidth="406.0" wrapText="true">
+      <TextArea fx:id="billField" editable="false" layoutX="435.0" layoutY="49.0" prefHeight="975.0" prefWidth="406.0" visible="false" wrapText="true">
          <font>
             <Font name="Courier New" size="16.0" />
          </font></TextArea>
