@@ -235,6 +235,7 @@ public class Patient extends Person {
      * @param height The height in meters as a string to set.
      */
     public void setHeight(String height) {
+        //change return to String and checck for double instance (if statement instead of exception
         this.height = parseDoubleOrDefault(height);
     }
 
@@ -334,16 +335,8 @@ public class Patient extends Person {
      * @return The BMI as an integer.
      */
     public String getBodyMassIndex() {
+        //calculate BMI (formula)
         return intToStringOrEmpty(bodyMassIndex);
-    }
-
-    /**
-     * Sets the Body Mass Index (BMI) of the patient.
-     *
-     * @param bodyMassIndex The BMI as a string to set.
-     */
-    public void setBodyMassIndex(String bodyMassIndex) {
-        this.bodyMassIndex = parseIntOrDefault(bodyMassIndex);
     }
 
     /**
