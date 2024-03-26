@@ -3,6 +3,7 @@ package hospital.ui;
 import hospital.ui.labs.LabPanel;
 import hospital.ui.users.Person;
 import hospital.ui.users.patients.Patient;
+import hospital.ui.database.Database;
 
 public class   Main {
 
@@ -10,6 +11,8 @@ public class   Main {
 
     public static void main(String[] args) {
         InterfaceLoad.startApp();
+        Database pHt = new Database(currentPatient);
+        pHt.storeDataToFilePat("file");
     }
 
     public static Patient getCurrentPatient(){

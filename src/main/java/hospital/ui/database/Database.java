@@ -5,13 +5,34 @@ import hospital.ui.users.patients.Patient;
 
 import java.io.*;
 import java.util.Hashtable;
+import java.util.Map;
 
-public class Database
+public class Database<k, v> extends Hashtable<k, v>
 {
+    private static Hashtable<String, Patient> hashtable;
+    private static String filename;
     //private Objects made for hashtable databases
-    private final Hashtable<Object, Object> ht = new Hashtable<Object, Object>();
-    private final Hashtable<String, Person> personHt = new Hashtable<String, Person>();
-    private final Hashtable<String, Patient> patientHt = new Hashtable<String, Patient>();
+    private Hashtable<Object, Object> ht = new Hashtable<Object, Object>();
+    private Hashtable<String, Person> personHt = new Hashtable<String, Person>();
+    private Hashtable<String, Patient> patientHt = new Hashtable<String, Patient>();
+
+    public Database ()
+    {
+        super();
+    }
+    public Database (Person p)
+    {
+        super();
+        this.personHt = new Hashtable<String, Person>();
+        this.personHt.put("1", p);
+    }
+
+    public Database(Patient p)
+    {
+        super();
+        this.patientHt = new Hashtable<String, Patient>();
+        this.patientHt.put("1", p);
+    }
 
     /**
      * Gets the hashtable
@@ -44,12 +65,30 @@ public class Database
     }
 
     /**
-     * Takes the inputted Hashtable and turns it into a binary file and stores it
+     * Takes the inputted Person Hashtable and turns it into a binary file and stores it
      * under the inputted file name
      *
      * @param filename The name that the file will be stored under
      */
-    public static void storeDataToFile(Hashtable<String, Object> hashtable, String filename)
+    public static void storeDataToFilePer(String filename)
+    {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
+        {
+            oos.writeObject(hashtable);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Takes the inputted Patient Hashtable and turns it into a binary file and stores it
+     * under the inputted file name
+     *
+     * @param filename The name that the file will be stored under
+     */
+    public static void storeDataToFilePat(String filename)
     {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
         {

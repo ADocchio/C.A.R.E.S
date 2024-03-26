@@ -200,8 +200,7 @@ public class MainViewController {
         addListenerToTextField(stringFields[10],currentPatient, Patient::setHeartRate);
         addListenerToTextField(stringFields[11],currentPatient, Patient::setOxyLevel);
         addListenerToTextField(stringFields[12],currentPatient, Patient::setBodyTemp);
-        addListenerToTextField(stringFields[13],currentPatient, Patient::setBodyMassIndex);
-        addListenerToTextField(stringFields[14],currentPatient, Patient::setDischargeInstruction);
+        addListenerToTextField(stringFields[13],currentPatient, Patient::setDischargeInstruction);
 
 
 
