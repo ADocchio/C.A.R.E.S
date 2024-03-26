@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class Database<k, v> extends Hashtable<k, v>
 {
-    private static Hashtable<String, Patient> hashtable;
-    private static String filename;
+    private Hashtable<String, Patient> hashtable;
+    private String filename;
     //private Objects made for hashtable databases
     private Hashtable<Object, Object> ht = new Hashtable<Object, Object>();
     private Hashtable<String, Person> personHt = new Hashtable<String, Person>();
@@ -70,7 +70,7 @@ public class Database<k, v> extends Hashtable<k, v>
      *
      * @param filename The name that the file will be stored under
      */
-    public static void storeDataToFilePer(String filename)
+    public void storeDataToFilePer(String filename)
     {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
         {
@@ -88,7 +88,7 @@ public class Database<k, v> extends Hashtable<k, v>
      *
      * @param filename The name that the file will be stored under
      */
-    public static void storeDataToFilePat(String filename)
+    public void storeDataToFilePat(String filename)
     {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
         {
@@ -107,7 +107,7 @@ public class Database<k, v> extends Hashtable<k, v>
      * @param filename The name of the file that the hashtable is in
      * @return Hashtable<String, Object> The hashtable that is extracted from the file
      */
-    public static Hashtable<String, Object> grabStoredData(String filename)
+    public Hashtable<String, Object> grabStoredData(String filename)
     {
         Hashtable<String, Object> ht1 = null;
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename)))
