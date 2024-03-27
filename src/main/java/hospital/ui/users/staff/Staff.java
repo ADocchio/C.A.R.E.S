@@ -1,6 +1,8 @@
 package hospital.ui.users.staff;
 
+import hospital.ui.Main;
 import hospital.ui.users.Person;
+import hospital.ui.users.patients.Patient;
 
 /**
  * Represents a staff member, extending the Person class with login credentials.
@@ -25,6 +27,12 @@ public class Staff extends Person {
         super(firstName, lastName, dob, permAdd, phoneNum);
         this.username = username;
         this.password = password;
+    }
+
+    public Patient searchPatient(String lastname, String firstname, String birthday){
+        String key = (lastname + firstname + birthday);
+        System.out.println(key);
+        return Main.database.getPatientTable().getOrDefault(key, null);
     }
 
     /**

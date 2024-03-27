@@ -5,19 +5,26 @@ import hospital.ui.labs.Lab;
 import hospital.ui.users.Person;
 import hospital.ui.users.patients.Patient;
 import hospital.ui.users.patients.PatientUpdater;
+import hospital.ui.users.staff.*;
+import hospital.ui.warnings.WarningListener;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class MainViewController {
+public class MainViewController implements WarningListener {
 
-    public static String passedRole = "";
-    private Patient currentPatient = Main.getCurrentPatient();
+    public static Staff passedPosition;
+    public static Patient currentPatient = null;
+    private static String currentKey = "";
+    private Map<TextInputControl, ChangeListener<Boolean>> listenerMap = new HashMap<TextInputControl,  ChangeListener<Boolean> >();
 
     //panes
     @FXML
@@ -33,7 +40,7 @@ public class MainViewController {
 
     //patient info
     @FXML
-    private TextField firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, height, weight, bp, heartRate, spo2, bodyTemp, bmi;
+    private TextField firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, height, weight, bp, heartRate, spo2, bodyTemp, bmi, searchName, searchDOB;
 
     @FXML
     private TextArea instructionsField, billField;
@@ -54,29 +61,26 @@ public class MainViewController {
     @FXML
     private CheckBox highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus;
 
-    /**Called on loading of the main-view scene
-     *
+    /**
+     * Called on loading of the main-view scene
      */
     public void initialize() {
         TitledPane[] panes = {basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane};
-        for(TitledPane pane: panes){
+        for (TitledPane pane : panes) {
             pane.setCollapsible(false);
         }
 
-        loadPatient();
-
-        //(TEST VERSION ONLY)
-        switch (passedRole) {
-            case "Billing" -> setBillingStaffView();
-            case "Staff" -> setDeskStaffView();
-            case "Nurse" -> setNurseView();
-            case "Doctor" -> setDoctorView();
+        if(passedPosition instanceof Doctor){
+            setDoctorView();
+        } else if (passedPosition instanceof Nurse) {
+            setNurseView();
+        }else if (passedPosition instanceof EmergencyRoomStaff) {
+            setDeskStaffView();
+        }else if (passedPosition instanceof BillingStaff) {
+            setBillingStaffView();
         }
+    }
 
-        //update user's name(TODO)
-
-
-        }
 
     /** Logs out the current user and brings them back to login page
      *
@@ -85,6 +89,8 @@ public class MainViewController {
      */
     public void logOut(ActionEvent event) throws IOException {
         InterfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
+        currentPatient = null;
+        currentKey = null;
     }
 
     /** Sets the view and permissions for the billing staff dashboard
@@ -95,10 +101,6 @@ public class MainViewController {
         admitButton.setVisible(false);
         billField.setEditable(true);
         billField.setVisible(true);
-        billField.setText(currentPatient.getBill());
-
-
-
 
         //set permissions
         basicInfoPane.setVisible(false);
@@ -157,53 +159,65 @@ public class MainViewController {
      *
      */
     private void loadPatient(){
-        TextInputControl[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi, instructionsField};
+        if(currentPatient != null){
+            TextInputControl[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi, instructionsField};
 
-        //Setup patient information in UI
-        ArrayList<Function<Patient, String>> methods = new ArrayList<>();
-        methods.add(Patient::getFirstName);
-        methods.add(Patient::getLastName);
-        methods.add(Patient::getPermAdd);
-        methods.add(Patient::getPhoneNum);
-        methods.add(Patient::getDob);
-        methods.add(Patient::getInsurancePlan);
-        methods.add(Patient::getEmergencyContact);
-        methods.add(Patient::getBloodPressure);
-        methods.add(Patient::getHeight);
-        methods.add(Patient::getWeight);
-        methods.add(Patient::getHeartRate);
-        methods.add(Patient::getOxyLevel);
-        methods.add(Patient::getBodyTemp);
-        methods.add(Patient::getBodyMassIndex);
-        methods.add(Patient::getDischargeInstruction);
+            //Setup patient information in UI
+            ArrayList<Function<Patient, String>> methods = new ArrayList<>();
+            methods.add(Patient::getFirstName);
+            methods.add(Patient::getLastName);
+            methods.add(Patient::getPermAdd);
+            methods.add(Patient::getPhoneNum);
+            methods.add(Patient::getDob);
+            methods.add(Patient::getInsurancePlan);
+            methods.add(Patient::getEmergencyContact);
+            methods.add(Patient::getBloodPressure);
+            methods.add(Patient::getHeight);
+            methods.add(Patient::getWeight);
+            methods.add(Patient::getHeartRate);
+            methods.add(Patient::getOxyLevel);
+            methods.add(Patient::getBodyTemp);
+            methods.add(Patient::getBodyMassIndex);
+            methods.add(Patient::getDischargeInstruction);
 
-        //load patient information
-        for (int i = 0; i < stringFields.length; i++) {
-            stringFields[i].setText(methods.get(i).apply(currentPatient));
+            //load patient information
+            for (int i = 0; i < stringFields.length; i++) {
+                stringFields[i].setText(methods.get(i).apply(currentPatient));
+            }
+
+            //load patient labs and scripts and bill
+            loadLabs(new ActionEvent());
+            loadValidScripts(new ActionEvent());
+            billField.setText(currentPatient.getBill());
+
+            //Allow for updating of patient information
+            addListenerToTextField(stringFields[0],currentPatient, Patient::setFirstName);
+            addListenerToTextField(stringFields[1],currentPatient, Patient::setLastName);
+            addListenerToTextField(stringFields[2],currentPatient, Patient::setPermAdd);
+            addListenerToTextField(stringFields[3],currentPatient, Patient::setPhoneNum);
+            addListenerToTextField(stringFields[4],currentPatient, Patient::setDob);
+            addListenerToTextField(stringFields[5],currentPatient, Patient::setInsurancePlan);
+            addListenerToTextField(stringFields[6],currentPatient, Patient::setEmergencyContact);
+            addListenerToTextField(stringFields[7],currentPatient, Patient::setBloodPressure);
+            addListenerToTextField(stringFields[8],currentPatient, Patient::setHeight);
+            addListenerToTextField(stringFields[9],currentPatient, Patient::setWeight);
+            addListenerToTextField(stringFields[10],currentPatient, Patient::setHeartRate);
+            addListenerToTextField(stringFields[11],currentPatient, Patient::setOxyLevel);
+            addListenerToTextField(stringFields[12],currentPatient, Patient::setBodyTemp);
+            addListenerToTextField(stringFields[14],currentPatient, Patient::setDischargeInstruction);
+
         }
+    }
 
-        //load patient labs
-        loadLabs(new ActionEvent());
-        loadValidScripts(new ActionEvent());
+    private void unloadPatient(){
+        if(currentPatient != null){
+            TextInputControl[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi, instructionsField};
 
-        //Allow for updating of patient information
-        addListenerToTextField(stringFields[0],currentPatient, Patient::setFirstName);
-        addListenerToTextField(stringFields[1],currentPatient, Patient::setLastName);
-        addListenerToTextField(stringFields[2],currentPatient, Patient::setPermAdd);
-        addListenerToTextField(stringFields[3],currentPatient, Patient::setPhoneNum);
-        addListenerToTextField(stringFields[4],currentPatient, Patient::setDob);
-        addListenerToTextField(stringFields[5],currentPatient, Patient::setInsurancePlan);
-        addListenerToTextField(stringFields[6],currentPatient, Patient::setEmergencyContact);
-        addListenerToTextField(stringFields[7],currentPatient, Patient::setBloodPressure);
-        addListenerToTextField(stringFields[8],currentPatient, Patient::setHeight);
-        addListenerToTextField(stringFields[9],currentPatient, Patient::setWeight);
-        addListenerToTextField(stringFields[10],currentPatient, Patient::setHeartRate);
-        addListenerToTextField(stringFields[11],currentPatient, Patient::setOxyLevel);
-        addListenerToTextField(stringFields[12],currentPatient, Patient::setBodyTemp);
-        addListenerToTextField(stringFields[13],currentPatient, Patient::setDischargeInstruction);
-
-
-
+            //stop updating of patient information
+            for (TextInputControl field: stringFields) {
+                removeListenerFromTextField(field);
+            }
+        }
     }
 
     public void loadLabs(ActionEvent event) {
@@ -226,6 +240,30 @@ public class MainViewController {
             }
         }
 
+    }
+
+    public void searchPatient(ActionEvent event){
+            String name = searchName.getText();
+            String dob = searchDOB.getText();
+
+            //preform checks (not null valid format)
+        if(name != null && dob != null  ){
+            if(name.matches("[A-Za-z'-]+, [A-Za-z'-]+") && dob.matches("\\d{2}/\\d{2}/\\d{4}")){
+                String[] names = name.split(",");
+
+                for (int i = 0; i < names.length; i++) {
+                    names[i] = names[i].trim();
+                }
+
+                unloadPatient();
+                Patient result = passedPosition.searchPatient(names[0], names[1], searchDOB.getText());
+                if(result != null){
+                    currentPatient = result;
+                    currentKey = (names[0] + names[1] + dob);
+                    loadPatient();
+                }//Otherwise Warning
+            }
+        }//Otherwise Warning
     }
 
     /**Takes user input on labs to be run, runs the corresponding labs, then resets run labs view
@@ -274,19 +312,24 @@ public class MainViewController {
         Condition[] conditions = currentPatient.getDiagnosis().getConditions();
 
         for(int i = 0; i < 5; i++){
+            //get the 5 possible diagnoses
             Prescription[] prescriptions = conditions[i].getValidPrescriptions();
 
-            for(int j = 0; j < 3; j++)
-            {
-                scripts[i][j].setSelected(prescriptions[j].isPrescribed());
-                scripts[i][j].setDisable(!prescriptions[j].isPrescribed());
-
-                if(prescriptions[j].isPrescribed()){
-                    diagnoses[i].setSelected(true);
-                    diagnoses[i].setDisable(false);
+            //look to see if any of the child scripts are selected, if so select diagnose otherwise do not.
+            if(currentPatient.getDiagnosis().getIsDiagnosed()[i]){
+                diagnoses[i].setSelected(true);
+                for(int j = 0; j < 3; j++)
+                {
+                    scripts[i][j].setSelected(prescriptions[j].isPrescribed());
+                    scripts[i][j].setDisable(false);
+                }
+            }else {
+                diagnoses[i].setSelected(false);
+                for (int j = 0; j < 3; j++) {
+                    scripts[i][j].setSelected(false);
+                    scripts[i][j].setDisable(true);
                 }
             }
-
         }
     }
 
@@ -305,15 +348,18 @@ public class MainViewController {
 
         Condition[] conditions = currentPatient.getDiagnosis().getConditions();
 
+        //look through all diagnoses and update values and state
         for(int i = 0; i < 5; i++){
             Prescription[] prescriptions = conditions[i].getValidPrescriptions();
             if (diagnoses[i].isSelected()){//make corresponding scripts available
+                currentPatient.getDiagnosis().setIsDiagnosed(true, i);
                 for(int j = 0; j < 3; j++)
                 {
                     scripts[i][j].setDisable(false);
                 }
 
             }else {//make corresponding scripts unavailable
+                currentPatient.getDiagnosis().setIsDiagnosed(false, i);
                 for(int j = 0; j < 3; j++)
                 {
                     scripts[i][j].setDisable(true);
@@ -324,7 +370,7 @@ public class MainViewController {
         }
     }
 
-    /**updates prescriptions based on diagnosis selection
+    /**updates prescriptions based on prescription selection
      * @param event, The selection of a prescription
      */
     public void updateScripts(ActionEvent event) {
@@ -337,6 +383,7 @@ public class MainViewController {
         CheckBox[][] scripts = {bloodScripts, cholesterolScripts, kidneyScripts, liverScripts, boneScripts};
         Condition[] conditions = currentPatient.getDiagnosis().getConditions();
 
+        //look through all prescriptions and update values and state
         for (int i = 0; i < 5; i++) {
             Prescription[] prescriptions = conditions[i].getValidPrescriptions();
             for(int j = 0; j < 3; j++)
@@ -346,21 +393,61 @@ public class MainViewController {
         }
     }
 
-
-    public void addListenerToTextField(TextInputControl text, Patient patient, PatientUpdater updater) {
-        text.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) { // Focus lost
+    private void addListenerToTextField(TextInputControl text, Patient patient, PatientUpdater updater) {
+        ChangeListener<Boolean> listener = (observable, oldValue, newValue) -> {
+            if (!newValue) {
+                System.out.println(text.getText());
                 updater.apply(patient, text.getText());
+                if((text == firstName || text == lastName || text == birthday) && currentPatient != null){
+                    System.out.println("Changing Key");
+                    String key = lastName.getText() + firstName.getText() + birthday.getText();
+                    System.out.println(currentKey + " : " + key);
+                    Main.database.updateKey(currentKey, key);
+                    currentKey = key;
+                }
             }
-        });
+        };
+        listenerMap.put(text, listener);
+        text.focusedProperty().addListener(listener);
     }
 
-    public void admitButton (ActionEvent event){
-        for (Condition c: currentPatient.getDiagnosis().getConditions()) {
-            for (Prescription p: c.getValidPrescriptions()){
-                System.out.println(p.isPrescribed());
-            }
+    private void removeListenerFromTextField(TextInputControl text) {
+        ChangeListener<Boolean> listener = listenerMap.remove(text);
+        if (listener != null) {
+            text.focusedProperty().removeListener(listener);
         }
     }
 
+    public void admitButton (ActionEvent event){
+        if (passedPosition instanceof EmergencyRoomStaff && !(passedPosition instanceof Nurse)){
+            TextField[] newPatientFeilds = {lastName, firstName, birthday, address, cellPhone, insurance, emergencyCell};
+            boolean empty = true;
+
+            for (TextField feild: newPatientFeilds) {
+                empty = Objects.equals(feild.getText(), "");
+            }
+
+            if(!empty){
+                EmergencyRoomStaff staff = (EmergencyRoomStaff) passedPosition;
+                staff.createPatient(lastName.getText(), firstName.getText(), birthday.getText(), address.getText(), cellPhone.getText(), insurance.getText(), emergencyCell.getText());
+
+                for (TextField feild: newPatientFeilds) { //reset textbox's
+                    feild.setText("");
+                }
+            }//OTHERWISE WARNING!
+        }
+        currentPatient.setDischargeInstruction(instructionsField.getText());
+        System.out.println("Discharge instructions: " + currentPatient.getDischargeInstruction());
+
+    }
+
+    /**
+     * Display a warning message.
+     *
+     * @param message The warning message to be displayed.
+     */
+    @Override
+    public void showWarning(String message) {
+
+    }
 }

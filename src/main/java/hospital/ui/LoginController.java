@@ -1,5 +1,7 @@
 package hospital.ui;
 
+import hospital.ui.database.Database;
+import hospital.ui.users.staff.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,12 +10,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.Hashtable;
 
 public class LoginController {
-
-    public LoginController() {
-
-    }
 
     @FXML
     private TextField username;
@@ -41,31 +40,15 @@ public class LoginController {
 
         double width = 1920;
         double height = 1080;
+        String loginKey = username.getText() + password.getText();
+        Hashtable<String, Staff> loginTable = Main.database.getLoginTable();
 
-        //TEMP TEST CODE
-        if(username.getText().equals("Doctor") && password.getText().equals("123")) {
+        if(loginTable.containsKey(loginKey)){
+            Staff user = loginTable.get(loginKey);
             loginError.setText("Login Successful!");
-            MainViewController.passedRole = "Doctor";
-
+            MainViewController.passedPosition = user;
             InterfaceLoad.changeScene("main-view.fxml", height, width, "C.A.R.E.S Dashboard");
-        } else if (username.getText().equals("Nurse") && password.getText().equals("123")) {
-            loginError.setText("Login Successful!");
-            MainViewController.passedRole = "Nurse";
-
-            InterfaceLoad.changeScene("main-view.fxml", height, width, "C.A.R.E.S Dashboard");
-        } else if (username.getText().equals("Staff") && password.getText().equals("123")) {
-            loginError.setText("Login Successful!");
-            MainViewController.passedRole = "Staff";
-
-            InterfaceLoad.changeScene("main-view.fxml", height, width, "C.A.R.E.S Dashboard");
-        } else if (username.getText().equals("Billing") && password.getText().equals("123")) {
-            loginError.setText("Login Successful!");
-            MainViewController.passedRole = "Billing";
-
-            InterfaceLoad.changeScene("main-view.fxml", height, width, "C.A.R.E.S Dashboard");
-        } else if (username.getText().isEmpty() || password.getText().isEmpty()) {
-            loginError.setText("Enter All Fields!");
-        } else {
+        }else {
             loginError.setText("Incorrect Username or Password");
             username.setText("");
             password.setText("");

@@ -18,8 +18,7 @@ import java.util.Objects;
 public class InterfaceLoad extends Application {
 
     private static Stage primaryStage; //creates a stage to host the application in
-
-    /** Launch's the application
+    /** Launch's the applicatio
      *
      */
     public static void startApp() {
@@ -54,10 +53,10 @@ public class InterfaceLoad extends Application {
         try {
             final Pane root = new Pane();
 
-            Pane controller = FXMLLoader.load(Objects.requireNonNull(InterfaceLoad.class.getResource(fxml)));   //initial view
-            controller.setPrefWidth(width);
-            controller.setPrefHeight(height);
-            root.getChildren().add(controller);
+            Pane pane = FXMLLoader.load(Objects.requireNonNull(InterfaceLoad.class.getResource(fxml)));   //initial view
+            pane.setPrefWidth(width);
+            pane.setPrefHeight(height);
+            root.getChildren().add(pane);
 
             Scale scale = new Scale(1, 1, 0, 0);
             scale.xProperty().bind(root.widthProperty().divide(width));

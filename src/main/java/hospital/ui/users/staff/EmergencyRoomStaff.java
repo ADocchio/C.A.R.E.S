@@ -1,5 +1,9 @@
 package hospital.ui.users.staff;
 
+import hospital.ui.Main;
+import hospital.ui.users.Person;
+import hospital.ui.users.patients.Patient;
+
 /**
  * Represents an emergency room staff member, specializing the Staff class for emergency room operations.
  */
@@ -22,5 +26,16 @@ public class EmergencyRoomStaff extends Staff {
     }
 
     // The class can be extended with methods specific to emergency room operations as needed
+    public void createPatient(String lastName, String firstName, String dob, String permAdd, String phoneNum, String insurancePlan, String emergencyContact){
+        Patient newPatient = new Patient(new Person(lastName, firstName, dob, permAdd, phoneNum), insurancePlan, emergencyContact);
+        String key = lastName + firstName + dob;
+
+        System.out.println(key);
+        System.out.println(Main.database.getPatientTable().containsKey(key));
+        //see if patient already exists
+        if(!Main.database.getPatientTable().containsKey(key)){
+            Main.database.getPatientTable().put(key, newPatient);
+        }
+    }
 }
 

@@ -5,6 +5,8 @@ package hospital.ui.diagnose;
  */
 public class Diagnosis {
 
+    private boolean[] isDiagnosed = {false, false, false, false, false};
+
     private Condition highBloodPressure = new Condition(
             new Prescription(Prescription.Medication.HYDRALAZINE),
             new Prescription(Prescription.Medication.LABETALOL),
@@ -37,5 +39,13 @@ public class Diagnosis {
      */
     public Condition[] getConditions() {
         return new Condition[]{highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus};
+    }
+
+    public boolean[] getIsDiagnosed(){
+        return isDiagnosed;
+    }
+
+    public void setIsDiagnosed(boolean bool, int diagnosis){
+        isDiagnosed[diagnosis] = bool;
     }
 }

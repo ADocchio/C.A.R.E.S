@@ -30,11 +30,11 @@ public class Patient extends Person {
     private LocalDate  dischargeDate;
     private String dischargeInstruction;
 
-    public Patient(Person person){
+    public Patient(Person person, String insurancePlan, String emergencyContact){
         super(person.getFirstName(), person.getLastName(), person.getDob(), person.getPermAdd(), person.getPhoneNum());
         this.patientID = person.getFirstName() + person.getLastName() + person.getDob();
-        this.insurancePlan = "";
-        this.emergencyContact = "";
+        this.insurancePlan = insurancePlan;
+        this.emergencyContact = emergencyContact;
 
         this.admittedDate = LocalDate.from(LocalDateTime.now());
         this.isAdmitted = false;

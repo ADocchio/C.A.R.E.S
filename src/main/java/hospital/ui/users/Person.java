@@ -19,7 +19,7 @@ public class Person {
      * @param permAdd   the permanent address of the person
      * @param phoneNum  the phone number of the person
      */
-    public Person(String firstName, String lastName, String dob, String permAdd, String phoneNum) {
+    public Person(String lastName, String firstName, String dob, String permAdd, String phoneNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
