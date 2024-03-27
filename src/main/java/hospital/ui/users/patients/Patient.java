@@ -15,6 +15,7 @@ public class Patient extends Person {
 
     private LocalDate  admittedDate;
     private boolean isAdmitted;
+    private boolean isStartedDischarged;
     private boolean isDischarged;
     private double height;
     private double weight;
@@ -32,13 +33,14 @@ public class Patient extends Person {
 
     public Patient(Person person, String insurancePlan, String emergencyContact){
         super(person.getFirstName(), person.getLastName(), person.getDob(), person.getPermAdd(), person.getPhoneNum());
-        this.patientID = person.getFirstName() + person.getLastName() + person.getDob();
+        this.patientID = person.getLastName() + person.getFirstName() + person.getDob();
         this.insurancePlan = insurancePlan;
         this.emergencyContact = emergencyContact;
 
         this.admittedDate = LocalDate.from(LocalDateTime.now());
         this.isAdmitted = false;
         this.isDischarged = false;
+        this.isStartedDischarged = false;
         this.height = -1;
         this.weight = -1;
         this.bloodPressure = "";
@@ -49,10 +51,9 @@ public class Patient extends Person {
         this.diagnosis = new Diagnosis();
         this.labPanel = new LabPanel();
         this.bill = new Bill();
-        this.dischargeInstruction = "";
 
         this.dischargeDate = LocalDate.from(LocalDateTime.now());
-        this.dischargeInstruction = dischargeInstruction;
+        this.dischargeInstruction = "";
     }
 
     /**
@@ -83,34 +84,7 @@ public class Patient extends Person {
      * @param dischargeDate              The time the patient checked out.
      * @param dischargeInstruction The instructions provided upon discharge.
      */
-    public Patient(String firstName, String lastName, String dob, String permAdd, String phoneNum,
-                           String patientID, String insurancePlan, String emergencyContact, LocalDate admittedDate,
-                           boolean isAdmitted, boolean isDischarged, double height, double weight,
-                           String bloodPressure, double heartRate, double oxyLevel, double bodyTemp,
-                           int bodyMassIndex, Diagnosis diagnosis, LabPanel labPanel,
-                           Bill bill, LocalDate dischargeDate, String dischargeInstruction) {
-        super(firstName, lastName, dob, permAdd, phoneNum);
-        this.patientID = patientID;
-        this.insurancePlan = insurancePlan;
-        this.emergencyContact = emergencyContact;
 
-        this.admittedDate = admittedDate;
-        this.isAdmitted = isAdmitted;
-        this.isDischarged = isDischarged;
-        this.height = height;
-        this.weight = weight;
-        this.bloodPressure = bloodPressure;
-        this.heartRate = heartRate;
-        this.oxyLevel = oxyLevel;
-        this.bodyTemp = bodyTemp;
-        this.bodyMassIndex = bodyMassIndex;
-        this.diagnosis = diagnosis;
-        this.labPanel = labPanel;
-        this.bill = bill;
-
-        this.dischargeDate = dischargeDate;
-        this.dischargeInstruction = dischargeInstruction;
-    }
 
     /**
      * Gets the patient's ID.
@@ -218,6 +192,14 @@ public class Patient extends Person {
      */
     public void setDischarged(boolean isDischarged) {
         this.isDischarged = isDischarged;
+    }
+
+    public boolean isStartedDischarged() {
+        return isDischarged;
+    }
+
+    public void setStartedDischarged(boolean isStartedDischarged) {
+        this.isStartedDischarged = isStartedDischarged;
     }
 
     /**
@@ -427,6 +409,35 @@ public class Patient extends Person {
      */
     public void setDischargeInstruction(String dischargeInstruction) {
         this.dischargeInstruction = dischargeInstruction;
+    }
+
+    public void clearPatient(){
+        this.setLastName("");
+        this.setFirstName("");
+        this.setDob("");
+        this.setPermAdd("");
+        this.setEmergencyContact("");
+        this.patientID = "";
+        this.insurancePlan = insurancePlan;
+        this.emergencyContact = emergencyContact;
+
+        this.admittedDate = LocalDate.from(LocalDateTime.now());
+        this.isAdmitted = false;
+        this.isDischarged = false;
+        this.isStartedDischarged = false;
+        this.height = -1;
+        this.weight = -1;
+        this.bloodPressure = "";
+        this.heartRate = -1;
+        this.oxyLevel = -1;
+        this.bodyTemp = -1;
+        this.bodyMassIndex = -1;
+        this.diagnosis = new Diagnosis();
+        this.labPanel = new LabPanel();
+        this.bill = new Bill();
+
+        this.dischargeDate = LocalDate.from(LocalDateTime.now());
+        this.dischargeInstruction = "";
     }
 
     public Period getStay(){

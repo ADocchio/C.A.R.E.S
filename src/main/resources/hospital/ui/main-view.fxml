@@ -265,8 +265,12 @@
                                                    </children>
                                                 </GridPane>
                                                 <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="29.0" visible="false" />
-                                                <Button fx:id="dissmissButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="341.0" styleClass="ui-button" text="Dissmiss Patient" />
-                                                <Separator orientation="VERTICAL" prefHeight="141.0" prefWidth="29.0" visible="false" />
+                                                <Button fx:id="patientStatus" mnemonicParsing="false" prefHeight="58.0" prefWidth="348.0" styleClass="display-button" text="Patient Status: Not Admitted">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Button>
+                                                <Separator orientation="VERTICAL" prefHeight="98.0" prefWidth="29.0" visible="false" />
                                              </children>
                                           </VBox>
                                        </content>
@@ -771,7 +775,6 @@
                                                       <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Rocaltrol  (Oral)" GridPane.columnIndex="2" />
                                                       <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Xphozah (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                       <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Renvela  (Oral)" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="289.0" styleClass="display-button" text="Urine Test" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </bottom>
@@ -974,7 +977,7 @@
                                                 <Font name="Courier New" size="16.0" />
                                              </font></TextArea>
                                           <Separator orientation="VERTICAL" prefHeight="125.0" prefWidth="29.0" visible="false" />
-                                          <Button fx:id="dischargeButton" mnemonicParsing="false" prefHeight="52.0" prefWidth="227.0" styleClass="ui-button" text="Start Discharge">
+                                          <Button fx:id="dischargeButton" mnemonicParsing="false" onAction="#dischargeButton" prefHeight="52.0" prefWidth="227.0" styleClass="ui-button" text="Start Discharge">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
