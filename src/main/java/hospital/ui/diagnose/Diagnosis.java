@@ -1,9 +1,11 @@
 package hospital.ui.diagnose;
 
+import java.io.Serializable;
+
 /**
  * Represents a diagnosis with associated medical conditions.
  */
-public class Diagnosis {
+public class Diagnosis implements Serializable {
 
     private boolean[] isDiagnosed = {false, false, false, false, false};
 

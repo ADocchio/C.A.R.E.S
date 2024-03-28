@@ -4,11 +4,12 @@ import hospital.ui.diagnose.Diagnosis;
 import hospital.ui.labs.LabPanel;
 import hospital.ui.users.Person;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 
-public class Patient extends Person {
+public class Patient extends Person implements Serializable {
     private String patientID;
     private String insurancePlan;
     private String emergencyContact;

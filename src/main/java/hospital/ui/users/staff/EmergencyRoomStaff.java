@@ -4,10 +4,12 @@ import hospital.ui.Main;
 import hospital.ui.users.Person;
 import hospital.ui.users.patients.Patient;
 
+import java.io.Serializable;
+
 /**
  * Represents an emergency room staff member, specializing the Staff class for emergency room operations.
  */
-public class EmergencyRoomStaff extends Staff {
+public class EmergencyRoomStaff extends Staff implements Serializable {
 
     /**
      * Constructs a new EmergencyRoomStaff instance with the specified details.
@@ -35,6 +37,8 @@ public class EmergencyRoomStaff extends Staff {
         //see if patient already exists
         if(!Main.database.getPatientTable().containsKey(key)){
             Main.database.getPatientTable().put(key, newPatient);
+        }else{
+            //Warning!
         }
     }
 }

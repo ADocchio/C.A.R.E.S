@@ -1,5 +1,6 @@
 package hospital.ui;
 
+import hospital.ui.database.Database;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,14 +19,15 @@ import java.util.Objects;
 public class InterfaceLoad extends Application {
 
     private static Stage primaryStage; //creates a stage to host the application in
-    /** Launch's the applicatio
+
+
+    /** Launch's the application
      *
      */
     public static void startApp() {
+       Main.database.loadDataBase();
         launch();
     }
-
-
 
 
     @Override
@@ -37,6 +39,13 @@ public class InterfaceLoad extends Application {
         primaryStage.setTitle("C.A.R.E.S Login");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+    }
+
+    @Override
+    public void stop(){
+        Main.database.saveDatabase();
+        System.out.println("Application is about to stop.");
 
     }
 

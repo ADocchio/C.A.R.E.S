@@ -2,7 +2,9 @@ package hospital.ui.users.patients;
 
 import hospital.ui.labs.Lab;
 
-public class Bill {
+import java.io.Serializable;
+
+public class Bill implements Serializable {
     private final int formatSpaces = 40;
 
     private String labCosts (Lab[] labs){
@@ -34,7 +36,7 @@ public class Bill {
         String bill ="";
         double flateRate = 100.0;
         double dayRate = 10.0;
-        double stayCost = patient.getStay().getDays() * dayRate + flateRate;
+        double stayCost = patient.getStay().getDays() * dayRate;
         double labsCost = 0;
 
         for (Lab lab : patient.getLabPanel().getLabs()) {
@@ -44,17 +46,19 @@ public class Bill {
         bill += "Patient: " + patient.getLastName() + ", " + patient.getFirstName() + "\n";
 
         bill += "#################COSTS:#################\n";
-        bill += formatBill("Stay: " + patient.getStay().getDays(), stayCost + "$\n", formatSpaces);
+        bill += "\n-----------------Stay:------------------\n";
+        bill += formatBill("-Base ", dayRate + "$\n", formatSpaces);
+        bill += formatBill("-Days: " + patient.getStay().getDays(), stayCost + "$\n", formatSpaces);
 
         bill += "\n-----------------LABS:------------------\n";
         bill += labCosts(patient.getLabPanel().getLabs());
 
-        bill += "########################################\n\n";
+        bill += "\n########################################\n\n";
         bill += formatBill("Insurance:", patient.getInsurancePlan(), formatSpaces);
         bill += "\n\n########################################";
 
         bill += "\n\n\n";
-        bill += formatBill("Total:", Double.toString(labsCost + stayCost) + "$\n", formatSpaces);
+        bill += formatBill("Total:", Double.toString(labsCost + stayCost + dayRate) + "$\n", formatSpaces);
 
         return bill;
     }

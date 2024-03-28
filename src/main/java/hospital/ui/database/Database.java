@@ -9,26 +9,16 @@ import java.io.*;
 import java.util.Hashtable;
 import java.util.Map;
 
-public class Database
+public class Database implements Serializable
 {
-    private Hashtable<String, Patient> hashtable;
-    private String filename;
+    private static String patientDataFile = "PatientData";
+    private static String loginDataFile = "LoginData";
 
     //private Objects made for hashtable databases
-    private Hashtable<Object, Object> ht = new Hashtable<Object, Object>();
-    private Hashtable<String, Person> personHt = new Hashtable<String, Person>();
     private Hashtable<String, Patient> patientTable = new Hashtable<String, Patient>();
     private Hashtable<String, Staff> loginTable = new Hashtable<String, Staff>();
 
-    public Database ()
-    {
-       loginTable.put("Billing123", new BillingStaff("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Billing", "123"));
-       loginTable.put("Staff123", new EmergencyRoomStaff("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Staff", "123" ));
-       loginTable.put("Nurse123", new Nurse("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Nurse", "123" ));
-       loginTable.put("Doctor123", new Doctor("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Doctor", "123" ));
-       patientTable.put("D'OcchioAden03/05/2003", new Patient(new Person("D'Occhio", "Aden","03/05/2003", "16 Brian Woods dr", "8606900953"), "Blue Cross", "8602024502"));
-       patientTable.put("D'OcchioJack03/05/2004", new Patient(new Person("D'Occhio", "Jack","03/05/2004", "16 Brian Woods dr", "8606900953"), "Blue Cross", "8602024502"));
-    }
+    public Database () {}
 
     /**
      * Gets the hashtable
@@ -38,16 +28,6 @@ public class Database
     public Hashtable<String, Staff> getLoginTable()
     {
         return loginTable;
-    }
-
-    /**
-     * Gets the Person hashtable
-     *
-     * @return personHt A hashtable for all Person objects to be stored into
-     */
-    public Hashtable<String, Person> getPerHt()
-    {
-        return personHt;
     }
 
     /**
@@ -68,61 +48,63 @@ public class Database
         //warning
     }
 
-    /**
-     * Takes the inputted Person Hashtable and turns it into a binary file and stores it
-     * under the inputted file name
-     *
-     * @param filename The name that the file will be stored under
-     */
-    public void storeDataToFilePer(String filename)
-    {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
-        {
-            oos.writeObject(hashtable);
+    public void saveDatabase() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(loginDataFile))) {
+            oos.writeObject(loginTable);
+        } catch (IOException e) {
+            System.out.println("Error saving hashtable: " + e.getMessage());
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(patientDataFile))) {
+            oos.writeObject(patientTable);
+        } catch (IOException e) {
+            System.out.println("Error saving hashtable: " + e.getMessage());
         }
     }
 
-    /**
-     * Takes the inputted Patient Hashtable and turns it into a binary file and stores it
-     * under the inputted file name
-     *
-     * @param filename The name that the file will be stored under
-     */
-    public void storeDataToFilePat(String filename)
-    {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
-        {
-            oos.writeObject(hashtable);
+    @SuppressWarnings("unchecked")
+    public void loadDataBase() {
+        File file = new File(loginDataFile);
+        if (!file.exists()) {
+            // File doesn't exist, create a new hashtable
+            loginTable = new Hashtable<>();
+            loginTable.put("Billing123", new BillingStaff("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Billing", "123"));
+            loginTable.put("Staff123", new EmergencyRoomStaff("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Staff", "123" ));
+            loginTable.put("Nurse123", new Nurse("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Nurse", "123" ));
+            loginTable.put("Doctor123", new Doctor("Doe", "John", "1/14/2000", "Somewhere Drive", "8908742222", "Doctor", "123" ));
+            return;
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
 
-    /**
-     * Takes the inputted file name and returns the Hashtable from the file by
-     * reading it through ObjectIntputStream and FileOutputStream
-     *
-     * @param filename The name of the file that the hashtable is in
-     * @return Hashtable<String, Object> The hashtable that is extracted from the file
-     */
-    public Hashtable<String, Object> grabStoredData(String filename)
-    {
-        Hashtable<String, Object> ht1 = null;
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename)))
-        {
-            ht1 = (Hashtable<String, Object>) ois.readObject();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(loginDataFile))) {
+            loginTable = (Hashtable<String, Staff>) ois.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Database file not found, creating a new one.");
+            loginTable = new Hashtable<>();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading hashtable: " + e.getMessage());
         }
-        catch (IOException | ClassNotFoundException e)
-        {
-            e.printStackTrace();
+
+        file = new File(patientDataFile);
+        if (!file.exists()) {
+            // File doesn't exist, create a new hashtable
+            patientTable = new Hashtable<>();
+            return;
         }
-        return ht1;
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(patientDataFile))) {
+            patientTable = (Hashtable<String, Patient>) ois.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Database file not found, creating a new one.");
+            patientTable = new Hashtable<>();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading hashtable: " + e.getMessage());
+        }
     }
 }
+
+
+
+
+
+
 

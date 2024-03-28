@@ -1,9 +1,11 @@
 package hospital.ui.users.staff;
 
+import java.io.Serializable;
+
 /**
  * Represents a billing staff member, specializing the Staff class for billing operations.
  */
-public class BillingStaff extends Staff {
+public class BillingStaff extends Staff implements Serializable {
     private String department;
 
     /**

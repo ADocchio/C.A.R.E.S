@@ -185,10 +185,15 @@ public class MainViewController implements WarningListener {
             }
 
             //look to see if patient is discharge started or not
-            if(currentPatient.isStartedDischarged()){
-                dischargeButton.setDisable(true);
+            if(currentPatient.isStartedDischarged()) {
                 admitButton.setDisable(true);
+                if (passedPosition instanceof Nurse && !(passedPosition instanceof Doctor)) {
+                    dischargeButton.setDisable(true);
+                } else if (passedPosition instanceof Doctor) {
+                    dischargeButton.setDisable(false);
+                }
             }
+
 
 
             //Setup patient information in UI
@@ -444,10 +449,8 @@ public class MainViewController implements WarningListener {
     private void addListenerToTextField(TextInputControl text, Patient patient, PatientUpdater updater) {
         ChangeListener<Boolean> listener = (observable, oldValue, newValue) -> {
             if (!newValue) {
-                System.out.println(text.getText());
                 updater.apply(patient, text.getText());
                 if((text == firstName || text == lastName || text == birthday) && currentPatient != null){
-                    System.out.println("Changing Key");
                     String key = lastName.getText() + firstName.getText() + birthday.getText();
                     Main.database.updateKey(currentKey, key);
                     currentKey = key;
@@ -478,6 +481,7 @@ public class MainViewController implements WarningListener {
                 //set stay of patient;
                 Random rand = new Random();
                 currentPatient.setDischargeDate(LocalDate.now().plusDays(rand.nextInt((10) + 2)));
+                currentPatient.setDischarged(true);
             }
         }
     }

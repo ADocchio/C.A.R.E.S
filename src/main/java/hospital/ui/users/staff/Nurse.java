@@ -1,9 +1,11 @@
 package hospital.ui.users.staff;
 
+import java.io.Serializable;
+
 /**
  * Represents a nurse, specializing the EmergencyRoomStaff class for nursing operations.
  */
-public class Nurse extends EmergencyRoomStaff {
+public class Nurse extends EmergencyRoomStaff implements Serializable {
 
     /**
      * Constructs a new Nurse instance with the specified details.

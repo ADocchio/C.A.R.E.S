@@ -1,9 +1,11 @@
 package hospital.ui.users;
 
+import java.io.Serializable;
+
 /**
  * Represents a person with basic personal information.
  */
-public class Person {
+public class Person implements Serializable {
     private String firstName;
     private String lastName;
     private String dob; // Date of Birth

@@ -1,6 +1,8 @@
 package hospital.ui.labs;
 
-public class LabPanel {
+import java.io.Serializable;
+
+public class LabPanel implements Serializable {
 
     private final Lab redBloodLab = new Lab("Red Blood Cell", 100.0);
     private final Lab whiteBloodLab = new Lab("White Blood Cell", 100.0);

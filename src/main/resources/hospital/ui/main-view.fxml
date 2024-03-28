@@ -78,7 +78,7 @@
                            </rowConstraints>
                            <children>
                               <Button fx:id="search" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchPatient" prefHeight="18.0" prefWidth="323.0" styleClass="ui-button" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="searchName" prefHeight="30.0" prefWidth="323.0" promptText="Search by first name, last name" GridPane.columnIndex="1" />
+                              <TextField fx:id="searchName" prefHeight="30.0" prefWidth="323.0" promptText="Last Name, First Name" GridPane.columnIndex="1" />
                               <TextField fx:id="searchDOB" prefHeight="29.0" prefWidth="237.0" promptText="Date of birth , 00/00/000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
@@ -158,18 +158,18 @@
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="lastName" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" />
-                                                      <TextField fx:id="firstName" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="address" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="cellPhone" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                      <TextField fx:id="birthday" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                                      <TextField fx:id="insurance" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                      <TextField fx:id="lastName" prefHeight="31.0" prefWidth="240.0" promptText="last name" GridPane.columnIndex="2" />
+                                                      <TextField fx:id="firstName" prefHeight="31.0" prefWidth="240.0" promptText="first name" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="address" prefHeight="31.0" prefWidth="240.0" promptText="Street, City, State" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <TextField fx:id="cellPhone" prefHeight="31.0" prefWidth="240.0" promptText="000-000-0000" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                      <TextField fx:id="birthday" prefHeight="31.0" prefWidth="240.0" promptText="00/00/0000" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                      <TextField fx:id="insurance" prefHeight="31.0" prefWidth="240.0" promptText="Insurance" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                                                       <Label prefHeight="54.0" prefWidth="122.0" text="Emergency Cell :" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="emergencyCell" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                      <TextField fx:id="emergencyCell" prefHeight="31.0" prefWidth="240.0" promptText="000-000-0000" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                                       <Label prefHeight="54.0" prefWidth="122.0" text="First Name :" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
@@ -220,7 +220,7 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Weight :" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Weight (lb):" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
@@ -235,21 +235,21 @@
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="54.0" prefWidth="122.0" text="SpO2 :" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                      <Label prefHeight="54.0" prefWidth="122.0" text="SpO2% :" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Body Temp :" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Body Temp(F) :" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="height" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" />
-                                                      <TextField fx:id="weight" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="bp" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <TextField fx:id="heartRate" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                      <TextField fx:id="spo2" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                      <TextField fx:id="height" prefHeight="31.0" prefWidth="240.0" promptText="cm" GridPane.columnIndex="2" />
+                                                      <TextField fx:id="weight" prefHeight="31.0" prefWidth="240.0" promptText="lb" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="bp" prefHeight="31.0" prefWidth="240.0" promptText="000/000" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <TextField fx:id="heartRate" prefHeight="31.0" prefWidth="240.0" promptText="Beats per Minute" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                      <TextField fx:id="spo2" prefHeight="31.0" prefWidth="240.0" promptText="0-100%" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                                       <TextField fx:id="bodyTemp" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                                                       <Label prefHeight="54.0" prefWidth="122.0" text="BMI :" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                                          <font>
@@ -257,7 +257,7 @@
                                                          </font>
                                                       </Label>
                                                       <TextField fx:id="bmi" disable="true" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Height :" GridPane.columnIndex="1">
+                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Height(ft) :" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>

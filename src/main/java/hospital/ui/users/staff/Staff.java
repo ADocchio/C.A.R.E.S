@@ -4,10 +4,12 @@ import hospital.ui.Main;
 import hospital.ui.users.Person;
 import hospital.ui.users.patients.Patient;
 
+import java.io.Serializable;
+
 /**
  * Represents a staff member, extending the Person class with login credentials.
  */
-public class Staff extends Person {
+public class Staff extends Person implements Serializable {
     private String username;
     private String password;
 

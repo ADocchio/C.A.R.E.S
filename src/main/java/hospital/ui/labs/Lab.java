@@ -1,10 +1,11 @@
 package hospital.ui.labs;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Lab {
+public class Lab implements Serializable {
 
-    public enum LabResult {
+    public enum LabResult implements Serializable {
         NotRun,
         Normal,
         Abnormal

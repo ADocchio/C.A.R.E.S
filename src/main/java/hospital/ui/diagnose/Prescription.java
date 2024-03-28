@@ -1,8 +1,10 @@
 package hospital.ui.diagnose;
 
-public class Prescription {
+import java.io.Serializable;
 
-    public enum Medication {
+public class Prescription implements Serializable {
+
+    public enum Medication implements Serializable{
         HYDRALAZINE(Administration.INTRAMUSCULAR),
         LABETALOL(Administration.ORAL),
         FENOLDOPAM(Administration.INTRAMUSCULAR),
@@ -23,7 +25,7 @@ public class Prescription {
         }
     }
 
-    public enum Administration {
+    public enum Administration implements Serializable{
         INTRAVASCULAR,
         INTRAMUSCULAR,
         SUBCUTANEOUS,

@@ -1,6 +1,8 @@
 package hospital.ui.diagnose;
 
-public class Condition {
+import java.io.Serializable;
+
+public class Condition implements Serializable {
     private Prescription[] validPrescriptions = new Prescription[3];
 
     /**
