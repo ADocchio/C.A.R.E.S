@@ -1,6 +1,5 @@
 package hospital.ui;
 
-import hospital.ui.database.Database;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,47 +14,62 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-
+/**
+ * Manages the user interface for the application, handling the loading of FXML files,
+ * switching scenes, and initializing and stopping the application.
+ */
 public class InterfaceLoad extends Application {
 
-    private static Stage primaryStage; //creates a stage to host the application in
+    private static Stage primaryStage; // Hosts the primary stage of the application
 
-
-    /** Launch's the application
-     *
+    /**
+     * Launches the application. This method is intended to be called to initiate the JavaFX application,
+     * loading the initial database and setting up the primary stage.
      */
     public static void startApp() {
-       Main.database.loadDataBase();
+        Main.database.loadDataBase();
         launch();
     }
 
-
+    /**
+     * Starts the primary stage of the application, setting up the initial scene from an FXML file.
+     * This method initializes the primary stage with a login screen, preparing the user interface
+     * for interaction.
+     *
+     * @param primaryStage The primary stage for this application, onto which the scene is set.
+     * @throws IOException If there is an issue loading the FXML file.
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         InterfaceLoad.primaryStage = primaryStage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(InterfaceLoad.class.getResource("login.fxml")); //loads login fxml
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400); //set login window size
+        FXMLLoader fxmlLoader = new FXMLLoader(InterfaceLoad.class.getResource("login.fxml")); // Loads login FXML
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Sets login window size
         primaryStage.setTitle("C.A.R.E.S Login");
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
+    /**
+     * Invoked when the application should stop, and performs any necessary cleanup before exiting.
+     * This method ensures that the database is saved before the application is closed.
+     */
     @Override
-    public void stop(){
+    public void stop() {
         Main.database.saveDatabase();
         System.out.println("Application is about to stop.");
-
     }
 
-    /**Changes the scene that is displayed on the main JAVAFX scene
+    /**
+     * Changes the scene displayed on the main JavaFX stage.
+     * This method allows dynamically changing the content displayed to the user, based on the
+     * application's state or user interactions.
      *
-     * @param fxml, fxml file to be displayed
-     * @param height, height of stage
-     * @param width, width of stage
-     * @param title, title of scene
-     * @throws IOException, if fxml files is not found or has errors
+     * @param fxml   The path to the FXML file that defines the new scene.
+     * @param height The height of the stage after the scene change.
+     * @param width  The width of the stage after the scene change.
+     * @param title  The title of the stage to be displayed.
+     * @throws IOException If the specified FXML file is not found or cannot be loaded.
      */
     public static void changeScene(String fxml, double height, double width, String title) throws IOException {
 

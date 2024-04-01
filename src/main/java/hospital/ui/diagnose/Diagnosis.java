@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Diagnosis implements Serializable {
 
-    private boolean[] isDiagnosed = {false, false, false, false, false};
+    private final boolean[] isDiagnosed = {false, false, false, false, false};
 
     private Condition highBloodPressure = new Condition(
             new Prescription(Prescription.Medication.HYDRALAZINE),
@@ -34,20 +34,50 @@ public class Diagnosis implements Serializable {
             new Prescription(Prescription.Medication.OXYCODONE),
             new Prescription(Prescription.Medication.PHYSICAL_THERAPY));
 
+    private final Condition[] conditions = {highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus};
+
     /**
-     * Retrieves an array of conditions associated with this diagnosis.
+     * Retrieves an array of {@link Condition} objects associated with this diagnosis.
+     * This method provides direct access to the internal array storing the conditions.
+     * Each {@link Condition} in the array represents a specific medical condition, such as
+     * high blood pressure, high cholesterol, kidney disease, liver disease, or a broken humerus.
      *
-     * @return An array of conditions.
+     * @return A direct reference to the internal array of {@code Condition} objects. Modifications
+     *         to this array will affect the object's internal state.
      */
     public Condition[] getConditions() {
-        return new Condition[]{highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus};
+        return conditions;
     }
 
-    public boolean[] getIsDiagnosed(){
+    /**
+     * Retrieves the diagnosis status for all conditions.
+     *
+     * This method returns an array of boolean values where each element
+     * represents the diagnosis status of a specific condition. True indicates
+     * that the diagnosis for that condition is positive (diagnosed), and false
+     * indicates it is negative (not diagnosed).
+     *
+     * @return An array of boolean values indicating the diagnosis status for each condition.
+     */
+    public boolean[] getIsDiagnosed() {
         return isDiagnosed;
     }
 
-    public void setIsDiagnosed(boolean bool, int diagnosis){
+    /**
+     * Sets the diagnosis status for a specific condition.
+     *
+     * This method updates the diagnosis status of a specific condition
+     * based on the provided index and status. The index corresponds to
+     * the condition being diagnosed, and the status indicates whether the
+     * condition is diagnosed (true) or not (false).
+     *
+     * @param bool The diagnosis status to set for the specified condition.
+     *             True for diagnosed, false for not diagnosed.
+     * @param diagnosis The index of the condition whose diagnosis status
+     *                  is to be updated. This should be within the bounds
+     *                  of the array holding the diagnosis statuses.
+     */
+    public void setIsDiagnosed(boolean bool, int diagnosis) {
         isDiagnosed[diagnosis] = bool;
     }
 }

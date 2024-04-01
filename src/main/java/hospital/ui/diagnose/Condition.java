@@ -3,7 +3,7 @@ package hospital.ui.diagnose;
 import java.io.Serializable;
 
 public class Condition implements Serializable {
-    private Prescription[] validPrescriptions = new Prescription[3];
+    private final Prescription[] validPrescriptions = new Prescription[3];
 
     /**
      * Constructs a new Condition object with the specified name and valid prescriptions.
@@ -28,12 +28,4 @@ public class Condition implements Serializable {
         return validPrescriptions;
     }
 
-    /**
-     * Sets the valid prescriptions for this medical condition.
-     *
-     * @param validPrescriptions An array containing the valid prescriptions to set.
-     */
-    public void setValidPrescriptions(Prescription[] validPrescriptions) {
-        this.validPrescriptions = validPrescriptions;
-    }
 }

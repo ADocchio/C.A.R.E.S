@@ -23,7 +23,7 @@ public class MainViewController implements WarningListener {
     public static Staff passedPosition;
     public static Patient currentPatient = nullPatient;
     private static String currentKey = "";
-    private Map<TextInputControl, ChangeListener<Boolean>> listenerMap = new HashMap<TextInputControl,  ChangeListener<Boolean> >();
+    private final Map<TextInputControl, ChangeListener<Boolean>> listenerMap = new HashMap<TextInputControl,  ChangeListener<Boolean> >();
 
     //panes
     @FXML
@@ -304,8 +304,14 @@ public class MainViewController implements WarningListener {
                     currentPatient = result;
                     currentKey = (names[0] + names[1] + dob);
                     loadPatient();
-                }//Otherwise Warning
+                }else{
+                    showWarning("No patient found!");
+                }
+
+            }else{
+                showWarning("Please enter a valid search (lastname, firstname), (00/00/0000)");
             }
+
         }
 
         //Otherwise Warning
@@ -521,6 +527,10 @@ public class MainViewController implements WarningListener {
      */
     @Override
     public void showWarning(String message) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Warning Dialog");
+        alert.setHeaderText("Warning Dialog");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

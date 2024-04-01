@@ -3,25 +3,30 @@ package hospital.ui.users;
 import java.io.Serializable;
 
 /**
- * Represents a person with basic personal information.
+ * Represents a person with basic personal information. This class serves as a foundation for
+ * representing individuals in a system, capturing common attributes such as name, date of birth,
+ * permanent address, and phone number. It can be extended or used as part of other classes to
+ * include individuals within
  */
 public class Person implements Serializable {
     private String firstName;
     private String lastName;
-    private String dob; // Date of Birth
-    private String permAdd; // Permanent Address
-    private String phoneNum; // Phone Number
+    private String dob;
+    private String permAdd;
+    private String phoneNum;
 
     /**
-     * Constructs a new Person with the specified details.
+     * Constructs a new Person instance with the specified personal details.
+     * This constructor initializes a person with essential information needed for identification
+     * and contact purposes within various systems or applications.
      *
-     * @param firstName the first name of the person
-     * @param lastName  the last name of the person
-     * @param dob       the date of birth of the person
-     * @param permAdd   the permanent address of the person
-     * @param phoneNum  the phone number of the person
+     * @param firstName The first name of the person.
+     * @param lastName  The last name of the person.
+     * @param dob       The date of birth of the person.
+     * @param permAdd   The permanent address of the person.
+     * @param phoneNum  The phone number of the person.
      */
-    public Person(String lastName, String firstName, String dob, String permAdd, String phoneNum) {
+    public Person(String firstName, String lastName, String dob, String permAdd, String phoneNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
@@ -30,24 +35,9 @@ public class Person implements Serializable {
     }
 
     /**
-     * Returns a string representation of the person.
-     *
-     * @return a string representation of the person
-     */
-    public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dob='" + dob + '\'' +
-                ", permAdd='" + permAdd + '\'' +
-                ", phoneNum=" + phoneNum +
-                '}';
-    }
-
-    /**
      * Returns the first name of the person.
      *
-     * @return the first name of the person
+     * @return The first name of the person.
      */
     public String getFirstName() {
         return firstName;
@@ -56,7 +46,7 @@ public class Person implements Serializable {
     /**
      * Sets the first name of the person.
      *
-     * @param firstName the new first name
+     * @param firstName The new first name to be set for the person.
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -65,7 +55,7 @@ public class Person implements Serializable {
     /**
      * Returns the last name of the person.
      *
-     * @return the last name of the person
+     * @return The last name of the person.
      */
     public String getLastName() {
         return lastName;
@@ -74,7 +64,7 @@ public class Person implements Serializable {
     /**
      * Sets the last name of the person.
      *
-     * @param lastName the new last name
+     * @param lastName The new last name to be set for the person.
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -83,7 +73,7 @@ public class Person implements Serializable {
     /**
      * Returns the date of birth of the person.
      *
-     * @return the date of birth
+     * @return The date of birth of the person.
      */
     public String getDob() {
         return dob;
@@ -92,7 +82,7 @@ public class Person implements Serializable {
     /**
      * Sets the date of birth of the person.
      *
-     * @param dob the new date of birth
+     * @param dob The new date of birth to be set for the person.
      */
     public void setDob(String dob) {
         this.dob = dob;
@@ -101,7 +91,7 @@ public class Person implements Serializable {
     /**
      * Returns the permanent address of the person.
      *
-     * @return the permanent address
+     * @return The permanent address of the person.
      */
     public String getPermAdd() {
         return permAdd;
@@ -110,7 +100,7 @@ public class Person implements Serializable {
     /**
      * Sets the permanent address of the person.
      *
-     * @param permAdd the new permanent address
+     * @param permAdd The new permanent address to be set for the person.
      */
     public void setPermAdd(String permAdd) {
         this.permAdd = permAdd;
@@ -119,7 +109,7 @@ public class Person implements Serializable {
     /**
      * Returns the phone number of the person.
      *
-     * @return the phone number
+     * @return The phone number of the person.
      */
     public String getPhoneNum() {
         return phoneNum;
@@ -128,7 +118,7 @@ public class Person implements Serializable {
     /**
      * Sets the phone number of the person.
      *
-     * @param phoneNum the new phone number
+     * @param phoneNum The new phone number to be set for the person.
      */
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;

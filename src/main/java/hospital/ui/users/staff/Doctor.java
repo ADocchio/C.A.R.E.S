@@ -23,6 +23,5 @@ public class Doctor extends Nurse implements Serializable {
         super(firstName, lastName, dob, permAdd, phoneNum, username, password);
     }
 
-    // Additional doctor-specific methods can be defined here
 }
 

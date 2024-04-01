@@ -3,6 +3,7 @@ package hospital.ui.users.patients;
 import hospital.ui.diagnose.Diagnosis;
 import hospital.ui.labs.LabPanel;
 import hospital.ui.users.Person;
+import hospital.ui.warnings.WarningManager;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ public class Patient extends Person implements Serializable {
     private double heartRate;
     private double oxyLevel;
     private double bodyTemp;
-    private int bodyMassIndex;
+    private double bodyMassIndex;
     private Diagnosis diagnosis;
     private LabPanel labPanel;
     private Bill bill;
@@ -56,36 +57,6 @@ public class Patient extends Person implements Serializable {
         this.dischargeDate = LocalDate.from(LocalDateTime.now());
         this.dischargeInstruction = "";
     }
-
-    /**
-     * Constructs an AdmittedPatient instance with admission and discharge details.
-     * Inherits all attributes from SeenPatient and, by extension, Patient and Person classes.
-     *
-     * @param firstName            The first name of the patient.
-     * @param lastName             The last name of the patient.
-     * @param dob                  The date of birth of the patient.
-     * @param permAdd              The permanent address of the patient.
-     * @param phoneNum             The phone number of the patient.
-     * @param patientID            The unique identifier for the patient.
-     * @param insurancePlan        The insurance plan of the patient.
-     * @param emergencyContact     The emergency contact information for the patient.
-     * @param admittedDate               The time the patient checked in.
-     * @param isAdmitted           Whether the patient is currently admitted.
-     * @param isDischarged           Whether the patient has been discharged.
-     * @param height               The height of the patient in meters.
-     * @param weight               The weight of the patient in kilograms.
-     * @param bloodPressure        The blood pressure of the patient.
-     * @param heartRate            The heart rate of the patient.
-     * @param oxyLevel             The oxygen level of the patient.
-     * @param bodyTemp             The body temperature of the patient in Celsius.
-     * @param bodyMassIndex        The body mass index of the patient.
-     * @param diagnosis            The diagnosis of the patient.
-     * @param labPanel                  The lab tests conducted on the patient.
-     * @param bill                 The bill generated for the patient's treatment.
-     * @param dischargeDate              The time the patient checked out.
-     * @param dischargeInstruction The instructions provided upon discharge.
-     */
-
 
     /**
      * Gets the patient's ID.
@@ -209,6 +180,7 @@ public class Patient extends Person implements Serializable {
      * @return The height in meters.
      */
     public String getHeight() {
+
         return doubleToStringOrEmpty(height);
     }
 
@@ -218,8 +190,11 @@ public class Patient extends Person implements Serializable {
      * @param height The height in meters as a string to set.
      */
     public void setHeight(String height) {
-        //change return to String and checck for double instance (if statement instead of exception
-        this.height = parseDoubleOrDefault(height);
+        double parseHeight = parseDoubleOrDefault(height);
+        if(parseHeight <= 96 && parseHeight >= -1){
+            this.height = parseHeight;
+        }
+        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-96 inches");
     }
 
     /**
@@ -237,7 +212,11 @@ public class Patient extends Person implements Serializable {
      * @param weight The weight in kilograms as a string to set.
      */
     public void setWeight(String weight) {
-        this.weight = parseDoubleOrDefault(weight);
+        double parseWeight = parseDoubleOrDefault(weight);
+        if(parseWeight <= 1000 && parseWeight >= -1){
+            this.height = parseWeight;
+        }
+        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-1000 pounds");
     }
 
     /**
@@ -255,7 +234,20 @@ public class Patient extends Person implements Serializable {
      * @param bloodPressure The blood pressure to set.
      */
     public void setBloodPressure(String bloodPressure) {
-        this.bloodPressure = bloodPressure;
+        if (bloodPressure.matches("^(\\d{1,3})/(\\d{1,3})$")) {
+            String[] parts = bloodPressure.split("/");
+            int systolic = Integer.parseInt(parts[0]);
+            int diastolic = Integer.parseInt(parts[1]);
+
+            // Validate the ranges for systolic (0-200) and diastolic (0-150)
+            if (systolic >= 0 && systolic <= 200 && diastolic >= 0 && diastolic <= 150) {
+                this.bloodPressure = bloodPressure;
+            } else {
+                WarningManager.getInstance().showWarningToAll("Blood pressure values out of range. Systolic should be 0-200 and diastolic should be 0-150.");
+            }
+        } else {
+            WarningManager.getInstance().showWarningToAll("Invalid blood pressure format. Correct format: 'systolic/diastolic'.");
+        }
     }
 
     /**
@@ -273,7 +265,11 @@ public class Patient extends Person implements Serializable {
      * @param heartRate The heart rate in beats per minute as a string to set.
      */
     public void setHeartRate(String heartRate) {
-        this.heartRate = parseDoubleOrDefault(heartRate);
+        double parseRate = parseDoubleOrDefault(heartRate);
+        if(parseRate <= 200 && parseRate >= -1){
+            this.height = parseRate;
+        }
+        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-200 BPM");
     }
 
     /**
@@ -291,7 +287,11 @@ public class Patient extends Person implements Serializable {
      * @param oxyLevel The oxygen level as a percentage as a string to set.
      */
     public void setOxyLevel(String oxyLevel) {
-        this.oxyLevel = parseDoubleOrDefault(oxyLevel);
+        double parseLvl = parseDoubleOrDefault(oxyLevel);
+        if(parseLvl <= 100 && parseLvl >= -1){
+            this.height = parseLvl;
+        }
+        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-100%");
     }
 
     /**
@@ -309,7 +309,15 @@ public class Patient extends Person implements Serializable {
      * @param bodyTemp The body temperature in Celsius as a string to set.
      */
     public void setBodyTemp(String bodyTemp) {
-        this.bodyTemp = parseDoubleOrDefault(bodyTemp);
+        double parseTemp = parseDoubleOrDefault(bodyTemp);
+        if(parseTemp <= 100 && parseTemp >= -1){
+            this.height = parseTemp;
+        }
+        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-150 F");
+    }
+
+    public void setBodyMassIndex() {
+        this.bodyMassIndex = 703 * (weight / (height * height));
     }
 
     /**
@@ -318,8 +326,7 @@ public class Patient extends Person implements Serializable {
      * @return The BMI as an integer.
      */
     public String getBodyMassIndex() {
-        //calculate BMI (formula)
-        return intToStringOrEmpty(bodyMassIndex);
+        return doubleToStringOrEmpty(bodyMassIndex);
     }
 
     /**

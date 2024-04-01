@@ -1,14 +1,19 @@
 package hospital.ui.database;
 
-import hospital.ui.Main;
-import hospital.ui.users.Person;
 import hospital.ui.users.patients.Patient;
 import hospital.ui.users.staff.*;
+import hospital.ui.warnings.WarningManager;
 
 import java.io.*;
 import java.util.Hashtable;
-import java.util.Map;
+import java.util.Objects;
 
+
+/**
+ * Represents a database for managing patient and staff information in a medical context.
+ * This class provides functionality to load, save, and update patient and staff data using hash tables.
+ * It supports serializing the data to files and deserializing it back into the application.
+ */
 public class Database implements Serializable
 {
     private static String patientDataFile = "PatientData";
@@ -21,9 +26,9 @@ public class Database implements Serializable
     public Database () {}
 
     /**
-     * Gets the hashtable
+     * Retrieves the hashtable containing staff login data.
      *
-     * @return ht A hashtable for any preliminary data storage
+     * @return A hashtable mapping staff IDs to {@link Staff} objects.
      */
     public Hashtable<String, Staff> getLoginTable()
     {
@@ -31,23 +36,36 @@ public class Database implements Serializable
     }
 
     /**
-     * Gets the Person hashtable
+     * Retrieves the hashtable containing patient data.
      *
-     * @return patientHt A hashtable for all Patient objects to be stored into
+     * @return A hashtable mapping patient IDs to {@link Patient} objects.
      */
     public Hashtable<String, Patient> getPatientTable()
     {
         return patientTable;
     }
 
-    public void updateKey(String oldkey, String newKey){
-        Patient patient = patientTable.remove(oldkey);
+    /**
+     * Updates the key associated with a specific patient in the patient hashtable.
+     * If the new key does not exist in the hashtable, the patient's data is updated to use the new key.
+     *
+     * @param oldKey The current key associated with the patient's data.
+     * @param newKey The new key to associate with the patient's data.
+     */
+    public void updateKey(String oldKey, String newKey){
+        Patient patient = patientTable.remove(oldKey);
         if(!patientTable.containsKey(newKey)){
             patientTable.put(newKey, patient);
+        } else if (!Objects.equals(oldKey, newKey)) {
+            WarningManager.getInstance().showWarningToAll("There is already a patient with this information in the system ");
         }
-        //warning
+
     }
 
+    /**
+     * Saves the current state of the database (both patient and staff data) to files.
+     * This method serializes the loginTable and patientTable hashtables to their respective files.
+     */
     public void saveDatabase() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(loginDataFile))) {
             oos.writeObject(loginTable);
@@ -62,6 +80,11 @@ public class Database implements Serializable
         }
     }
 
+    /**
+     * Loads the database state (both patient and staff data) from files.
+     * This method deserializes the loginTable and patientTable hashtables from their respective files.
+     * If the files do not exist, it initializes the tables with default data.
+     */
     @SuppressWarnings("unchecked")
     public void loadDataBase() {
         File file = new File(loginDataFile);
