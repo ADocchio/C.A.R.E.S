@@ -62,8 +62,8 @@ public class Bill implements Serializable {
      */
     public String toBill(Patient patient) {
         String bill = "";
-        double flatRate = 100.0; // It seems flatRate is intended but not used in calculations. Consider integrating or removing.
-        double dayRate = 10.0;
+        double flatRate = 850; // It seems flatRate is intended but not used in calculations. Consider integrating or removing.
+        double dayRate = 10900;
         double stayCost = patient.getStay().getDays() * dayRate;
         double labsCost = 0;
 

@@ -11,16 +11,16 @@ import java.io.Serializable;
  */
 public class LabPanel implements Serializable {
 
-    private final Lab redBloodLab = new Lab("Red Blood Cell", 100.0);
-    private final Lab whiteBloodLab = new Lab("White Blood Cell", 100.0);
-    private final Lab liverLab = new Lab("Liver Function", 100.0);
-    private final Lab renalLab = new Lab("Renal Function", 100.0);
-    private final Lab electrolyteLab = new Lab("Electrolyte Levels", 100.0);
-    private final Lab xrayLab = new Lab("X-Ray", 100.0);
-    private final Lab ctLab = new Lab("C.T. Scan", 100.0);
-    private final Lab mriLab = new Lab("MRI", 100.0);
-    private final Lab urineLab = new Lab("Urine Test", 100.0);
-    private final Lab stoolLab = new Lab("Stool Test", 100.0);
+    private final Lab redBloodLab = new Lab("Red Blood Cell", 11);
+    private final Lab whiteBloodLab = new Lab("White Blood Cell", 14);
+    private final Lab liverLab = new Lab("Liver Function", 50);
+    private final Lab renalLab = new Lab("Renal Function", 50);
+    private final Lab electrolyteLab = new Lab("Electrolyte Levels", 50);
+    private final Lab xrayLab = new Lab("X-Ray", 50);
+    private final Lab ctLab = new Lab("C.T. Scan", 450);
+    private final Lab mriLab = new Lab("MRI", 1100);
+    private final Lab urineLab = new Lab("Urine Test", 10);
+    private final Lab stoolLab = new Lab("Stool Test", 11);
     private final Lab[] labPanel = {redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab};
 
     /**

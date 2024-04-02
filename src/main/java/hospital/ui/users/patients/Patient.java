@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 
+/**
+ * Represents a patient in the hospital system, extending the {@link Person} class
+ * with additional attributes relevant to a patient's care and management.
+ */
 public class Patient extends Person implements Serializable {
     private String patientID;
     private String insurancePlan;
@@ -33,6 +37,14 @@ public class Patient extends Person implements Serializable {
     private LocalDate  dischargeDate;
     private String dischargeInstruction;
 
+    /**
+     * Constructs a new {@code Patient} object by copying basic information from an existing {@code Person} object
+     * and initializing patient-specific details such as insurance plan and emergency contact information.
+     *
+     * @param person           The {@link Person} object containing basic information about the patient.
+     * @param insurancePlan    The insurance plan of the patient.
+     * @param emergencyContact The emergency contact information for the patient, formatted as 000-000-0000.
+     */
     public Patient(Person person, String insurancePlan, String emergencyContact){
         super(person.getFirstName(), person.getLastName(), person.getDob(), person.getPermAdd(), person.getPhoneNum());
         this.patientID = person.getLastName() + person.getFirstName() + person.getDob();
@@ -109,7 +121,13 @@ public class Patient extends Person implements Serializable {
      * @param emergencyContact A string to set as the patient's emergency contact information.
      */
     public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
+        if(emergencyContact.matches("^\\d{3}-\\d{3}-\\d{4}$")){
+            this.emergencyContact = emergencyContact;
+        } else if (emergencyContact.equals("")) {
+            this.emergencyContact = "";
+        }else{
+            WarningManager.getInstance().showWarningToAll("Invalid Input, 000-000-0000");
+        }
     }
 
     /**
@@ -444,10 +462,11 @@ public class Patient extends Person implements Serializable {
         this.setFirstName("");
         this.setDob("");
         this.setPermAdd("");
+        this.setPhoneNum("");
         this.setEmergencyContact("");
         this.patientID = "";
-        this.insurancePlan = insurancePlan;
-        this.emergencyContact = emergencyContact;
+        this.insurancePlan = "";
+        this.emergencyContact = "";
 
         this.admittedDate = LocalDate.from(LocalDateTime.now());
         this.isAdmitted = false;
@@ -480,17 +499,6 @@ public class Patient extends Person implements Serializable {
         }
         try {
             return Double.parseDouble(str);
-        } catch (NumberFormatException e) {
-            return -1; // Return -1 if parsing fails
-        }
-    }
-
-    private int parseIntOrDefault(String str) {
-        if (str == null || str.isEmpty()) {
-            return -1; // Return -1 if string is empty or null
-        }
-        try {
-            return Integer.parseInt(str);
         } catch (NumberFormatException e) {
             return -1; // Return -1 if parsing fails
         }

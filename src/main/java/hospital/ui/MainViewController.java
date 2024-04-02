@@ -18,51 +18,33 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
 
+/**
+ * Controller for the main view of the hospital management system.
+ * This class is responsible for handling user interactions, displaying patient
+ * information, and managing view state based on the role of the logged-in staff.
+ * It implements the {@link WarningListener} for handling warning messages across the application.
+ */
 public class MainViewController implements WarningListener {
 
-    public static Patient nullPatient = new Patient(new Person("", "", "", "", ""), "", "");;
+    public static Patient nullPatient = new Patient(new Person("", "", "", "", ""), "", "");
     public static Staff passedPosition;
     public static Patient currentPatient = nullPatient;
     private static String currentKey = "";
-    private final Map<TextInputControl, ChangeListener<Boolean>> listenerMap = new HashMap<TextInputControl,  ChangeListener<Boolean> >();
+    private final Map<TextInputControl, ChangeListener<Boolean>> listenerMap = new HashMap<>();
 
-    //panes
-    @FXML
-    private TitledPane basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane;
-
-    //panes
-    @FXML
-    private Button admitButton, dischargeButton;
-
-    //user information
-    @FXML
-    private Label role, userName;
-
-    //patient info
-    @FXML
-    private TextField firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, height, weight, bp, heartRate, spo2, bodyTemp, bmi, searchName, searchDOB;
-
-    @FXML
-    private TextArea instructionsField, billField;
-
-    //lab tests
-    @FXML
-    private CheckBox redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab;
-
-    //lab results
-    @FXML
-    private Button redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult, patientStatus, search;
-
-    //Scripts
-    @FXML
-    private CheckBox highBloodScript1, highBloodScript2, highBloodScript3, highCholesterolScript1, highCholesterolScript2, highCholesterolScript3, kidneyScript1, kidneyScript2, kidneyScript3, liverScript1, liverScript2, liverScript3, boneScript1, boneScript2, boneScript3;
-
-    //Diagnosis
-    @FXML
-    private CheckBox highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus;
+    @FXML private TitledPane basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane;
+    @FXML private Button admitButton, dischargeButton;
+    @FXML private Label role, userName;
+    @FXML private TextField firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, height, weight, bp, heartRate, spo2, bodyTemp, bmi, searchName, searchDOB;
+    @FXML private TextArea instructionsField, billField;
+    @FXML private CheckBox redBloodLab, whiteBloodLab, liverLab, renalLab, electrolyteLab, xrayLab, ctLab, mriLab, urineLab, stoolLab;
+    @FXML private Button redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult, patientStatus, search;
+    @FXML private CheckBox highBloodScript1, highBloodScript2, highBloodScript3, highCholesterolScript1, highCholesterolScript2, highCholesterolScript3, kidneyScript1, kidneyScript2, kidneyScript3, liverScript1, liverScript2, liverScript3, boneScript1, boneScript2, boneScript3;
+    @FXML private CheckBox highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus;
 
     /**
-     * Called on loading of the main-view scene
+     * Initializes the controller. This method is called after all @FXML annotated fields have been injected.
+     * It sets up the UI based on the role of the logged-in staff and registers the controller as a listener for warnings.
      */
     public void initialize() {
         TitledPane[] panes = {basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane};
@@ -70,6 +52,7 @@ public class MainViewController implements WarningListener {
             pane.setCollapsible(false);
         }
 
+        //create warning manager
         WarningManager.getInstance().addListener(this);
 
         if(passedPosition instanceof Doctor){
@@ -86,13 +69,16 @@ public class MainViewController implements WarningListener {
             role.setText("Billing Staff");
         }
         userName.setText(passedPosition.getLastName() + ", " + passedPosition.getFirstName());
+        currentPatient = nullPatient;
+        loadPatient();
     }
 
 
-    /** Logs out the current user and brings them back to login page
+    /**
+     * Handles the logout action. It changes the scene back to the login view.
      *
-     * @param event, Clicking "log out" button
-     * @throws IOException, if login.fxml is unavailable or has errors
+     * @param event The action event triggering the logout.
+     * @throws IOException If the login view file cannot be loaded.
      */
     public void logOut(ActionEvent event) throws IOException {
         InterfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
@@ -134,8 +120,6 @@ public class MainViewController implements WarningListener {
         searchName.setDisable(true);
         searchDOB.setDisable(true);
         search.setDisable(true);
-
-
     }
 
     /** Sets the view and permissions for the nurse dashboard
@@ -197,6 +181,7 @@ public class MainViewController implements WarningListener {
                 }
             }
 
+            //load patient fields
             loadFields();
 
             //load patient labs and scripts and bill
@@ -219,10 +204,13 @@ public class MainViewController implements WarningListener {
             addListenerToTextField(stringFields[11],currentPatient, Patient::setOxyLevel);
             addListenerToTextField(stringFields[12],currentPatient, Patient::setBodyTemp);
             addListenerToTextField(stringFields[14],currentPatient, Patient::setDischargeInstruction);
-
         }
     }
 
+    /**
+     * Sets the visibility and editable states of fields and components based on the
+     * current application state or user role.
+     */
     private void loadFields(){
         TextInputControl[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi, instructionsField};
 
@@ -236,6 +224,10 @@ public class MainViewController implements WarningListener {
         }
     }
 
+    /**
+     * Clears current patient information from the UI, preparing for a new search
+     * or patient selection.
+     */
     private void unloadPatient(){
         if(currentPatient != null ){
             TextInputControl[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi, instructionsField};
@@ -254,6 +246,12 @@ public class MainViewController implements WarningListener {
         }
     }
 
+    /**
+     * Loads the results of laboratory tests for the current patient into the UI,
+     * setting the text and style of result buttons accordingly.
+     *
+     * @param event The event triggering this action, such as selecting a tab or pressing a button.
+     */
     public void loadLabs(ActionEvent event) {
         Button[] labResults = {redBloodResult, whiteBloodResult, liverResult, renalResult, electrolyteResult, xrayResult, ctResult, mriResult, urineResult, stoolResult};
 
@@ -276,6 +274,12 @@ public class MainViewController implements WarningListener {
 
     }
 
+    /**
+     * Initiates a search for a patient based on name and date of birth provided in the
+     * search fields.
+     *
+     * @param event The event triggering the search, such as clicking the search button.
+     */
     public void searchPatient(ActionEvent event){
 
             String name = searchName.getText();
@@ -344,6 +348,11 @@ public class MainViewController implements WarningListener {
         }
     }
 
+    /**
+     * Loads valid prescription options into the UI based on the current patient's diagnosis.
+     *
+     * @param event The event triggering the loading of valid prescriptions.
+     */
     public void loadValidScripts(ActionEvent event) {
         if(currentPatient != null) {
             CheckBox[] bloodScripts = {highBloodScript1, highBloodScript2, highBloodScript3};
@@ -445,15 +454,24 @@ public class MainViewController implements WarningListener {
         }
     }
 
+    /**
+     * Adds a focus lost listener to a text input control to update patient information
+     * when the focus is lost.
+     *
+     * @param text    The text input control to add the listener to.
+     * @param patient The patient object to update.
+     * @param updater The function to call with the updated text.
+     */
     private void addListenerToTextField(TextInputControl text, Patient patient, PatientUpdater updater) {
         ChangeListener<Boolean> listener = (observable, oldValue, newValue) -> {
             if (!newValue) {
                 updater.apply(patient, text.getText());
-                if((text == firstName || text == lastName || text == birthday) && currentPatient != null){
+                if((text == firstName || text == lastName || text == birthday) && currentPatient != nullPatient){
                     String key = lastName.getText() + firstName.getText() + birthday.getText();
                     Main.database.updateKey(currentKey, key);
                     currentKey = key;
                 }
+                loadFields();
 
             }
         };
@@ -462,6 +480,11 @@ public class MainViewController implements WarningListener {
         text.focusedProperty().addListener(listener);
     }
 
+    /**
+     * Removes a previously added focus lost listener from a text input control.
+     *
+     * @param text The text input control to remove the listener from.
+     */
     private void removeListenerFromTextField(TextInputControl text) {
         ChangeListener<Boolean> listener = listenerMap.remove(text);
         if (listener != null) {
@@ -469,16 +492,24 @@ public class MainViewController implements WarningListener {
         }
         System.out.println(currentPatient + "Removing focus lost listener to: " + text.getId());
     }
+
+    /**
+     * Handles the discharge process for the current patient.
+     *
+     * @param event The event triggering the discharge, such as pressing the discharge button.
+     */
     public void dischargeButton(ActionEvent event){
         if(currentPatient != nullPatient){
             //if patient has had there discharge started by a nurse, and the current user is a doctor, complete discharge
             if (passedPosition instanceof Doctor && currentPatient.isStartedDischarged()){
                 currentPatient.setDischarged(true);
+                showWarning("Discharge Complete");
                 unloadPatient();
             }else if (passedPosition instanceof Nurse && !currentPatient.isStartedDischarged()){
                 currentPatient.setDischarged(true);
                 dischargeButton.setDisable(true);
                 admitButton.setDisable(true);
+                showWarning("Discharge has been started");
 
                 //set stay of patient;
                 Random rand = new Random();
@@ -488,23 +519,33 @@ public class MainViewController implements WarningListener {
         }
     }
 
+    /**
+     * Manages the admission process for new or existing patients.
+     *
+     * @param event The event triggering the admission, such as pressing the admit button.
+     */
     public void admitButton (ActionEvent event){
         if (passedPosition instanceof EmergencyRoomStaff && !(passedPosition instanceof Nurse)){
-            TextField[] newPatientFeilds = {lastName, firstName, birthday, address, cellPhone, insurance, emergencyCell};
+            TextField[] newPatientFields = {lastName, firstName, birthday, address, cellPhone, insurance, emergencyCell};
             boolean empty = true;
 
-            for (TextField feild: newPatientFeilds) {
-                empty = Objects.equals(feild.getText(), "");
+            //make sure all text fields have values
+            for (TextField field: newPatientFields) {
+                empty = Objects.equals(field.getText(), "");
+                if(empty){
+                    break;
+                }
             }
 
+            //if all have values add patient
             if(!empty){
                 EmergencyRoomStaff staff = (EmergencyRoomStaff) passedPosition;
                 staff.createPatient(lastName.getText(), firstName.getText(), birthday.getText(), address.getText(), cellPhone.getText(), insurance.getText(), emergencyCell.getText());
+                loadPatient();
+            }else {
+                showWarning("Please fill all fields");
 
-                for (TextField field: newPatientFeilds) { //reset textbox's
-                    field.setText("");
-                }
-            }//OTHERWISE WARNING!
+            }
         } else if (passedPosition instanceof Nurse && currentPatient != null && !currentPatient.isAdmitted() && currentPatient != nullPatient) {
             //update patient information
             currentPatient.setAdmitted(true);
@@ -513,6 +554,7 @@ public class MainViewController implements WarningListener {
             //update UI
             patientStatus.setText("Patient Status: Admitted");
             admitButton.setDisable(true);
+            showWarning("Patient has been Admitted");
             }
     }
 
@@ -528,7 +570,5 @@ public class MainViewController implements WarningListener {
         alert.setHeaderText("Warning Dialog");
         alert.setContentText(message);
         alert.showAndWait();
-
-        loadFields();
     }
 }

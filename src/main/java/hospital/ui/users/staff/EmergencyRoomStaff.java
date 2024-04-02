@@ -55,6 +55,7 @@ public class EmergencyRoomStaff extends Staff implements Serializable {
         // Check if the patient already exists in the database
         if (!Main.database.getPatientTable().containsKey(key)) {
             Main.database.getPatientTable().put(key, newPatient);
+            WarningManager.getInstance().showWarningToAll("Patient Checked-In!");
         } else {
             WarningManager.getInstance().showWarningToAll("This patient already exists");
         }
