@@ -7,6 +7,7 @@ import hospital.ui.users.patients.Patient;
 import hospital.ui.users.patients.PatientUpdater;
 import hospital.ui.users.staff.*;
 import hospital.ui.warnings.WarningListener;
+import hospital.ui.warnings.WarningManager;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,6 +69,8 @@ public class MainViewController implements WarningListener {
         for (TitledPane pane : panes) {
             pane.setCollapsible(false);
         }
+
+        WarningManager.getInstance().addListener(this);
 
         if(passedPosition instanceof Doctor){
             setDoctorView();
@@ -194,30 +197,7 @@ public class MainViewController implements WarningListener {
                 }
             }
 
-
-
-            //Setup patient information in UI
-            ArrayList<Function<Patient, String>> methods = new ArrayList<>();
-            methods.add(Patient::getFirstName);
-            methods.add(Patient::getLastName);
-            methods.add(Patient::getPermAdd);
-            methods.add(Patient::getPhoneNum);
-            methods.add(Patient::getDob);
-            methods.add(Patient::getInsurancePlan);
-            methods.add(Patient::getEmergencyContact);
-            methods.add(Patient::getBloodPressure);
-            methods.add(Patient::getHeight);
-            methods.add(Patient::getWeight);
-            methods.add(Patient::getHeartRate);
-            methods.add(Patient::getOxyLevel);
-            methods.add(Patient::getBodyTemp);
-            methods.add(Patient::getBodyMassIndex);
-            methods.add(Patient::getDischargeInstruction);
-
-            //load patient information
-            for (int i = 0; i < stringFields.length; i++) {
-                stringFields[i].setText(methods.get(i).apply(currentPatient));
-            }
+            loadFields();
 
             //load patient labs and scripts and bill
             loadLabs(new ActionEvent());
@@ -240,6 +220,19 @@ public class MainViewController implements WarningListener {
             addListenerToTextField(stringFields[12],currentPatient, Patient::setBodyTemp);
             addListenerToTextField(stringFields[14],currentPatient, Patient::setDischargeInstruction);
 
+        }
+    }
+
+    private void loadFields(){
+        TextInputControl[] stringFields = {firstName, lastName, address, cellPhone, birthday, insurance, emergencyCell, bp, height, weight, heartRate, spo2, bodyTemp, bmi, instructionsField};
+
+        //Setup patient information in UI
+        ArrayList<Function<Patient, String>> methods = new ArrayList<>(Arrays.asList(Patient::getFirstName,Patient::getLastName, Patient::getPermAdd, Patient::getPhoneNum, Patient::getDob, Patient::getInsurancePlan,
+                Patient::getEmergencyContact, Patient::getBloodPressure, Patient::getHeight, Patient::getWeight, Patient::getHeartRate, Patient::getOxyLevel, Patient::getBodyTemp, Patient::getBodyMassIndex, Patient::getDischargeInstruction));
+
+        //load patient information
+        for (int i = 0; i < stringFields.length; i++) {
+            stringFields[i].setText(methods.get(i).apply(currentPatient));
         }
     }
 
@@ -298,7 +291,7 @@ public class MainViewController implements WarningListener {
                     names[i] = names[i].trim();
                 }
 
-                unloadPatient();
+                unloadPatient(); //unloads null patient (from previous unload)
                 Patient result = passedPosition.searchPatient(names[0], names[1], searchDOB.getText());
                 if(result != null){
                     currentPatient = result;
@@ -461,8 +454,10 @@ public class MainViewController implements WarningListener {
                     Main.database.updateKey(currentKey, key);
                     currentKey = key;
                 }
+
             }
         };
+        System.out.println(currentPatient +"Adding focus lost listener to: " + text.getId());
         listenerMap.put(text, listener);
         text.focusedProperty().addListener(listener);
     }
@@ -472,6 +467,7 @@ public class MainViewController implements WarningListener {
         if (listener != null) {
             text.focusedProperty().removeListener(listener);
         }
+        System.out.println(currentPatient + "Removing focus lost listener to: " + text.getId());
     }
     public void dischargeButton(ActionEvent event){
         if(currentPatient != nullPatient){
@@ -532,5 +528,7 @@ public class MainViewController implements WarningListener {
         alert.setHeaderText("Warning Dialog");
         alert.setContentText(message);
         alert.showAndWait();
+
+        loadFields();
     }
 }

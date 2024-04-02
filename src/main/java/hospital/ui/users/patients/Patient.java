@@ -191,10 +191,15 @@ public class Patient extends Person implements Serializable {
      */
     public void setHeight(String height) {
         double parseHeight = parseDoubleOrDefault(height);
-        if(parseHeight <= 96 && parseHeight >= -1){
+        if(parseHeight <= 96 && parseHeight >= 0){
             this.height = parseHeight;
+            setBodyMassIndex();
+        }else if(height.equals("")) {
+            this.height = -1;
+        }else {
+            WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-96 inches");
         }
-        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-96 inches");
+
     }
 
     /**
@@ -213,10 +218,14 @@ public class Patient extends Person implements Serializable {
      */
     public void setWeight(String weight) {
         double parseWeight = parseDoubleOrDefault(weight);
-        if(parseWeight <= 1000 && parseWeight >= -1){
-            this.height = parseWeight;
+        if(parseWeight <= 1000 && parseWeight >= 0){
+            this.weight = parseWeight;
+            setBodyMassIndex();
+        }else if(weight.equals("")){
+            this.weight = -1;
+        }else {
+            WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-1000 pounds");
         }
-        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-1000 pounds");
     }
 
     /**
@@ -245,6 +254,8 @@ public class Patient extends Person implements Serializable {
             } else {
                 WarningManager.getInstance().showWarningToAll("Blood pressure values out of range. Systolic should be 0-200 and diastolic should be 0-150.");
             }
+        }else if(bloodPressure.equals("")) {
+            this.bloodPressure = "";
         } else {
             WarningManager.getInstance().showWarningToAll("Invalid blood pressure format. Correct format: 'systolic/diastolic'.");
         }
@@ -266,10 +277,13 @@ public class Patient extends Person implements Serializable {
      */
     public void setHeartRate(String heartRate) {
         double parseRate = parseDoubleOrDefault(heartRate);
-        if(parseRate <= 200 && parseRate >= -1){
-            this.height = parseRate;
+        if(parseRate <= 200 && parseRate >= 0){
+            this.heartRate = parseRate;
+        }else if(heartRate.equals("")) {
+            this.heartRate = -1;
+        }else {
+            WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-200 BPM");
         }
-        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-200 BPM");
     }
 
     /**
@@ -289,9 +303,12 @@ public class Patient extends Person implements Serializable {
     public void setOxyLevel(String oxyLevel) {
         double parseLvl = parseDoubleOrDefault(oxyLevel);
         if(parseLvl <= 100 && parseLvl >= -1){
-            this.height = parseLvl;
+            this.oxyLevel = parseLvl;
+        }else if(oxyLevel.equals("")) {
+            this.oxyLevel = -1;
+        }else {
+            WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-100%");
         }
-        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-100%");
     }
 
     /**
@@ -311,9 +328,12 @@ public class Patient extends Person implements Serializable {
     public void setBodyTemp(String bodyTemp) {
         double parseTemp = parseDoubleOrDefault(bodyTemp);
         if(parseTemp <= 100 && parseTemp >= -1){
-            this.height = parseTemp;
+            this.bodyTemp = parseTemp;
+        }else if(bodyTemp.equals("")) {
+            this.bodyTemp = -1;
+        }else {
+            WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-150 F");
         }
-        WarningManager.getInstance().showWarningToAll("Invalid Input, Range of 0-150 F");
     }
 
     public void setBodyMassIndex() {
