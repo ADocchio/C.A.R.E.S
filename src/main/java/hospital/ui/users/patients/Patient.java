@@ -355,7 +355,7 @@ public class Patient extends Person implements Serializable {
     }
 
     public void setBodyMassIndex() {
-        this.bodyMassIndex = 703 * (weight / (height * height));
+        this.bodyMassIndex = Double.parseDouble(String.format("%.2f", 703 * (weight / (height * height))));
     }
 
     /**
@@ -364,7 +364,11 @@ public class Patient extends Person implements Serializable {
      * @return The BMI as an integer.
      */
     public String getBodyMassIndex() {
-        return doubleToStringOrEmpty(bodyMassIndex);
+        if(height == 0 || weight == 0){
+            return doubleToStringOrEmpty(bodyMassIndex);
+        }else{
+            return "";
+        }
     }
 
     /**

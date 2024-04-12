@@ -46,7 +46,7 @@ public class Person implements Serializable {
      * @param permAdd   The permanent address of the person.
      * @param phoneNum  The phone number of the person, formatted as 000-000-0000.
      */
-    public Person(String firstName, String lastName, String dob, String permAdd, String phoneNum) {
+    public Person(String lastName, String firstName, String dob, String permAdd, String phoneNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;

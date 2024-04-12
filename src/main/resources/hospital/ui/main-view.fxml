@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@er-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospital.ui.MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@er-view.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospital.ui.MainViewController">
    <children>
       <HBox prefHeight="1080.0" prefWidth="1920.0" styleClass="work-window" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -245,7 +232,7 @@
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>
                                                       </Label>
-                                                      <TextField fx:id="height" prefHeight="31.0" prefWidth="240.0" promptText="cm" GridPane.columnIndex="2" />
+                                                      <TextField fx:id="height" prefHeight="31.0" prefWidth="240.0" promptText="in" GridPane.columnIndex="2" />
                                                       <TextField fx:id="weight" prefHeight="31.0" prefWidth="240.0" promptText="lb" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                       <TextField fx:id="bp" prefHeight="31.0" prefWidth="240.0" promptText="000/000" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                       <TextField fx:id="heartRate" prefHeight="31.0" prefWidth="240.0" promptText="Beats per Minute" GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -257,7 +244,7 @@
                                                          </font>
                                                       </Label>
                                                       <TextField fx:id="bmi" disable="true" prefHeight="31.0" prefWidth="240.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Height(ft) :" GridPane.columnIndex="1">
+                                                      <Label prefHeight="54.0" prefWidth="122.0" text="Height(In) :" GridPane.columnIndex="1">
                                                          <font>
                                                             <Font name="System Bold" size="15.0" />
                                                          </font>

@@ -298,9 +298,13 @@ public class MainViewController implements WarningListener {
                 unloadPatient(); //unloads null patient (from previous unload)
                 Patient result = passedPosition.searchPatient(names[0], names[1], searchDOB.getText());
                 if(result != null){
-                    currentPatient = result;
-                    currentKey = (names[0] + names[1] + dob);
-                    loadPatient();
+                    if(!result.isDischarged() || passedPosition instanceof BillingStaff){ //make sure patient has not been discharged
+                        currentPatient = result;
+                        currentKey = (names[0] + names[1] + dob);
+                        loadPatient();
+                    }else{
+                        showWarning("Patient has been discharged");
+                    }
                 }else{
                     showWarning("No patient found!");
                 }
@@ -475,7 +479,7 @@ public class MainViewController implements WarningListener {
 
             }
         };
-        System.out.println(currentPatient +"Adding focus lost listener to: " + text.getId());
+        System.out.println(currentPatient +"Adding focus listener to: " + text.getId());
         listenerMap.put(text, listener);
         text.focusedProperty().addListener(listener);
     }
