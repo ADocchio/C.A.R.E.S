@@ -320,7 +320,7 @@ public class Patient extends Person implements Serializable {
      */
     public void setOxyLevel(String oxyLevel) {
         double parseLvl = parseDoubleOrDefault(oxyLevel);
-        if(parseLvl <= 100 && parseLvl >= -1){
+        if(parseLvl <= 100 && parseLvl >= 0){
             this.oxyLevel = parseLvl;
         }else if(oxyLevel.equals("")) {
             this.oxyLevel = -1;
@@ -462,9 +462,7 @@ public class Patient extends Person implements Serializable {
     }
 
     public void clearPatient(){
-        this.setLastName("");
-        this.setFirstName("");
-        this.setDob("");
+        this.clear();
         this.setPermAdd("");
         this.setPhoneNum("");
         this.setEmergencyContact("");

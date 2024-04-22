@@ -216,12 +216,14 @@ public class MainViewController implements WarningListener {
             loadValidScripts(new ActionEvent());
             billField.setText(currentPatient.getBill());
 
+
+
             //Allow for updating of patient information
             addListenerToTextField(stringFields[0],currentPatient, Patient::setFirstName);
             addListenerToTextField(stringFields[1],currentPatient, Patient::setLastName);
             addListenerToTextField(stringFields[2],currentPatient, Patient::setPermAdd);
-            addListenerToTextField(stringFields[3],currentPatient, Patient::setPhoneNum);
             addListenerToTextField(stringFields[4],currentPatient, Patient::setDob);
+            addListenerToTextField(stringFields[3],currentPatient, Patient::setPhoneNum);
             addListenerToTextField(stringFields[5],currentPatient, Patient::setInsurancePlan);
             addListenerToTextField(stringFields[6],currentPatient, Patient::setEmergencyContact);
             addListenerToTextField(stringFields[7],currentPatient, Patient::setBloodPressure);

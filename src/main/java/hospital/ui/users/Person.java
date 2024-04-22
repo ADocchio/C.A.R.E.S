@@ -69,7 +69,11 @@ public class Person implements Serializable {
      * @param firstName The new first name to set.
      */
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        if(firstName.matches("[A-Za-z'-]+")){
+            this.firstName = firstName;
+        }else{
+            WarningManager.getInstance().showWarningToAll("Invalid Input, Patient must have a firstname, No numbers");
+        }
     }
 
     /**
@@ -87,7 +91,11 @@ public class Person implements Serializable {
      * @param lastName The new last name to set.
      */
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        if(lastName.matches("[A-Za-z'-]+")){
+            this.lastName = lastName;
+        }else{
+            WarningManager.getInstance().showWarningToAll("Invalid Input, Patient must have a lastname, No numbers");
+        }
     }
 
     /**
@@ -106,7 +114,7 @@ public class Person implements Serializable {
      * @param dob The new date of birth to set, formatted as MM/DD/YYYY.
      */
     public void setDob(String dob) {
-        if (dob.matches("^\\d{2}/\\d{2}/\\d{4}$") || dob.equals("")) {
+        if (dob.matches("^\\d{2}/\\d{2}/\\d{4}$")) {
             this.dob = dob;
         } else {
             WarningManager.getInstance().showWarningToAll("Invalid Input, format should be MM/DD/YYYY");
@@ -152,5 +160,14 @@ public class Person implements Serializable {
         } else {
             WarningManager.getInstance().showWarningToAll("Invalid Input, format should be 000-000-0000");
         }
+    }
+
+    /*
+    clears key for null patient
+     */
+    public void clear(){
+        this.lastName = "";
+        this.firstName = "";
+        this.dob = "";
     }
 }
