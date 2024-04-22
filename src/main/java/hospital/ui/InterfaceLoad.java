@@ -44,7 +44,14 @@ public class InterfaceLoad extends Application {
         InterfaceLoad.primaryStage = primaryStage;
 
         FXMLLoader fxmlLoader = new FXMLLoader(InterfaceLoad.class.getResource("login.fxml")); // Loads login FXML
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400); // Sets login window size
+        LoginController controller = LoginController.getInstance();
+        fxmlLoader.setController(controller);
+
+        // Load the root from the FXML file
+        Parent root = fxmlLoader.load();
+
+        // Create the Scene with the loaded root
+        Scene scene = new Scene(root, 600, 400); // Set dimensions as necessary
         primaryStage.setTitle("C.A.R.E.S Login");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -75,8 +82,15 @@ public class InterfaceLoad extends Application {
 
         try {
             final Pane root = new Pane();
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(InterfaceLoad.class.getResource(fxml)));
 
-            Pane pane = FXMLLoader.load(Objects.requireNonNull(InterfaceLoad.class.getResource(fxml)));   //initial view
+            if(fxml.equals("main-view.fxml")){
+                loader.setController(MainViewController.getInstance());
+            }else{
+                loader.setController(LoginController.getInstance());
+            }
+
+            Pane pane = loader.load();
             pane.setPrefWidth(width);
             pane.setPrefHeight(height);
             root.getChildren().add(pane);

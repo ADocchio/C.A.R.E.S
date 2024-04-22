@@ -26,6 +26,14 @@ public class LoginController {
     private Button loginButton;
     @FXML
     private Label loginError;
+    private static LoginController instance;
+
+    public static synchronized LoginController getInstance() {
+        if (instance == null) {
+            instance = new LoginController();
+        }
+        return instance;
+    }
 
     /**
      * Handles the login button click event. It attempts to authenticate the user based on the

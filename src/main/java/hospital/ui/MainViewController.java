@@ -26,11 +26,12 @@ import java.util.function.Function;
  */
 public class MainViewController implements WarningListener {
 
-    public static Patient nullPatient = new Patient(new Person("", "", "", "", ""), "", "");
+    private static Patient nullPatient = new Patient(new Person("", "", "", "", ""), "", "");
     public static Staff passedPosition;
-    public static Patient currentPatient = nullPatient;
-    private static String currentKey = "";
+    private static Patient currentPatient = null;
+    private String currentKey = "";
     private final Map<TextInputControl, ChangeListener<Boolean>> listenerMap = new HashMap<>();
+    private static MainViewController instance;
 
     @FXML private TitledPane basicInfoPane, medicalInfoPane, labTestPane, labResultsPane, diagnosisPane, dischargePane;
     @FXML private Button admitButton, dischargeButton;
@@ -42,6 +43,18 @@ public class MainViewController implements WarningListener {
     @FXML private CheckBox highBloodScript1, highBloodScript2, highBloodScript3, highCholesterolScript1, highCholesterolScript2, highCholesterolScript3, kidneyScript1, kidneyScript2, kidneyScript3, liverScript1, liverScript2, liverScript3, boneScript1, boneScript2, boneScript3;
     @FXML private CheckBox highBloodPressure, highCholesterol, kidneyDisease, liverDisease, brokenHumerus;
 
+    MainViewController(){
+        //create warning manager
+        WarningManager.getInstance().addListener(this);
+    }
+
+    public static synchronized MainViewController getInstance() {
+        if (instance == null) {
+            instance = new MainViewController();
+        }
+        return instance;
+    }
+
     /**
      * Initializes the controller. This method is called after all @FXML annotated fields have been injected.
      * It sets up the UI based on the role of the logged-in staff and registers the controller as a listener for warnings.
@@ -51,9 +64,6 @@ public class MainViewController implements WarningListener {
         for (TitledPane pane : panes) {
             pane.setCollapsible(false);
         }
-
-        //create warning manager
-        WarningManager.getInstance().addListener(this);
 
         if(passedPosition instanceof Doctor){
             setDoctorView();
@@ -69,10 +79,23 @@ public class MainViewController implements WarningListener {
             role.setText("Billing Staff");
         }
         userName.setText(passedPosition.getLastName() + ", " + passedPosition.getFirstName());
-        currentPatient = nullPatient;
-        loadPatient();
+
+        if(currentPatient == null){
+            currentPatient = nullPatient;
+            loadPatient();
+        }
     }
 
+    private void removeAllListeners() {
+        // Iterate through all entries in the listener map
+        for (Map.Entry<TextInputControl, ChangeListener<Boolean>> entry : listenerMap.entrySet()) {
+            TextInputControl control = entry.getKey();
+            ChangeListener<Boolean> listener = entry.getValue();
+            control.focusedProperty().removeListener(listener);
+        }
+        // Clear the map after removing listeners
+        listenerMap.clear();
+    }
 
     /**
      * Handles the logout action. It changes the scene back to the login view.
@@ -81,8 +104,12 @@ public class MainViewController implements WarningListener {
      * @throws IOException If the login view file cannot be loaded.
      */
     public void logOut(ActionEvent event) throws IOException {
-        InterfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
+        if(currentPatient != nullPatient){
+            unloadPatient();
+        }
         unloadPatient();
+        currentPatient = null;
+        InterfaceLoad.changeScene("login.fxml", 400, 600, "C.A.R.E.S Login");
     }
 
     /** Sets the view and permissions for the billing staff dashboard
@@ -295,9 +322,10 @@ public class MainViewController implements WarningListener {
                     names[i] = names[i].trim();
                 }
 
-                unloadPatient(); //unloads null patient (from previous unload)
+
                 Patient result = passedPosition.searchPatient(names[0], names[1], searchDOB.getText());
                 if(result != null){
+                    unloadPatient(); //unloads null patient (from previous unload)
                     if(!result.isDischarged() || passedPosition instanceof BillingStaff){ //make sure patient has not been discharged
                         currentPatient = result;
                         currentKey = (names[0] + names[1] + dob);
@@ -340,7 +368,8 @@ public class MainViewController implements WarningListener {
                         labResults[i].setText(Lab.LabResult.Abnormal.toString());
                     }
 
-                }else {
+                }else if(!(Objects.equals(labResults[i].getStyleClass().toString(), "lab-result-p") || Objects.equals(labResults[i].getStyleClass().toString(), "lab-result-n"))) {
+
                     labResults[i].getStyleClass().clear();
                     labResults[i].getStyleClass().add("lab-result");
 
@@ -476,10 +505,8 @@ public class MainViewController implements WarningListener {
                     currentKey = key;
                 }
                 loadFields();
-
             }
         };
-        System.out.println(currentPatient +"Adding focus listener to: " + text.getId());
         listenerMap.put(text, listener);
         text.focusedProperty().addListener(listener);
     }
@@ -494,7 +521,6 @@ public class MainViewController implements WarningListener {
         if (listener != null) {
             text.focusedProperty().removeListener(listener);
         }
-        System.out.println(currentPatient + "Removing focus lost listener to: " + text.getId());
     }
 
     /**
@@ -507,18 +533,18 @@ public class MainViewController implements WarningListener {
             //if patient has had there discharge started by a nurse, and the current user is a doctor, complete discharge
             if (passedPosition instanceof Doctor && currentPatient.isStartedDischarged()){
                 currentPatient.setDischarged(true);
-                showWarning("Discharge Complete");
-                unloadPatient();
-            }else if (passedPosition instanceof Nurse && !currentPatient.isStartedDischarged()){
-                currentPatient.setDischarged(true);
-                dischargeButton.setDisable(true);
-                admitButton.setDisable(true);
-                showWarning("Discharge has been started");
 
                 //set stay of patient;
                 Random rand = new Random();
                 currentPatient.setDischargeDate(LocalDate.now().plusDays(rand.nextInt((10) + 2)));
-                currentPatient.setDischarged(true);
+
+                showWarning("Discharge Complete");
+                unloadPatient();
+            }else if (passedPosition instanceof Nurse && !currentPatient.isStartedDischarged()){
+                currentPatient.setStartedDischarged(true);
+                dischargeButton.setDisable(true);
+                admitButton.setDisable(true);
+                showWarning("Discharge has been started");
             }
         }
     }
@@ -570,8 +596,8 @@ public class MainViewController implements WarningListener {
     @Override
     public void showWarning(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Warning Dialog");
-        alert.setHeaderText("Warning Dialog");
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText("Information Dialog");
         alert.setContentText(message);
         alert.showAndWait();
     }

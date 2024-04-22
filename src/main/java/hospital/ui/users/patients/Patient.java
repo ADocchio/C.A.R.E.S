@@ -46,7 +46,7 @@ public class Patient extends Person implements Serializable {
      * @param emergencyContact The emergency contact information for the patient, formatted as 000-000-0000.
      */
     public Patient(Person person, String insurancePlan, String emergencyContact){
-        super(person.getFirstName(), person.getLastName(), person.getDob(), person.getPermAdd(), person.getPhoneNum());
+        super(person.getLastName(), person.getFirstName(), person.getDob(), person.getPermAdd(), person.getPhoneNum());
         this.patientID = person.getLastName() + person.getFirstName() + person.getDob();
         this.insurancePlan = insurancePlan;
         this.emergencyContact = emergencyContact;
@@ -185,7 +185,7 @@ public class Patient extends Person implements Serializable {
     }
 
     public boolean isStartedDischarged() {
-        return isDischarged;
+        return isStartedDischarged;
     }
 
     public void setStartedDischarged(boolean isStartedDischarged) {
