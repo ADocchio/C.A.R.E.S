@@ -364,7 +364,7 @@ public class Patient extends Person implements Serializable {
      * @return The BMI as an integer.
      */
     public String getBodyMassIndex() {
-        if(height == 0 || weight == 0){
+        if(height > 0 && weight > 0){
             return doubleToStringOrEmpty(bodyMassIndex);
         }else{
             return "";
