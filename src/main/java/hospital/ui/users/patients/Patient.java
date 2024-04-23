@@ -345,7 +345,7 @@ public class Patient extends Person implements Serializable {
      */
     public void setBodyTemp(String bodyTemp) {
         double parseTemp = parseDoubleOrDefault(bodyTemp);
-        if(parseTemp <= 100 && parseTemp >= -1){
+        if(parseTemp <= 150 && parseTemp >= 0){
             this.bodyTemp = parseTemp;
         }else if(bodyTemp.equals("")) {
             this.bodyTemp = -1;
